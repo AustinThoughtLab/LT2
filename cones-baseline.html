@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cone Games Experiment</title>
+    <script src="https://unpkg.com/jspsych@7.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.0.0"></script>
+    <link href="https://unpkg.com/jspsych@7.0.0/css/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+  <script>
+    var jsPsych = initJsPsych();
+
+    var welcome = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: 'Welcome to the experiment! <br> Press any key to continue.'
+    }
+    var dist_campus_instructions = {
+      type: jsPsychImageKeyboardResponse,
+      stimulus: 'LT2_Pictures/Picture2.JPG'
+    }
+
+    jsPsych.run([welcome, dist_campus_instructions]);
+  </script>
+</html>
