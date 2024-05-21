@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+    <script src="jspsych-7.0/dist/jspsych.js"></script>
+    <script src="jspsych-7.0/dist/plugin-preload.js"></script>
+    <script src="jspsych-7.0/dist/plugin-distance-slider-response.js"></script>
+    <script src="jspsych-7.0/dist/plugin-html-keyboard-response.js"></script>
+    <script src="jspsych-7.0/dist/plugin-survey-html-form.js"></script>
+    <link href="jspsych-7.0/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+  <script>
+  const jsPsych = initJsPsych();
+
+  var preload = {
+    type: jsPsychPreload,
+    auto_preload: true,
+  };
+
+  /** demographics survey */
+  var demographics = {
+    type: jsPsychSurveyHtmlForm,
+    preamble: '<h2>DEMOGRAPHICS QUESTIONNAIRE</h2><p><i>Please fill out this demographic form. You may skip any questions you do not wish to answer.</i></p>',
+    html: `<p><b>First Name: </b><input type="text" name="name-first"><b> Last Name: </b><input type="text" name="name-last"></p>
+
+    <p><b>Date of birth (MM/DD/YYYY): </b><input type="text" name="birthdate"></p>
+
+    <p><b>Race (More than one box may be selected): </b>
+      <br><input type="checkbox" name="race-amerindian"> American Indian or Alaskan Native
+      <br><input type="checkbox" name="race-asian"> Asian
+      <br><input type="checkbox" name="race-black"> Black or African American
+      <br><input type="checkbox" name="race-pacific"> Native Hawaiian or Pacific Islander
+      <br><input type="checkbox" name="race-white"> White or Caucasian
+      <br><input type="checkbox" name="race-undisclosed"> Do not wish to diclose
+    </p>
+
+    <p><b>Ethnicity:</b>
+      <br><input type="radio" name="ethnicity-hispanic"> Hispanic or Latino
+      <br><input type="radio" name="ethnicity-nonhispanic"> Non-Hispanic or Non-Latino
+      <br><input type="radio" name="ethnicity-undisclosed"> Do not wish to disclose
+    </p>
+
+    <p><b>Sex:
+      </b><br><input type="radio" name="sex-female"> Female
+      <br><input type="radio" name="sex-male"> Male
+      <br><input type="radio" name="sex-nb"> Non-binary
+      <br><input type="radio" name="sex-undisclosed"> Do not wish to disclose
+    </p>
+
+    <p><b>What is the highest level of education you have completed?</b>
+      <br><input type="radio" name="education-somehs"> Some High School
+      <br><input type="radio" name="education-hs"> High School Degree
+      <br><input type="radio" name="education-somecollege"> Some College
+      <br><input type="radio" name="education-college"> College Degree
+      <br><input type="radio" name="education-technical"> Technical/AA Degree
+      <br><input type="radio" name="education-somegrad"> Some Graduate School
+      <br><input type="radio" name="education-grad"> Graduate Degree
+      <br><input type="radio" name="education-undisclosed"> Unsure/Do not wish to disclose
+    </p>
+
+    <p><b>Which measurement system are you most familiar with?</b>
+      <br><input type="radio" name="measurement-metric"> Metric (centimeters)
+      <br><input type="radio" name="measurement-imperial"> Imperial (inches)
+      <br><input type="radio" name="measurement-equal"> Both are equally familiar
+    </p>
+
+    `
+//hi this is shaan.
+  }
+
+  var instructions = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
+      "<p>Estimate the distance between the <b>tip</b> of each cone.</p>" +
+      "<p>Use the slider to mark your answers.</p>" +
+      "<p>After submitting each answer, you will see the correct distance.</p>" +
+      "<p>Try your best to get as close to the correct distance as possible.</p>" +
+      "<p>[Press SPACE to begin.]</p>",
+      choices: [" "]
+  }
+
+  var distance_campus = {
+    timeline: [
+      {
+        type: jsPsychDistanceeSliderResponse,
+        stimulus: jsPsych.timelineVariable('stimulus'),
+        stimulus_width: 500,
+        slider_width: 500,
+          //require_movement: true,
+        min: jsPsych.timelineVariable('min'), // What's the minimum value of the slider?
+        max: jsPsych.timelineVariable('max'), // What's the maximum value of the slider?
+          //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
+        step: 0.1, // Slider moves in increments of how much?
+        slider_number: true,
+        feedback_correct: jsPsych.timelineVariable('feedback_correct'),
+        feedback_display: true,
+        prompt: '<p>How far apart are the cones?</p>'
+      }
+    ],
+    timeline_variables: [
+      {stimulus: 'img/distance_campus_01.jpg', min: 23.2, max: 40.5, feedback_correct: 33.0},
+      {stimulus: 'img/distance_campus_02.jpg', min: 53.5, max: 76.3, feedback_correct: 57.6},
+      {stimulus: 'img/distance_campus_03.jpg', min: 91.1, max: 121.4, feedback_correct: 101.9},
+      {stimulus: 'img/distance_campus_04.jpg', min: 73.8, max: 101.4, feedback_correct: 84.4},
+      {stimulus: 'img/distance_campus_05.jpg', min: 100.2, max: 133.3, feedback_correct: 120.5},
+      {stimulus: 'img/distance_campus_06.jpg', min: 25.8, max: 42.5, feedback_correct: 30.9},
+      {stimulus: 'img/distance_campus_08.jpg', min: 44.5, max: 68.4, feedback_correct: 63.6},
+      {stimulus: 'img/distance_campus_07.jpg', min: 79.9, max: 110.9, feedback_correct: 107.0},
+      {stimulus: 'img/distance_campus_09.jpg', min: 141.5, max: 180.1, feedback_correct: 165.4},
+      {stimulus: 'img/distance_campus_10.jpg', min: 28.0, max: 45.2, feedback_correct: 32.9},
+      {stimulus: 'img/distance_campus_11.jpg', min: 160.2, max: 200.0, feedback_correct: 176.6},
+      {stimulus: 'img/distance_campus_12.jpg', min: 43.8, max: 66.2, feedback_correct: 55.7},
+      {stimulus: 'img/distance_campus_13.jpg', min: 34.7, max: 55.0, feedback_correct: 45.7},
+      {stimulus: 'img/distance_campus_14.jpg', min: 64.8, max: 91.9, feedback_correct: 81.3},
+      {stimulus: 'img/distance_campus_15.jpg', min: 30.5, max: 47.4, feedback_correct: 31.9},
+      {stimulus: 'img/distance_campus_16.jpg', min: 38.9, max: 62.1, feedback_correct: 60.0},
+      {stimulus: 'img/distance_campus_17.jpg', min: 122.1, max: 156.0, feedback_correct: 128.0},
+      {stimulus: 'img/distance_campus_18.jpg', min: 264.1, max: 314.5, feedback_correct: 282.2},
+      {stimulus: 'img/distance_campus_19.jpg', min: 125.3, max: 159.6, feedback_correct: 130.0},
+      {stimulus: 'img/distance_campus_20.jpg', min: 76.7, max: 105.0, feedback_correct: 89.0},
+      {stimulus: 'img/distance_campus_21.jpg', min: 103.7, max: 137.3, feedback_correct: 125.0},
+      {stimulus: 'img/distance_campus_22.jpg', min: 12.5, max: 25.5, feedback_correct: 18.9},
+      {stimulus: 'img/distance_campus_23.jpg', min: 42.7, max: 64.1, feedback_correct: 51.0},
+      {stimulus: 'img/distance_campus_24.jpg', min: 92.1, max: 124.5, feedback_correct: 116.5},
+      {stimulus: 'img/distance_campus_25.jpg', min: 72.3, max: 100.7, feedback_correct: 89.5},
+      {stimulus: 'img/distance_campus_26.jpg', min: 63.1, max: 87.3, feedback_correct: 65.1},
+      {stimulus: 'img/distance_campus_27.jpg', min: 8.5, max: 22.4, feedback_correct: 21.3},
+      {stimulus: 'img/distance_campus_28.jpg', min: 208.2, max: 251.9, feedback_correct: 211.0},
+      {stimulus: 'img/distance_campus_29.jpg', min: 126.8, max: 164.7, feedback_correct: 159.6},
+      {stimulus: 'img/distance_campus_30.jpg', min: 28.4, max: 48.5, feedback_correct: 45.2},
+    ],
+    randomize_order: true,
+  }
+
+  //end message//
+var ending = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: "<p>Thank you for playing this game!</p>",
+  on_start: function(data){
+    var file_name = 'LT2.csv';
+    jsPsych.data.get().localSave('csv',file_name); // Saves a file on the computer running the experiment. First localSave argument is the format, second is the filename.
+  }
+};
+
+  jsPsych.run([
+    preload,
+    demographics,
+    instructions,
+    distance_campus,
+    ending
+  ]);
+  </script>
+</html>
