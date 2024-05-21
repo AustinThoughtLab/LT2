@@ -1,4 +1,4 @@
-var jsPsychDistanceeSliderResponse = (function (jspsych) {
+var jsPsychDistanceSliderResponse = (function (jspsych) {
     'use strict';
 
     const info = {
