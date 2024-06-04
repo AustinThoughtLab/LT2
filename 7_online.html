@@ -51,6 +51,7 @@ var images_block_1 = ['img/distance_campus_01.jpg',
 'img/distance_campus_28.jpg',
 'img/distance_campus_29.jpg',
 'img/distance_campus_30.jpg',
+'img/distance_diagram.jpg',
 'img/choices_1_2_3_4.png',
 'img/likert_1_2_3_4.png'
 ];
@@ -131,7 +132,7 @@ var images_block_1 = ['img/distance_campus_01.jpg',
   var games_instructions = {
     type: jsPsychSurveyHtmlForm,
     preamble:
-    'You are going to rate how much you would like to play different games 😍.<br> First you will read what each game is about, and then you will rate how much you want to play them.',
+    'You are going to rate how much you would like to play different games 😍.<br> First, you will read what each game is about.<br> Then, you will rate how much you want to play them.',
     html:''
   }
 
@@ -170,20 +171,20 @@ var likert_trial = {
     scale_height: 800,
     image_width: 202,
     questions:[
-        {prompt: "How much do you want to play Distance on Campus?", name: "distance_campus_likert", labels: scale, required: true},
-        {prompt: "How much do you want to play Time on Campus?", name: "time_campus_likert", labels: scale, required: true},
-        {prompt: "How much do you want to play Distance in Park?", name: "distance_park_likert", labels: scale, required: true},
-        {prompt: "How much do you want to play Time in Park?", name: "time_park_likert", labels: scale, required: true},
+        {prompt: "How much do you want to play <b>Distance on Campus?</b>", name: "distance_campus_likert", labels: scale, required: true},
+        {prompt: "How much do you want to play <b>Time on Campus?</b>", name: "time_campus_likert", labels: scale, required: true},
+        {prompt: "How much do you want to play <b>Distance in Park?</b>", name: "distance_park_likert", labels: scale, required: true},
+        {prompt: "How much do you want to play <b>Time in Park?</b>", name: "time_park_likert", labels: scale, required: true},
   ],
 };
 
 var distance_campus_binary_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p><img src='img/distance_diagram.JPG' height='400px'></p>" + 
+  stimulus: "<p><img src='img/distance_diagram.jpg' height='400px'></p>" + 
     "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
     "<p>Estimate the distance between the <b>tip</b> of each cone.</p>" +
     "<p>Use the slider to mark your answers.</p>" +
-    "<p>After submitting each answer, you will see the correct distance.</p>" +
+    "<p>After submitting each answer, you will see if you were within range of the correct distance.</p>" +
     "<p>Try your best to get as close to the correct distance as possible.</p>",
     choices: ["Continue"]
 }
@@ -195,7 +196,7 @@ var distance_campus_binary_game = {
       stimulus: jsPsych.timelineVariable('stimulus'),
       stimulus_width: 700,
       slider_width: 700,
-        //require_movement: true,
+      require_movement: true,
       min: jsPsych.timelineVariable('min'), // What's the minimum value of the slider?
       max: jsPsych.timelineVariable('max'), // What's the maximum value of the slider?
         //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
@@ -250,7 +251,7 @@ var distance_campus_binary_game = {
 
   var distance_campus_response_instructions = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: "<p><img src='img/distance_diagram.JPG' height='400px'></p>" + 
+    stimulus: "<p><img src='img/distance_diagram.jpg' height='400px'></p>" + 
       "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
       "<p>Estimate the distance between the <b>tip</b> of each cone.</p>" +
       "<p>Use the slider to mark your answers.</p>" +
@@ -266,7 +267,7 @@ var distance_campus_binary_game = {
         stimulus: jsPsych.timelineVariable('stimulus'),
         stimulus_width: 700,
         slider_width: 700,
-          //require_movement: true,
+        require_movement: true,
         min: jsPsych.timelineVariable('min'), // What's the minimum value of the slider?
         max: jsPsych.timelineVariable('max'), // What's the maximum value of the slider?
           //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
@@ -335,8 +336,6 @@ var ending = {
     distance_campus_response,
     ending
   ]);
-
-  //
 
 </script>
 </html>
