@@ -131,7 +131,7 @@ var images_block_1 = ['img/distance_campus_01.jpg',
   var games_instructions = {
     type: jsPsychSurveyHtmlForm,
     preamble:
-    'You are going to rate how much you would like to play different games 😍.<br> First you will read what each game is about and then you will rate how much you want to play them.',
+    'You are going to rate how much you would like to play different games 😍.<br> First you will read what each game is about, and then you will rate how much you want to play them.',
     html:''
   }
 
@@ -179,7 +179,8 @@ var likert_trial = {
 
 var distance_campus_binary_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
+  stimulus: "<p><img src='img/distance_diagram.JPG' height='400px'></p>" + 
+    "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
     "<p>Estimate the distance between the <b>tip</b> of each cone.</p>" +
     "<p>Use the slider to mark your answers.</p>" +
     "<p>After submitting each answer, you will see the correct distance.</p>" +
@@ -249,7 +250,8 @@ var distance_campus_binary_game = {
 
   var distance_campus_response_instructions = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
+    stimulus: "<p><img src='img/distance_diagram.JPG' height='400px'></p>" + 
+      "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
       "<p>Estimate the distance between the <b>tip</b> of each cone.</p>" +
       "<p>Use the slider to mark your answers.</p>" +
       "<p>After submitting each answer, you will see the correct distance.</p>" +
