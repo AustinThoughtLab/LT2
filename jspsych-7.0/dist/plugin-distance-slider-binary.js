@@ -1,4 +1,4 @@
-var jsPsychDistanceSliderResponse = (function (jspsych) {
+var jsPsychDistanceSliderBinary = (function (jspsych) {
     'use strict';
 
     const info = {
@@ -125,7 +125,7 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
                 default: true,
             },
             feedback_correct: {
-                type: jspsych.ParameterType.INT,
+                type: jspsych.ParameterType.HTML_STRING,
                 pretty_name: "Feedback Correct",
                 default: null,
                 description: 'Feedback for correct response'
@@ -385,26 +385,41 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
                 // Function to display feedback_correct
 function displayFeedbackCorrect() {
     var feedbackcorrect = document.createElement("div");
-    //feedbackcorrect.innerHTML = trial.feedback_correct; // Assuming feedback_correct is HTML content
-    if (trial.feedback_correct == Math.floor(trial.feedback_correct)) {
-      var feedbackDisplay = trial.feedback_correct + ".0"
-    } else {
-      var feedbackDisplay = trial.feedback_correct
-    }
-    feedbackcorrect.innerHTML = feedbackDisplay; // Assuming feedback_correct is HTML content
+
+    feedbackcorrect.innerHTML = trial.feedback_correct; // Assuming feedback_correct is HTML content
 
       // Calculate the horizontal position relative to the slider's width
       var sliderWidth = display_element.querySelector('#plugin-distance-slider-response-response').offsetWidth;
-      var outputWidth = display_element.querySelector('#output').offsetWidth;
-      var horizontalPosition = (trial.feedback_correct - trial.min) / (trial.max - trial.min) * (sliderWidth - outputWidth) + 'px'; // Assuming trial.feedback_correct is in pixels
+      console.log("sliderWidth = ", display_element.querySelector('#plugin-distance-slider-response-response').offsetWidth);
+      if (trial.feedback_correct == "⭐ Within range! 😃"){
+        var outputWidth = 168;
+        var outputColor = "blue";
+        var outputFontWeight = "bold";
+      } else {
+        var outputWidth = 126;
+        var outputColor = "red";
+        var outputFontWeight = "normal";
+      }
+
+      //var outputWidth = display_element.querySelector('#output').offsetWidth;
+      console.log("outputWidth = ", display_element.querySelector('#output').offsetWidth);
+      console.log("feedbackcorrect = ", feedbackcorrect);
+      console.log("feedbackcorrect offsetWidth = ", feedbackcorrect.offsetWidth);
+      //console.log("feedbackcorrect offsetWidth = ", display_element.querySelector('#feedbackcorrect').offsetWidth)
+      //var horizontalPosition = 1 / 2 * (sliderWidth - outputWidth) + 'px'; // Assuming trial.feedback_correct is in pixels
+      var horizontalPosition = (sliderWidth-outputWidth)/2 + 'px'; // Assuming trial.feedback_correct is in pixels
 
     // Adjust vertical position here
         feedbackcorrect.style.position = "absolute"; // Ensure positioning works as expected
         feedbackcorrect.style.top = "-5px"; // Adjust this value to change the vertical position
         feedbackcorrect.style.left = horizontalPosition;
-        feedbackcorrect.style.color = "blue";
+        feedbackcorrect.style.color = outputColor
+        feedbackcorrect.style.fontWeight = outputFontWeight
 
-    slider_container.appendChild(feedbackcorrect);
+
+        slider_container.appendChild(feedbackcorrect);
+    var feedbackCorrectWidth = feedbackcorrect.offsetWidth;
+    console.log("Width of feedbackcorrect:", feedbackCorrectWidth);
 }
 
             if (trial.stimulus_duration !== null) {

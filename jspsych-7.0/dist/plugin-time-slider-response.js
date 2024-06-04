@@ -1,8 +1,8 @@
-var jsPsychDistanceSliderResponse = (function (jspsych) {
+var jsPsychTimeSliderResponse = (function (jspsych) {
     'use strict';
 
     const info = {
-        name: "distance-slider-response",
+        name: "time-slider-response",
         parameters: {
             /** The image to be displayed */
             stimulus: {
@@ -140,14 +140,14 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
     };
 
     /**
-     * **distance-slider-response**
+     * **time-slider-response**
      *
      * jsPsych plugin for showing an image stimulus and getting a slider response
      *
      * @author Josh de Leeuw
-     * @see {@link https://www.jspsych.org/plugins/plugin-distance-slider-response/ distance-slider-response plugin documentation on jspsych.org}
+     * @see {@link https://www.jspsych.org/plugins/plugin-time-slider-response/ time-slider-response plugin documentation on jspsych.org}
      */
-     class DistanceSliderResponsePlugin {
+     class TimeSliderResponsePlugin {
      constructor(jsPsych) {
          this.jsPsych = jsPsych;
      }
@@ -174,11 +174,11 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
              }
              // create wrapper div, canvas element and image
              var content_wrapper = document.createElement("div");
-             content_wrapper.id = "plugin-distance-slider-response-wrapper";
+             content_wrapper.id = "plugin-time-slider-response-wrapper";
              content_wrapper.style.marginTop = "20px"; // margin above the wrapper
              content_wrapper.style.marginBottom = "70px"; // margin below the wrapper
              var canvas = document.createElement("canvas");
-             canvas.id = "plugin-distance-slider-response-stimulus";
+             canvas.id = "plugin-time-slider-response-stimulus";
              canvas.style.margin = "0";
              canvas.style.padding = "0";
              var ctx = canvas.getContext("2d");
@@ -225,7 +225,7 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
              getHeightWidth(); // call now, in case image loads immediately (is cached)
              // create container with slider and labels
              var slider_container = document.createElement("div");
-             slider_container.classList.add("plugin-distance-slider-response-container");
+             slider_container.classList.add("plugin-time-slider-response-container");
              slider_container.style.position = "relative";
              slider_container.style.margin = "0 auto 3em auto";
              if (trial.slider_width !== null) {
@@ -241,17 +241,47 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
                  trial.max +
                  '" step="' +
                  trial.step +
-                 '" id="plugin-distance-slider-response-response"  style="margin-top: 60px;"></input>';
+                 '" id="plugin-time-slider-response-response"  style="margin-top: 60px;"></input>';
              if (trial.slider_number) {
                  html += '<div id="your_id_here" style="position: absolute; top: 20px;">';
                  html += '<output id="output">' + trial.slider_start + '</output></div>';;
              }
              html += "<div>";
              html += '<div style="display: inline-block; position: absolute; left: 0; transform: translateX(-50%); text-align: center; width: 10%;">'; // Adjusted left and added transform
-             html += '<span style="text-align: center; font-size: 80%;">' + trial.min.toString() + ' inches' + '</span>';
+             var min_hour = Math.floor(trial.min/60)
+             var min_m = "a.m."
+             // Check if the number is 13 or greater
+             if (min_hour >= 13) {
+                 // Subtract 12 from the number
+                 min_hour -= 12;
+                 min_m = 'p.m.'
+             }
+             var min_minute_prep = trial.min%60;
+             if (min_minute_prep <= 9) {
+                 // Subtract 12 from the number
+                 var min_minute = ('0'+min_minute_prep).toString();
+             } else {
+               var min_minute = min_minute_prep.toString()
+             }
+             html += '<span style="text-align: center; font-size: 80%;">'+min_hour.toString()+':'+min_minute.toString()+' '+min_m+'</span>';
              html += '</div>';
              html += '<div style="display: inline-block; position: absolute; right: 0; transform: translateX(50%); text-align: center; width: 10%;">'; // Adjusted right and added transform
-             html += '<span style="text-align: center; font-size: 80%;">' + trial.max.toString() + ' inches' + '</span>';
+             var max_hour = Math.floor(trial.max/60)
+             var max_m = "a.m."
+             // Check if the number is 13 or greater
+             if (max_hour >= 13) {
+                 // Subtract 12 from the number
+                 max_hour -= 12;
+                 max_m = 'p.m.'
+             }
+             var max_minute_prep = trial.max%60;
+             if (max_minute_prep <= 9) {
+                 // Subtract 12 from the number
+                 var max_minute = ('0'+max_minute_prep).toString();
+             } else {
+               var max_minute = max_minute_prep.toString()
+             }
+             html += '<span style="text-align: center; font-size: 80%;">'+max_hour.toString()+':'+max_minute.toString()+' '+max_m+'</span>';
              html += '</div>';
              slider_container.innerHTML = html;
 
@@ -268,7 +298,7 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
              }
              // add submit button
              var submit_btn = document.createElement("button");
-             submit_btn.id = "plugin-distance-slider-response-next";
+             submit_btn.id = "plugin-time-slider-response-next";
              submit_btn.classList.add("jspsych-btn");
              submit_btn.disabled = trial.require_movement ? true : false;
              if (trial.feedback_display) {
@@ -280,16 +310,24 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
 
              // Update slider position
              function updateSliderPosition() {
-             var slider = display_element.querySelector('#plugin-distance-slider-response-response');
+             var slider = display_element.querySelector('#plugin-time-slider-response-response');
              var output = display_element.querySelector('#output');
              var sliderValue = slider.value;
-             if (sliderValue == Math.floor(sliderValue)) {
-               var sliderDisplay = sliderValue + ".0"
-             } else {
-               var sliderDisplay = sliderValue
-             }
              console.log("sliderValue: ", sliderValue)
-             output.innerHTML = sliderDisplay;
+             var time_hour_prep = Math.floor(sliderValue/60)
+             if (time_hour_prep >= 13) {
+               var time_hour = (time_hour_prep-12).toString();
+             } else {
+               var time_hour = time_hour_prep.toString()
+             }
+             var time_minute_prep = Math.floor(sliderValue%60)
+             if (time_minute_prep <= 9) {
+                 // Subtract 12 from the number
+                 var time_minute = ('0'+time_minute_prep).toString();
+             } else {
+               var time_minute = time_minute_prep.toString()
+             }
+             output.innerHTML = time_hour+":"+time_minute;
              var newPosition = ((sliderValue - trial.min) / (trial.max - trial.min)) * (slider.offsetWidth - output.offsetWidth);
              console.log("newPosition: ", newPosition)
              your_id_here.style.left = newPosition + 'px';
@@ -301,13 +339,13 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
 
              // Define a function to calculate sliderWidth and outputWidth
              function calculateWidths() {
-               var sliderWidth = display_element.querySelector('#plugin-distance-slider-response-response').offsetWidth;
+               var sliderWidth = display_element.querySelector('#plugin-time-slider-response-response').offsetWidth;
                var outputWidth = display_element.querySelector('#output').offsetWidth;
                return { sliderWidth: sliderWidth, outputWidth: outputWidth };
              }
 
              // Add event listener for input
-             display_element.querySelector('#plugin-distance-slider-response-response').addEventListener('input', function() {
+             display_element.querySelector('#plugin-time-slider-response-response').addEventListener('input', function() {
                var sliderValue = this.value;
                var { sliderWidth, outputWidth } = calculateWidths(); // Destructure the object returned by calculateWidths
                var newPosition = ((sliderValue - trial.min) / (trial.max - trial.min)) * (sliderWidth - outputWidth);
@@ -325,16 +363,16 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
          };
          if (trial.require_movement) {
              const enable_button = () => {
-                 display_element.querySelector("#plugin-distance-slider-response-next").disabled = false;
+                 display_element.querySelector("#plugin-time-slider-response-next").disabled = false;
              };
              display_element
-                 .querySelector("#plugin-distance-slider-response-response")
+                 .querySelector("#plugin-time-slider-response-response")
                  .addEventListener("mousedown", enable_button);
              display_element
-                 .querySelector("#plugin-distance-slider-response-response")
+                 .querySelector("#plugin-time-slider-response-response")
                  .addEventListener("touchstart", enable_button);
              display_element
-                 .querySelector("#plugin-distance-slider-response-response")
+                 .querySelector("#plugin-time-slider-response-response")
                  .addEventListener("change", enable_button);
          }
          const end_trial = () => {
@@ -356,11 +394,11 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
 
          // Modify the event listener for button click to count clicks
          display_element
-    .querySelector("#plugin-distance-slider-response-next")
+    .querySelector("#plugin-time-slider-response-next")
     .addEventListener("click", () => {
         if (buttonClickCount === 0) { // Check if button has not been clicked yet
             // Capture the response
-            response.response = display_element.querySelector("#plugin-distance-slider-response-response").valueAsNumber;
+            response.response = display_element.querySelector("#plugin-time-slider-response-response").valueAsNumber;
             // Measure the response time
             var endTime = performance.now();
             response.rt = Math.round(endTime - startTime);
@@ -371,13 +409,13 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
             displayFeedbackCorrect();
             }
             // Change button label to button_label_2
-            display_element.querySelector("#plugin-distance-slider-response-next").innerHTML = trial.button_label_2;
+            display_element.querySelector("#plugin-time-slider-response-next").innerHTML = trial.button_label_2;
         } else if (buttonClickCount === 1) { // Check if button has been clicked once
             // Proceed with the trial completion
             if (trial.response_ends_trial) {
                 end_trial();
             } else {
-                display_element.querySelector("#plugin-distance-slider-response-next").disabled = true;
+                display_element.querySelector("#plugin-time-slider-response-next").disabled = true;
             }
         }
                 });
@@ -386,15 +424,28 @@ var jsPsychDistanceSliderResponse = (function (jspsych) {
 function displayFeedbackCorrect() {
     var feedbackcorrect = document.createElement("div");
     //feedbackcorrect.innerHTML = trial.feedback_correct; // Assuming feedback_correct is HTML content
-    if (trial.feedback_correct == Math.floor(trial.feedback_correct)) {
-      var feedbackDisplay = trial.feedback_correct + ".0"
+
+    var correct_hour_prep = Math.floor(trial.feedback_correct/60)
+    if (correct_hour_prep >= 13) {
+      var correct_hour = (correct_hour_prep-12).toString();
     } else {
-      var feedbackDisplay = trial.feedback_correct
+      var correct_hour = correct_hour_prep.toString()
     }
-    feedbackcorrect.innerHTML = feedbackDisplay; // Assuming feedback_correct is HTML content
+    var correct_minute_prep = trial.feedback_correct%60
+    if (correct_minute_prep <= 9) {
+        // Subtract 12 from the number
+        var correct_minute = ('0'+correct_minute_prep).toString();
+    } else {
+      var correct_minute = correct_minute_prep.toString()
+    }
+
+
+
+
+    feedbackcorrect.innerHTML = correct_hour+':'+correct_minute; // Assuming feedback_correct is HTML content
 
       // Calculate the horizontal position relative to the slider's width
-      var sliderWidth = display_element.querySelector('#plugin-distance-slider-response-response').offsetWidth;
+      var sliderWidth = display_element.querySelector('#plugin-time-slider-response-response').offsetWidth;
       var outputWidth = display_element.querySelector('#output').offsetWidth;
       var horizontalPosition = (trial.feedback_correct - trial.min) / (trial.max - trial.min) * (sliderWidth - outputWidth) + 'px'; // Assuming trial.feedback_correct is in pixels
 
@@ -409,7 +460,7 @@ function displayFeedbackCorrect() {
 
             if (trial.stimulus_duration !== null) {
                 this.jsPsych.pluginAPI.setTimeout(() => {
-                    display_element.querySelector("#plugin-distance-slider-response-stimulus").style.visibility = "hidden";
+                    display_element.querySelector("#plugin-time-slider-response-stimulus").style.visibility = "hidden";
                 }, trial.stimulus_duration);
             }
             // end trial if trial_duration is set
@@ -442,8 +493,8 @@ function displayFeedbackCorrect() {
             var start_time = performance.now();
             var trial_complete = false;
             var trial_data = {};
-            var html = '<div id="jspsych-distance-slider-response-stimulus">';
-            html += '<img src="' + trial.stimulus + '" id="jspsych-distance-slider-response-stimulus"></img>';
+            var html = '<div id="jspsych-time-slider-response-stimulus">';
+            html += '<img src="' + trial.stimulus + '" id="jspsych-time-slider-response-stimulus"></img>';
             html += "</div>";
             html += '<div class="jspsych-content-wrapper">';
             html +=
@@ -455,26 +506,26 @@ function displayFeedbackCorrect() {
                 trial.max +
                 '" step="' +
                 trial.step +
-                '" id="plugin-distance-slider-response-response"></input>';
+                '" id="plugin-time-slider-response-response"></input>';
             html +=
-                '<button id="jspsych-distance-slider-response-next" class="jspsych-btn">' +
+                '<button id="jspsych-time-slider-response-next" class="jspsych-btn">' +
                 trial.button_label_1 +
                 "</button>";
             html += "</div>";
             display_element.innerHTML = html;
             if (trial.stimulus_duration !== null) {
                 this.jsPsych.pluginAPI.setTimeout(() => {
-                    display_element.querySelector("#jspsych-distance-slider-response-stimulus").style.visibility = "hidden";
+                    display_element.querySelector("#jspsych-time-slider-response-stimulus").style.visibility = "hidden";
                 }, trial.stimulus_duration);
             }
-            display_element.querySelector("#jspsych-distance-slider-response-next").addEventListener("click", () => {
+            display_element.querySelector("#jspsych-time-slider-response-next").addEventListener("click", () => {
                 end_trial();
             });
-            display_element.querySelector("#plugin-distance-slider-response-response").addEventListener("change", () => {
+            display_element.querySelector("#plugin-time-slider-response-response").addEventListener("change", () => {
                 if (!trial_complete) {
                     trial_complete = true;
                     trial_data.rt = Math.round(performance.now() - start_time);
-                    trial_data.response = display_element.querySelector("#plugin-distance-slider-response-response").valueAsNumber;
+                    trial_data.response = display_element.querySelector("#plugin-time-slider-response-response").valueAsNumber;
                     trial_data.stimulus = trial.stimulus;
                     trial_data.slider_start = trial.slider_start;
                     end_trial();
@@ -490,6 +541,6 @@ function displayFeedbackCorrect() {
             }
         }
     }
-    DistanceSliderResponsePlugin.info = info;
-    return DistanceSliderResponsePlugin;
+    TimeSliderResponsePlugin.info = info;
+    return TimeSliderResponsePlugin;
 })(jsPsychModule);
