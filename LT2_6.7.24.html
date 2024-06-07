@@ -141,8 +141,12 @@ var images_block_1 = [
 'img/time_park_28.jpg',
 'img/time_park_29.jpg',
 'img/time_park_30.jpg',
-//'img/time_diagram.jpg',
-//'img/distance_diagram.jpg,
+'img/time_instructions.png',
+'img/distance_instructions.png,
+'img/distance_goal_specific.png,
+'img/distance_goal_nonspecific.png,
+'img/time_goal_specific.png,
+'img/time_goal_nonspecific.png,
 'img/1.png',
 'img/2.png',
 'img/3.png',
@@ -572,7 +576,7 @@ var likert_trial = {
 //initial_game_goal = 1, specific goal
 var distance_campus_initial_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p><img src='img/distance_diagram.jpg' height='400px'></p>" +
+  stimulus: "<p><img src='img/distance_instructions.png' height='400px'></p>" +
     "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
     "<p>Estimate the distance between the <b>tip</b> of each cone.</p>" +
     "<p>Use the slider to mark your answers.</p>",
@@ -582,7 +586,7 @@ var distance_campus_initial_instructions = {
 
 var time_campus_initial_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p><img src='img/distance_diagram.jpg' height='400px'></p>" + //need to replace image -Catherine
+  stimulus: "<p><img src='img/time_instructions.png' height='400px'></p>" + 
     "<p>You're going to play a game in which you will guess the time of day in the picture.</p>" +
     "<p>The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky) for the day the pictures were taken are provided above each picture.</p>" +
     "<p>Use the slider to mark your answers.</p>",
@@ -592,7 +596,7 @@ var time_campus_initial_instructions = {
 
 var distance_park_initial_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p><img src='img/distance_diagram.jpg' height='400px'></p>" + //need to replace image -Catherine
+  stimulus: "<p><img src='img/distance_instructions.png' height='400px'></p>" + 
     "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
     "<p>Estimate the distance between the <b>tip</b> of each cone.</p>" +
     "<p>Use the slider to mark your answers.</p>",
@@ -602,7 +606,7 @@ var distance_park_initial_instructions = {
 
 var time_park_initial_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p><img src='img/distance_diagram.jpg' height='400px'></p>" + //need to replace image -Catherine
+  stimulus: "<p><img src='img/time_instructions.png' height='400px'></p>" + 
     "<p>You're going to play a game in which you will guess the time of day in the picture.</p>" +
     "<p>The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky) for the day the pictures were taken are provided above each picture.</p>" +
     "<p>Use the slider to mark your answers.</p>",
@@ -625,7 +629,7 @@ if (initial_game_type == 1) {
 var initial_goal_specific = {
   type: jsPsychHtmlButtonResponse,
   stimulus: "<p>After submitting each answer, you will see if you were within range or out of range. Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
-  "<p>Try to get 20/30 trials within the correct range.</p>",
+  "<p><img src='img/distance_goal_specific.png' height='400px'></p>",
 
     choices: ["Continue"]
 }
@@ -635,7 +639,7 @@ var initial_goal_specific = {
 var initial_goal_non_specific = {
   type: jsPsychHtmlButtonResponse,
   stimulus: "<p>After submitting each answer, you will see if you were within range or out of range. Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
-  "<p>Try to get as many within the correct range as you can.</p>",
+  "<p><img src='img/distance_goal_nonspecific.png' height='400px'></p>",
 
     choices: ["Continue"]
 }
