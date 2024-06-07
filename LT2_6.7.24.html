@@ -142,11 +142,11 @@ var images_block_1 = [
 'img/time_park_29.jpg',
 'img/time_park_30.jpg',
 'img/time_instructions.png',
-'img/distance_instructions.png,
-'img/distance_goal_specific.png,
-'img/distance_goal_nonspecific.png,
-'img/time_goal_specific.png,
-'img/time_goal_nonspecific.png,
+'img/distance_instructions.png',
+'img/distance_goal_specific.png',
+'img/distance_goal_nonspecific.png',
+'img/time_goal_specific.png',
+'img/time_goal_nonspecific.png',
 'img/1.png',
 'img/2.png',
 'img/3.png',
@@ -294,8 +294,8 @@ var images_block_1 = [
   //if RandomNumber = 4, time-park
   const initial_game_feedback_number = generateRandomNumber(1,3); //(POS, NEU, NEG)
   //if RandomNumber = 1, Positive
-  const initial_game_goal_number = generateRandomNumber(1,2); //(specific vs non)
-  //if RandomNumber = 1, specific
+  const initial_game_goal_number = generateRandomNumber(1,2); //(specific vs non) x 2 for each game
+  //if RandomNumber = 1, specific distance
   const follow_up_game_condition = generateRandomNumber(1,4); // one for each (distance campus, etc.)
   //if RandomNumber = 1, distance-campus
   //if RandomNumber = 2, time-campus
@@ -576,40 +576,40 @@ var likert_trial = {
 //initial_game_goal = 1, specific goal
 var distance_campus_initial_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p><img src='img/distance_instructions.png' height='400px'></p>" +
-    "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
-    "<p>Estimate the distance between the <b>tip</b> of each cone.</p>" +
-    "<p>Use the slider to mark your answers.</p>",
+  stimulus: "<p><img src='img/distance_instructions.png' height='550px'><br>" +
+    "You're going to play a game in which you will guess the distance between two cones.<br>" +
+    "Estimate the distance between the <b>tip</b> of each cone.<br>" +
+    "Use the slider to mark your answers.</p>",
 
     choices: ["Continue"]
 }
 
 var time_campus_initial_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p><img src='img/time_instructions.png' height='400px'></p>" + 
-    "<p>You're going to play a game in which you will guess the time of day in the picture.</p>" +
-    "<p>The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky) for the day the pictures were taken are provided above each picture.</p>" +
-    "<p>Use the slider to mark your answers.</p>",
+  stimulus: "<p><img src='img/time_instructions.png' height='550px'><br>" +
+    "You're going to play a game in which you will guess the time of day in the picture.<br>" +
+    "The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky)<br>for the day the pictures were taken are provided above each picture.<br> " +
+    "Use the slider to mark your answers.</p>",
 
     choices: ["Continue"]
 }
 
 var distance_park_initial_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p><img src='img/distance_instructions.png' height='400px'></p>" + 
-    "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
-    "<p>Estimate the distance between the <b>tip</b> of each cone.</p>" +
-    "<p>Use the slider to mark your answers.</p>",
+  stimulus: "<p><img src='img/distance_instructions.png' height='550px'><br>" +
+    "You're going to play a game in which you will guess the distance between two cones.<br>" +
+    "Estimate the distance between the <b>tip</b> of each cone.<br>" +
+    "Use the slider to mark your answers.</p>",
 
     choices: ["Continue"]
 }
 
 var time_park_initial_instructions = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p><img src='img/time_instructions.png' height='400px'></p>" + 
-    "<p>You're going to play a game in which you will guess the time of day in the picture.</p>" +
-    "<p>The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky) for the day the pictures were taken are provided above each picture.</p>" +
-    "<p>Use the slider to mark your answers.</p>",
+  stimulus: "<p><img src='img/time_instructions.png' height='550px'><br>" +
+    "You're going to play a game in which you will guess the time of day in the picture.<br>" +
+    "The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky)<br>for the day the pictures were taken are provided above each picture.<br> " +
+    "Use the slider to mark your answers.</p>",
 
     choices: ["Continue"]
 }
@@ -626,30 +626,89 @@ if (initial_game_type == 1) {
 }
 
 
-var initial_goal_specific = {
+var distance_initial_goal_specific = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p>After submitting each answer, you will see if you were within range or out of range. Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
-  "<p><img src='img/distance_goal_specific.png' height='400px'></p>",
+  stimulus: "<p>After submitting each answer, you will see if you were within range or out of range.<br>Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
+  "<p><img src='img/distance_goal_specific.png' height='550px'></p>",
 
     choices: ["Continue"]
 }
 
 
 
-var initial_goal_non_specific = {
+var distance_initial_goal_non_specific = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p>After submitting each answer, you will see if you were within range or out of range. Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
-  "<p><img src='img/distance_goal_nonspecific.png' height='400px'></p>",
+  stimulus: "<p>After submitting each answer, you will see if you were within range or out of range.<br>Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
+  "<p><img src='img/distance_goal_nonspecific.png' height='550px'></p>",
+
+    choices: ["Continue"]
+}
+
+var time_initial_goal_specific = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: "<p>After submitting each answer, you will see if you were within range or out of range.<br>Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
+  "<p><img src='img/time_goal_specific.png' height='550px'></p>",
+
+    choices: ["Continue"]
+}
+
+
+
+var time_initial_goal_non_specific = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: "<p>After submitting each answer, you will see if you were within range or out of range.<br>Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
+  "<p><img src='img/time_goal_nonspecific.png' height='550px'></p>",
 
     choices: ["Continue"]
 }
 
 // goal assignment
-if (initial_game_goal_number == 1) {
-  initial_game_goal = initial_goal_specific
+/*if (initial_game_goal_number == 1) {
+  initial_game_goal = distance_goal_specific
 } else if (initial_game_goal_number == 2) {
-  initial_game_goal = initial_goal_non_specific
+  initial_game_goal = distance_goal_non_specific
 }
+else if (initial_game_goal_number == 3) {
+  initial_game_goal = time_goal_non_specific
+}
+else if (initial_game_goal_number == 4) {
+  initial_game_goal = time_goal_non_specific
+}*/
+
+// instructions assignment
+if (initial_game_type == 1) {
+  initial_game_instructions = distance_campus_initial_instructions;
+  if (initial_game_goal_number == 1) {
+    initial_game_goal = distance_initial_goal_specific
+  } else if (initial_game_goal_number == 2) {
+    initial_game_goal = distance_initial_goal_non_specific
+  }
+} else if (initial_game_type == 2) {
+  initial_game_instructions = time_campus_initial_instructions;
+  if (initial_game_goal_number == 1) {
+    initial_game_goal = time_initial_goal_specific
+  } else if (initial_game_goal_number == 2) {
+    initial_game_goal = time_initial_goal_non_specific
+  }
+} else if (initial_game_type == 3) {
+  initial_game_instructions = distance_park_initial_instructions;
+  if (initial_game_goal_number == 1) {
+    initial_game_goal = distance_initial_goal_specific
+  } else if (initial_game_goal_number == 2) {
+    initial_game_goal = distance_initial_goal_non_specific
+  }
+} else if (initial_game_type == 4) {
+  initial_game_instructions = time_park_initial_instructions;
+  if (initial_game_goal_number == 1) {
+    initial_game_goal = time_initial_goal_specific
+  } else if (initial_game_goal_number == 2) {
+    initial_game_goal = time_initial_goal_non_specific
+  }
+}
+
+
+
+
 
 // feedback assignment
 if (initial_game_feedback_number == 1) { // positive
@@ -977,11 +1036,26 @@ var time_park_initial_game = {
 
 
 /*7 - Feedback*/
-var feedback = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: "<p><img src='img/POS.png' height='500px'></p>",
-    choices: ["Continue"]
-}
+  if (initial_game_feedback_number == 1 && initial_game_goal_number == 1) {
+    var initial_game_feedback_image = "POS";
+  } else if (initial_game_feedback_number == 1 && initial_game_goal_number == 2) {
+    var initial_game_feedback_image = "POS_specific";
+  } else if (initial_game_feedback_number == 2 && initial_game_goal_number == 1) {
+    var initial_game_feedback_image = "NEU";
+  } else if (initial_game_feedback_number == 2 && initial_game_goal_number == 2) {
+    var initial_game_feedback_image = "NEU_specific";
+  } else if (initial_game_feedback_number == 3 && initial_game_goal_number == 1) {
+    var initial_game_feedback_image = "NEG";
+  } else if (initial_game_feedback_number == 3 && initial_game_goal_number == 2) {
+    var initial_game_feedback_image = "NEG_specific";
+  }
+
+  var initial_game_feedback = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: "<p><img src='img/" + initial_game_feedback_image + ".png' height='500px'></p>",
+      choices: ["Continue"]
+  }
+
 /*8 - Survey*/
 
 /*9 - Descriptions of games*/
@@ -1073,14 +1147,14 @@ var ending = {
 
   jsPsych.run([
     preload,
-    demographics,
-    games_description,
-    likert_trial,
-    initial_game_instructions,
-    initial_game_goal,
-    initial_game,
-    distance_campus_response,
-    feedback,
+  //  demographics,
+  //  games_description,
+  //  likert_trial,
+  //  initial_game_instructions,
+  //  initial_game_goal,
+  //  initial_game,
+    initial_game_feedback,
+    //    distance_campus_response,
     ending
   ]);
   </script>
