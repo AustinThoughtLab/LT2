@@ -219,7 +219,70 @@ var images_block_1 = [
       preload_2
       ]
     }
+/* 0 - consent */
+  var demographics = {
+    type: jsPsychSurveyHtmlForm,
+    preamble: '<p><b>## **Consent to Participate in Research**',
+    html: `
 
+**Basic Study Information** 
+
+**Title of the Project**: Language and Cognitive Development in Childhood  
+
+**Principal Investigator**: Katharine Tillman, Ph.D., University of Texas at Austin 
+
+**Invitation to be Part of a Research Study**: You are invited to be part of a research study. This consent form will help you choose whether or not to participate in the study. Feel free to ask if anything is not clear in this consent form. 
+
+**What is the study about and why are we doing it?** 
+This a research study about how people learn new words and concepts, and how language and cognitive development are related. We study how people think about objects, numbers, time, colors, and cause-and-effect relationships, and how they learn language related to these concepts. The purpose of this study is to understand how people's understanding of these concepts develops. 
+
+**What will happen if you take part in this study?**
+If you agree to take part in this study, you may be asked to: Listen to sentences or stories, count, sort, label, make judgments about, or describe objects , evaluate statements about objects or pictures, choose which of two pictures or sets of objects better matches a sentence. 
+
+**How long will you be in this study and how many people will be in the study?**
+Participation in this study will last 15-20 minutes and will include approximately 300 adult participants.  
+
+**What risks and discomforts might you experience from being in this study?** 
+There are no foreseeable risks to participating in this study. 
+
+**How could you benefit from this study?** 
+You will receive no direct benefit from participating in this study; however, your participation will contribute to society by improving our understanding of how children learn.  
+
+**What will happen to the samples and/or data we collect from you?** 
+As part of this study we will collect basic demographics information and task results. These data are de-identified and kept on a secure, encrypted server for 3 years after study conclusion. 
+
+**How will we protect your information?**
+In order to ensure participants’ privacy, electronic files will be password protected and written forms will be kept in locked file. This data will always be kept separate from documents containing identifying information, and will be de-identified using subject numbers. Data will be kept indefinitely as study data has the potential to be analyzed in new ways. MTurk Worker IDs will be used for compensation tracking purposes only. They will not be shared with outside researchers and will be removed from the final dataset and deleted at the end of the project.  If it becomes necessary for the Institutional Review Board to review the study records, information that can be linked to you will be protected to the extent permitted by law. Your research records will not be released without your consent unless required by law or a court order. The data resulting from your participation may be made available to other researchers in the future for research purposes not detailed within this consent form. In these cases, the data will contain no identifying information that could associate it with you, or with your participation in any study.  
+
+**What will happen to the information we collect about you after the study is over?** 
+We will keep your research data to use for comparison analysis in future studies for up to 3 years. Your name and other information that can directly identify them will be kept secure and stored separately from the research data collected as part of the project. 
+
+**How will we compensate you for being part of the study?**  
+Students participating through SONA will receive 1 credit. Amazon Mechanical Turk adult participants will be paid a small amount determined by the length of the experiment and at a rate comparable to that of other experiments/tasks posted on the website. For tasks that take less than 5 minutes to complete, participants will be paid $0.50, for tasks that take 5-15 minutes, participants will be paid $1.00, and for tasks that take 15-30 minutes, participants will be paid $3.00. Participants are paid a flat fee for completing a task (i.e., this fee is not prorated based on the actual amount of time they spend on the task).  
+
+**Your Participation in this Study is Voluntary**  
+It is totally up to you to decide to be in this research study. Participating in this study is voluntary. Your decision to participate will not affect your relationship with The University of Texas at Austin. You will not lose any benefits or rights you already had if you decide not to participate. Even if you decide to be part of the study now, you may change your mind and stop at any time. You do not have to answer any questions you do not want to answer.  
+
+**Contact Information for the Study Team:**  
+If you have any questions about this research, you may contact: 
+Katharine Tillman, Principal Investigator |
+Phone: 512-232-4459 |
+Email: ktillman@utexas.edu
+
+**Contact Information for Questions about Your Rights as a Research Participant:**
+If you have questions about your rights as a research participant, or wish to obtain information, ask questions, or discuss any concerns about this study with someone other than the researcher(s), please contact the following: 
+The University of Texas at Austin Institutional Review Board |
+Phone: 512-232-1543 |
+Email: irb@austin.utexas.edu 
+
+**Your Consent:** 
+By clicking "Accept and continue," you are agreeing to be in this study. If you have any questions about the study after you sign this document, you can contact the study team using the information provided above. 
+
+I understand what the study is about and I agree to take part in this study.'
+
+  }
+
+    
 /* 1 - demographics survey */
   var demographics = {
     type: jsPsychSurveyHtmlForm,
