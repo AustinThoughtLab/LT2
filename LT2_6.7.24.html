@@ -220,7 +220,7 @@ var images_block_1 = [
       ]
     }
 /* 0 - consent */
-  var demographics = {
+  var consent = {
     type: jsPsychSurveyHtmlForm,
     preamble: '<p><b>## **Consent to Participate in Research**',
     html: `
@@ -1210,6 +1210,7 @@ var ending = {
 
   jsPsych.run([
     preload,
+    consent,
     demographics,
     games_description,
     likert_trial,
