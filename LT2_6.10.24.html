@@ -28,7 +28,6 @@
     .jspsych-content-wrapper {
       width: 100%;
       height: 100%;
-      overflow: hidden; /* Hide content overflow */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1368,10 +1367,10 @@ var ending = {
   jsPsych.run([
     preload,
     enter_fullscreen,
-    //consent,
-    //demographics,
-    //games_description,
-    //likert_trial,
+    consent,
+    demographics,
+    games_description,
+    likert_trial,
     initial_game_instructions,
     initial_game_goal,
     initial_game,
