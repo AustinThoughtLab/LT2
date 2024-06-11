@@ -1252,8 +1252,29 @@ var likert_trial2 = {
     ]
   }
 /*11-12 - Accuracy game*/
-
- var distance_campus_response_instructions = {
+var distance_campus_response_instructions = {
+  timeline: [
+    {
+      type: jsPsychDistanceSliderResponse,
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      stimulus_width: 600,
+      slider_width: 600,
+      require_movement: true,
+      min: jsPsych.timelineVariable('min'), // What's the minimum value of the slider?
+      max: jsPsych.timelineVariable('max'), // What's the maximum value of the slider?
+        //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
+      step: 0.1, // Slider moves in increments of how much?
+      slider_number: true,
+      feedback_correct: jsPsych.timelineVariable('feedback_correct'),
+      feedback_display: true,
+      prompt: 'You are going to play a game in which you will guess the distance between two cones.<br>Estimate the distance between the <b>tip</b> of each cone.<p>Use the slider to mark your answers.<br> Click <i>submit</i> to lock your answer and <i>continue</i> to move to the next page.<p>After submitting each answer, you will see the correct distance<br>Try your best to get as close to the correct distance as possible.</p>'
+    }
+  ],
+  timeline_variables: [
+    {stimulus: 'img/distance_instructions_crop.png', min: 120.1,  max: 153.6, feedback_correct: 142.5},
+      ]
+}
+ /*var distance_campus_response_instructions = {
     type: jsPsychHtmlButtonResponse,
     stimulus: "<p><img src='img/distance_instructions.png' height='400px'></p>" +
       "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
@@ -1262,7 +1283,7 @@ var likert_trial2 = {
       "<p>After submitting each answer, you will see the correct distance.</p>" +
       "<p>Try your best to get as close to the correct distance as possible.</p>",
       choices: ["Continue"]
-  }
+  }*/ //^old way of doing it. updated to use working slider
 
   var distance_campus_response_game = {
     timeline: [
