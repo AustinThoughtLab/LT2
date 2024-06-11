@@ -1358,6 +1358,36 @@ var selfchallenge_likert = {
   ],
 };
 
+/*digit span task */
+
+var digitspan_choices = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<p>Please choose one of three options for the next task.</p>',
+  choices: ['easy', 'medium', 'hard'],
+};
+
+
+// Define the list of digits to be presented
+var digitList = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+// Define the length of each trial
+var trialLength = 1; // Change this to set the length of each trial
+
+// Define the trial structure
+var digitspan = {
+  timeline: [
+    {
+    type:  jsPsychHtmlKeyboardResponse,
+    stimulus: jsPsych.timelineVariable('digit'),
+    choices: "NO_KEYS",
+    trial_duration: 1000, // Adjust the presentation time of each digit
+  }
+],
+  timeline_variables: digitList.map(d => ({ digit: d })), // This maps each digit to an object with a 'digit' property
+  randomize_order: true,
+  repetitions: trialLength
+};
+
   //end message//
 var ending = {
   type: jsPsychHtmlKeyboardResponse,
@@ -1381,6 +1411,8 @@ var ending = {
     distance_campus_response,
     open_ended2,
     selfchallenge_likert,
+    digitspan_choices,
+    digitspan,
     ending
   ]);
   </script>
