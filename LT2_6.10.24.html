@@ -1387,27 +1387,134 @@ var digitspan_choices = {
   choices: ['easy', 'medium', 'hard'],
 };
 
-
+//EASY VERSION
 // Define the list of digits to be presented
-var digitList = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
-
-// Define the length of each trial
-var trialLength = 1; // Change this to set the length of each trial
-
+var digitList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+var sequence = [];
+var currentDigitIndex = 0;
+// Function to randomly select numbers
+  function getRandomSubset(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+      index = Math.floor((i + 1) * Math.random());
+      temp = shuffled[index];
+      shuffled[index] = shuffled[i];
+      shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+  }
+  // Generate a sequence of 4 numbers
+    sequence = getRandomSubset(digitList, 4);
 // Define the trial structure
-var digitspan = {
-  timeline: [
-    {
-    type:  jsPsychHtmlKeyboardResponse,
-    stimulus: jsPsych.timelineVariable('digit'),
+var digitspan_easy = {
+  timeline: [],
+  randomize_order: false, // We want the trials in order, so no need to randomize
+  repetitions: 5 // Set the number of trials to 5
+};
+for (var i = 0; i < 5; i++) {
+    var sequence = getRandomSubset(digitList, 4); // Generate a sequence of 4 numbers for each trial
+// Add each number to the timeline individually
+sequence.forEach(function(number) {
+  digitspan_easy.timeline.push({
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: '<p style="font-size: 42px;">' + number + '</p>',
     choices: "NO_KEYS",
     trial_duration: 1000, // Adjust the presentation time of each digit
+  });
+});
+// Add a typing task after the sequence
+ digitspan_easy.timeline.push({
+   type: jsPsychSurveyText,
+   questions: [{prompt: 'Please type the numbers you saw, in the order you saw them.', rows: 1}],
+   data: { response: sequence.join(' ') }
+ });
+}
+
+//Medium VERSION
+// Define the list of digits to be presented
+var digitList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+var sequence = [];
+var currentDigitIndex = 0;
+// Function to randomly select numbers
+  function getRandomSubset(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+      index = Math.floor((i + 1) * Math.random());
+      temp = shuffled[index];
+      shuffled[index] = shuffled[i];
+      shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
   }
-],
-  timeline_variables: digitList.map(d => ({ digit: d })), // This maps each digit to an object with a 'digit' property
-  randomize_order: true,
-  repetitions: trialLength
+  // Generate a sequence of 4 numbers
+    sequence = getRandomSubset(digitList, 6);
+// Define the trial structure
+var digitspan_medium = {
+  timeline: [],
+  randomize_order: false, // We want the trials in order, so no need to randomize
+  repetitions: 5 // Set the number of trials to 5
 };
+for (var i = 0; i < 5; i++) {
+    var sequence = getRandomSubset(digitList, 6); // Generate a sequence of 4 numbers for each trial
+// Add each number to the timeline individually
+sequence.forEach(function(number) {
+  digitspan_medium.timeline.push({
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: '<p style="font-size: 42px;">' + number + '</p>',
+    choices: "NO_KEYS",
+    trial_duration: 1000, // Adjust the presentation time of each digit
+  });
+});
+// Add a typing task after the sequence
+ digitspan_medium.timeline.push({
+   type: jsPsychSurveyText,
+   questions: [{prompt: 'Please type the numbers you saw, in the order you saw them.', rows: 1}],
+   data: { response: sequence.join(' ') }
+ });
+}
+
+//Hard VERSION
+// Define the list of digits to be presented
+var digitList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+var sequence = [];
+var currentDigitIndex = 0;
+// Function to randomly select numbers
+  function getRandomSubset(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+      index = Math.floor((i + 1) * Math.random());
+      temp = shuffled[index];
+      shuffled[index] = shuffled[i];
+      shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+  }
+  // Generate a sequence of 4 numbers
+    sequence = getRandomSubset(digitList, 6);
+// Define the trial structure
+var digitspan_hard = {
+  timeline: [],
+  randomize_order: false, // We want the trials in order, so no need to randomize
+  repetitions: 5 // Set the number of trials to 5
+};
+for (var i = 0; i < 5; i++) {
+    var sequence = getRandomSubset(digitList, 6); // Generate a sequence of 4 numbers for each trial
+// Add each number to the timeline individually
+sequence.forEach(function(number) {
+  digitspan_hard.timeline.push({
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: '<p style="font-size: 42px;">' + number + '</p>',
+    choices: "NO_KEYS",
+    trial_duration: 1000, // Adjust the presentation time of each digit
+  });
+});
+// Add a typing task after the sequence
+ digitspan_hard.timeline.push({
+   type: jsPsychSurveyText,
+   questions: [{prompt: 'Please type the numbers you saw, in the order you saw them.', rows: 1}],
+   data: { response: sequence.join(' ') }
+ });
+}
 
   //end message//
 var ending = {
@@ -1417,7 +1524,7 @@ var ending = {
 
   jsPsych.run([
     preload,
-    enter_fullscreen,
+    /*enter_fullscreen,
     consent,
     demographics,
     games_description,
@@ -1433,8 +1540,10 @@ var ending = {
     open_ended2,
     selfchallenge_likert,
     digitspan_choices,
-    digitspan,
-    ending
+    digitspan_easy,
+    digitspan_medium,*/
+    digitspan_hard,
+    //ending
   ]);
   </script>
 </html>
