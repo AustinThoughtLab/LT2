@@ -1380,59 +1380,9 @@ var selfchallenge_likert = {
 };
 
 /*digit span task */
-
-//EASY VERSION
-// Define the list of digits to be presented
-
-var digitList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-// Function to randomly select numbers
-  function getRandomSubset(arr, size) {
-    var shuffled = arr.slice(0), i = arr.length, temp, index;
-    while (i--) {
-      index = Math.floor((i + 1) * Math.random());
-      temp = shuffled[index];
-      shuffled[index] = shuffled[i];
-      shuffled[i] = temp;
-    }
-    return shuffled.slice(0, size);
-  }
-  // Generate a sequence of 4 numbers
-    sequence = getRandomSubset(digitList, 4);
-// Define the trial structure
-var digitspan_easy = {
-  timeline: [],
-  randomize_order: false, // We want the trials in order, so no need to randomize
-  repetitions: 5 // Set the number of trials to 5
-};
-for (var i = 0; i < 5; i++) {
-    var sequence = getRandomSubset(digitList, 4); // Generate a sequence of 4 numbers for each trial
-// Add each number to the timeline individually
-sequence.forEach(function(number) {
-  digitspan_easy.timeline.push({
-    type: jsPsychHtmlKeyboardResponse,
-    stimulus: '<p style="font-size: 42px;">' + number + '</p>',
-    choices: "NO_KEYS",
-    trial_duration: 1000, // Adjust the presentation time of each digit
-  });
-});
-// Add a typing task after the sequence
- digitspan_easy.timeline.push({
-   type: jsPsychSurveyText,
-   questions: [{prompt: 'Please type the numbers you saw, in the order you saw them.', rows: 1}],
-   data: { response: sequence.join(' ') }
- });
-}
-
-//Medium Version
-// Define the list of digits to be presented
-var digitList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-
 // Function to randomly select numbers
 function getRandomSubset(arr, size) {
-  var shuffled = arr.slice(0),
-    i = arr.length,
-    temp,
-    index;
+  var shuffled = arr.slice(0), i = arr.length, temp, index;
   while (i--) {
     index = Math.floor((i + 1) * Math.random());
     temp = shuffled[index];
@@ -1442,114 +1392,67 @@ function getRandomSubset(arr, size) {
   return shuffled.slice(0, size);
 }
 
-// Define the trial structure
-var digitspan_medium = {
-  timeline: [],
-  randomize_order: false, // We want the trials in order, so no need to randomize
-};
+// Generate digit span tasks
+function createDigitSpanTask(numDigits) {
+  var task = {
+    timeline: [],
+    randomize_order: false, // We want the trials in order, so no need to randomize
+    repetitions: 5 // Set the number of trials to 5
+  };
 
-for (var i = 0; i < 5; i++) {
-  var sequence = getRandomSubset(digitList, 6); // Generate a sequence of 6 numbers for each trial
+  var digitList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
-  // Add each number to the timeline individually
-  sequence.forEach(function (number) {
-    digitspan_medium.timeline.push({
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: '<p style="font-size: 42px;">' + number + '</p>',
-      choices: "NO_KEYS", // No key response allowed during presentation
-      trial_duration: 1000, // Adjust the presentation time of each digit
+  for (var i = 0; i < 5; i++) {
+    var sequence = getRandomSubset(digitList, numDigits); // Generate a sequence of `numDigits` numbers for each trial
+
+    // Add each number to the timeline individually
+    sequence.forEach(function(number) {
+      task.timeline.push({
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: '<p style="font-size: 42px;">' + number + '</p>',
+        choices: "NO_KEYS",
+        trial_duration: 1000, // Adjust the presentation time of each digit
+      });
     });
-  });
 
-  // Add a typing task after the sequence
-  digitspan_medium.timeline.push({
-    type: jsPsychSurveyText,
-    questions: [{ prompt: 'Please type the numbers you saw, in the order you saw them.', rows: 1 }],
-    data: { response: sequence.join(' ') }
-  });
-}
-
-//HARD Version
-// Define the list of digits to be presented
-var digitList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-
-// Function to randomly select numbers
-function getRandomSubset(arr, size) {
-  var shuffled = arr.slice(0),
-    i = arr.length,
-    temp,
-    index;
-  while (i--) {
-    index = Math.floor((i + 1) * Math.random());
-    temp = shuffled[index];
-    shuffled[index] = shuffled[i];
-    shuffled[i] = temp;
+    // Add a typing task after the sequence
+    task.timeline.push({
+      type: jsPsychSurveyText,
+      questions: [{prompt: 'Please type the numbers you saw, in the order you saw them.', rows: 1}],
+      data: { correct_sequence: sequence.join('') }
+    });
   }
-  return shuffled.slice(0, size);
+
+  return task;
 }
 
-// Define the trial structure
-var digitspan_hard = {
-  timeline: [],
-  randomize_order: false, // We want the trials in order, so no need to randomize
-};
+var digitspan_easy = createDigitSpanTask(4);
+var digitspan_medium = createDigitSpanTask(6);
+var digitspan_hard = createDigitSpanTask(8);
 
-for (var i = 0; i < 5; i++) {
-  var sequence = getRandomSubset(digitList, 8); // Generate a sequence of 6 numbers for each trial
-
-  // Add each number to the timeline individually
-  sequence.forEach(function (number) {
-    digitspan_hard.timeline.push({
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: '<p style="font-size: 42px;">' + number + '</p>',
-      choices: "NO_KEYS", // No key response allowed during presentation
-      trial_duration: 1000, // Adjust the presentation time of each digit
-    });
-  });
-
-  // Add a typing task after the sequence
-  digitspan_hard.timeline.push({
-    type: jsPsychSurveyText,
-    questions: [{ prompt: 'Please type the numbers you saw, in the order you saw them.', rows: 1 }],
-    data: { response: sequence.join(' ') }
-  });
-}
-
-//clump the tasks together into one var
-var digitspan_tasks = {
-  timeline: [digitspan_easy,digitspan_medium,digitspan_hard],
-};
 
 var digitspan_choices = {
   type: jsPsychHtmlButtonResponse,
   stimulus: '<p>Please choose one of three options for the next task.</p>',
   choices: ['Easy', 'Medium', 'Hard'],
-  button_html: '<button class="jspsych-btn">%choice%</button>',
 };
 
-// Instructions for each difficulty level
-// Instructions for each difficulty level
-var digitspan_instrucions_easy = {
+var digitspan_instructions_easy = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: '<p>In this part of the experiment, you will see a sequence of 4 numbers and your task is to remember them in order. After each sequence, you will be asked to type the numbers<br> you saw in the same order. <p>Press "Continue" to begin.</p>',
+  stimulus: '<p>In this part of the experiment, you will see a sequence of 4 numbers and your task is to remember them in order. After each sequence, you will be asked to type the numbers you saw in the same order. Press "Continue" to begin.</p>',
   choices: ['Continue'],
 };
 
-var digitspan_instrucions_medium = {
+var digitspan_instructions_medium = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: '<p>In this part of the experiment, you will see a sequence of 6 numbers and your task is to remember them in order. After each sequence, you will be asked to type the numbers<br> you saw in the same order. <p>Press "Continue" to begin.</p>',
+  stimulus: '<p>In this part of the experiment, you will see a sequence of 6 numbers and your task is to remember them in order. After each sequence, you will be asked to type the numbers you saw in the same order. Press "Continue" to begin.</p>',
   choices: ['Continue'],
 };
 
-var digitspan_instrucions_hard = {
+var digitspan_instructions_hard = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: '<p>In this part of the experiment, you will see a sequence of 8 numbers and your task is to remember them in order. After each sequence, you will be asked to type the numbers<br> you saw in the same order. <p>Press "Continue" to begin.</p>',
+  stimulus: '<p>In this part of the experiment, you will see a sequence of 8 numbers and your task is to remember them in order. After each sequence, you will be asked to type the numbers you saw in the same order. Press "Continue" to begin.</p>',
   choices: ['Continue'],
-};
-
-//clump the tasks together into one var
-var digitspan_instructions = {
-  timeline: [digitspan_instrucions_easy,digitspan_instrucions_medium,digitspan_instrucions_hard],
 };
 
   //end message//
@@ -1560,7 +1463,7 @@ var ending = {
 
   jsPsych.run([
     preload,
-    enter_fullscreen,
+/*  enter_fullscreen,
     consent,
     demographics,
     games_description,
@@ -1575,9 +1478,9 @@ var ending = {
     distance_campus_response,
     open_ended2,
     selfchallenge_likert,
-    digitspan_choices,
-    digitspan_instructions,
-    digitspan_tasks,
+*/  digitspan_choices,
+    digitspan_instructions_medium,
+    digitspan_medium,
     ending,
   ]);
   </script>
