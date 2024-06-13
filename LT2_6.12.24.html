@@ -1274,16 +1274,53 @@ var distance_campus_response_instructions = {
     {stimulus: 'img/distance_instructions_crop.png', min: 120.1,  max: 153.6, feedback_correct: 142.5},
       ]
 }
- /*var distance_campus_response_instructions = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: "<p><img src='img/distance_instructions.png' height='400px'></p>" +
-      "<p>You're going to play a game in which you will guess the distance between two cones.</p>" +
-      "<p>Estimate the distance between the <b>tip</b> of each cone.</p>" +
-      "<p>Use the slider to mark your answers.</p>" +
-      "<p>After submitting each answer, you will see the correct distance.</p>" +
-      "<p>Try your best to get as close to the correct distance as possible.</p>",
-      choices: ["Continue"]
-  }*/ //^old way of doing it. updated to use working slider
+
+var distance_park_response_instructions = {
+  timeline: [
+    {
+      type: jsPsychDistanceSliderResponse,
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      stimulus_width: 600,
+      slider_width: 600,
+      require_movement: true,
+      min: jsPsych.timelineVariable('min'), // What's the minimum value of the slider?
+      max: jsPsych.timelineVariable('max'), // What's the maximum value of the slider?
+        //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
+      step: 0.1, // Slider moves in increments of how much?
+      slider_number: true,
+      feedback_correct: jsPsych.timelineVariable('feedback_correct'),
+      feedback_display: true,
+      prompt: 'You are going to play a game in which you will guess the distance between two cones.<br>Estimate the distance between the <b>tip</b> of each cone.<p>Use the slider to mark your answers.<br> Click <i>submit</i> to lock your answer and <i>continue</i> to move to the next page.<p>After submitting each answer, you will see the correct distance<br>Try your best to get as close to the correct distance as possible.</p>'
+    }
+  ],
+  timeline_variables: [
+    {stimulus: 'img/distance_instructions_crop.png', min: 120.1,  max: 153.6, feedback_correct: 142.5},
+      ]
+}
+
+//placeholder for now. Needs to be updated
+var time_campus_response_instructions = {
+  timeline: [
+    {
+      type: jsPsychDistanceSliderResponse,
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      stimulus_width: 600,
+      slider_width: 600,
+      require_movement: true,
+      min: jsPsych.timelineVariable('min'), // What's the minimum value of the slider?
+      max: jsPsych.timelineVariable('max'), // What's the maximum value of the slider?
+        //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
+      step: 0.1, // Slider moves in increments of how much?
+      slider_number: true,
+      feedback_correct: jsPsych.timelineVariable('feedback_correct'),
+      feedback_display: true,
+      prompt: 'You are going to play a game in which you will guess the distance between two cones.<br>Estimate the distance between the <b>tip</b> of each cone.<p>Use the slider to mark your answers.<br> Click <i>submit</i> to lock your answer and <i>continue</i> to move to the next page.<p>After submitting each answer, you will see the correct distance<br>Try your best to get as close to the correct distance as possible.</p>'
+    }
+  ],
+  timeline_variables: [
+    {stimulus: 'img/time_instructions_crop.png', min: 120.1,  max: 153.6, feedback_correct: 1136},
+      ]
+}
 
   var distance_campus_response_game = {
     timeline: [
@@ -1343,7 +1380,129 @@ var distance_campus_response_instructions = {
       distance_campus_response_instructions,
       distance_campus_response_game
       ]
+//time park
+
     }
+    var time_campus_response_game = {
+      timeline: [
+        {
+          type: jsPsychDistanceSliderResponse,
+          stimulus: jsPsych.timelineVariable('stimulus'),
+          stimulus_width: 600,
+          slider_width: 600,
+          require_movement: true,
+          min: jsPsych.timelineVariable('min'), // What's the minimum value of the slider?
+          max: jsPsych.timelineVariable('max'), // What's the maximum value of the slider?
+            //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
+          step: 0.1, // Slider moves in increments of how much?
+          slider_number: true,
+          feedback_correct: jsPsych.timelineVariable('feedback_correct'),
+          feedback_display: true,
+          prompt: '<p>How far apart are the cones?</p>'
+        }
+      ],
+      timeline_variables: [
+        {stimulus: 'img/time_campus_01.jpg', min: 443, max: 533, feedback_correct: 494},
+        {stimulus: 'img/time_campus_02.jpg', min: 446, max: 536, feedback_correct: 513},
+        {stimulus: 'img/time_campus_03.jpg', min: 490, max: 580, feedback_correct: 551},
+        {stimulus: 'img/time_campus_04.jpg', min: 474, max: 564, feedback_correct: 555},
+        {stimulus: 'img/time_campus_05.jpg', min: 499, max: 589, feedback_correct: 573},
+        {stimulus: 'img/time_campus_06.jpg', min: 584, max: 674, feedback_correct: 604},
+        {stimulus: 'img/time_campus_07.jpg', min: 565, max: 655, feedback_correct: 620},
+        {stimulus: 'img/time_campus_08.jpg', min: 569, max: 659, feedback_correct: 633},
+        {stimulus: 'img/time_campus_09.jpg', min: 628, max: 718, feedback_correct: 666},
+        {stimulus: 'img/time_campus_10.jpg', min: 593, max: 683, feedback_correct: 677},
+        {stimulus: 'img/time_campus_11.jpg', min: 670, max: 760, feedback_correct: 691},
+        {stimulus: 'img/time_campus_12.jpg', min: 659, max: 749, feedback_correct: 720},
+        {stimulus: 'img/time_campus_13.jpg', min: 675, max: 765, feedback_correct: 731},
+        {stimulus: 'img/time_campus_14.jpg', min: 674, max: 764, feedback_correct: 754},
+        {stimulus: 'img/time_campus_15.jpg', min: 720, max: 810, feedback_correct: 773},
+        {stimulus: 'img/time_campus_16.jpg', min: 835, max: 925, feedback_correct: 835},
+        {stimulus: 'img/time_campus_17.jpg', min: 836, max: 926, feedback_correct: 863},
+        {stimulus: 'img/time_campus_18.jpg', min: 838, max: 928, feedback_correct: 874},
+        {stimulus: 'img/time_campus_19.jpg', min: 853, max: 943, feedback_correct: 908},
+        {stimulus: 'img/time_campus_20.jpg', min: 852, max: 942, feedback_correct: 925},
+        {stimulus: 'img/time_campus_21.jpg', min: 906, max: 996, feedback_correct: 946},
+        {stimulus: 'img/time_campus_22.jpg', min: 931, max: 1021, feedback_correct: 968},
+        {stimulus: 'img/time_campus_23.jpg', min: 896, max: 986, feedback_correct: 983},
+        {stimulus: 'img/time_campus_24.jpg', min: 992, max: 1082, feedback_correct: 1001},
+        {stimulus: 'img/time_campus_25.jpg', min: 987, max: 1077, feedback_correct: 1028},
+        {stimulus: 'img/time_campus_26.jpg', min: 994, max: 1084, feedback_correct: 1042},
+        {stimulus: 'img/time_campus_27.jpg', min: 1035, max: 1125, feedback_correct: 1069},
+        {stimulus: 'img/time_campus_28.jpg', min: 1050, max: 1140, feedback_correct: 1078},
+        {stimulus: 'img/time_campus_29.jpg', min: 1047, max: 1137, feedback_correct: 1105},
+        {stimulus: 'img/time_campus_30.jpg', min: 1070, max: 1160, feedback_correct: 1136},
+      ],
+      randomize_order: true
+    }
+
+      var time_campus_response = {
+      timeline: [
+        time_campus_response_instructions,
+        time_campus_response_game
+        ]
+      }
+
+      //distance park response
+          var distance_park_response_game = {
+            timeline: [
+              {
+                type: jsPsychDistanceSliderResponse,
+                stimulus: jsPsych.timelineVariable('stimulus'),
+                stimulus_width: 600,
+                slider_width: 600,
+                require_movement: true,
+                min: jsPsych.timelineVariable('min'), // What's the minimum value of the slider?
+                max: jsPsych.timelineVariable('max'), // What's the maximum value of the slider?
+                  //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
+                step: 0.1, // Slider moves in increments of how much?
+                slider_number: true,
+                feedback_correct: jsPsych.timelineVariable('feedback_correct'),
+                feedback_display: true,
+                prompt: '<p>How far apart are the cones?</p>'
+              }
+            ],
+            timeline_variables: [
+              {stimulus: 'img/distance_park_01.jpg', min: 22.2, max: 36.6, feedback_correct: 23.0},
+              {stimulus: 'img/distance_park_02.jpg', min: 28.6, max: 49.7, feedback_correct: 49.6},
+              {stimulus: 'img/distance_park_03.jpg', min: 80.8, max: 109.8, feedback_correct: 93.9},
+              {stimulus: 'img/distance_park_04.jpg', min: 53.4, max: 79.6, feedback_correct: 76.4},
+              {stimulus: 'img/distance_park_05.jpg', min: 96.4, max: 128.3, feedback_correct: 112.5},
+              {stimulus: 'img/distance_park_06.jpg', min: 9.2, max: 23.5, feedback_correct: 22.9},
+              {stimulus: 'img/distance_park_07.jpg', min: 73.9, max: 103.8, feedback_correct: 99.0},
+              {stimulus: 'img/distance_park_08.jpg', min: 39.7, max: 62.0, feedback_correct: 55.6},
+              {stimulus: 'img/distance_park_09.jpg', min: 136.0, max: 173.7, feedback_correct: 157.4},
+              {stimulus: 'img/distance_park_10.jpg', min: 10.8, max: 25.8, feedback_correct: 24.9},
+              {stimulus: 'img/distance_park_11.jpg', min: 152.2, max: 191.2, feedback_correct: 168.6},
+              {stimulus: 'img/distance_park_12.jpg', min: 30.0, max: 50.8, feedback_correct: 47.7},
+              {stimulus: 'img/distance_park_13.jpg', min: 26.5, max: 44.9, feedback_correct: 37.7},
+              {stimulus: 'img/distance_park_14.jpg', min: 57.4, max: 83.0, feedback_correct: 73.3},
+              {stimulus: 'img/distance_park_15.jpg', min: 60.5, max: 86.3, feedback_correct: 73.9},
+              {stimulus: 'img/distance_park_16.jpg', min: 46.4, max: 68.0, feedback_correct: 52.0},
+              {stimulus: 'img/distance_park_17.jpg', min: 96.6, max: 129.5, feedback_correct: 120.0},
+              {stimulus: 'img/distance_park_18.jpg', min: 239.6, max: 289.3, feedback_correct: 274.2},
+              {stimulus: 'img/distance_park_19.jpg', min: 90.2, max: 123.4, feedback_correct: 122.0},
+              {stimulus: 'img/distance_park_20.jpg', min: 66.4, max: 93.4, feedback_correct: 81.0},
+              {stimulus: 'img/distance_park_21.jpg', min: 92.6, max: 125.0, feedback_correct: 117.0},
+              {stimulus: 'img/distance_park_22.jpg', min: 10.3, max: 21.3, feedback_correct: 13.5},
+              {stimulus: 'img/distance_park_23.jpg', min: 27.8, max: 47.5, feedback_correct: 43.0},
+              {stimulus: 'img/distance_park_24.jpg', min: 88.6, max: 119.8, feedback_correct: 108.5},
+              {stimulus: 'img/distance_park_25.jpg', min: 76.0, max: 103.0, feedback_correct: 81.5},
+              {stimulus: 'img/distance_park_26.jpg', min: 54.6, max: 77.3, feedback_correct: 57.1},
+              {stimulus: 'img/distance_park_27.jpg', min: 6.8, max: 17.8, feedback_correct: 13.3},
+              {stimulus: 'img/distance_park_28.jpg', min: 192.8, max: 235.6, feedback_correct: 203.0},
+              {stimulus: 'img/distance_park_29.jpg', min: 142.8, max: 179.7, feedback_correct: 151.6},
+              {stimulus: 'img/distance_park_30.jpg', min: 31.4, max: 49.7, feedback_correct: 37.2},
+            ],
+            randomize_order: true
+          }
+
+            var distance_park_response = {
+            timeline: [
+              distance_park_response_instructions,
+              distance_park_response_game
+              ]
+            }
 
 /*13 - Survey*/
 var open_ended2 = {
@@ -1463,7 +1622,7 @@ var ending = {
 
   jsPsych.run([
     preload,
-/*  enter_fullscreen,
+    enter_fullscreen,
     consent,
     demographics,
     games_description,
@@ -1478,7 +1637,7 @@ var ending = {
     distance_campus_response,
     open_ended2,
     selfchallenge_likert,
-*/  digitspan_choices,
+    digitspan_choices,
     digitspan_instructions_medium,
     digitspan_medium,
     ending,
