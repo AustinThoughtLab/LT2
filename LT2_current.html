@@ -1750,13 +1750,53 @@ var digitspan_easy = createDigitSpanTask(4);
 var digitspan_medium = createDigitSpanTask(6);
 var digitspan_hard = createDigitSpanTask(8);
 
-
+var difficulty_choice;
 var digitspan_choices = {
   type: jsPsychHtmlButtonResponse,
   stimulus: '<p>Please choose one of three options for the next task.</p>',
   choices: ['Easy', 'Medium', 'Hard'],
+  on_finish: function(data) {
+    var choiceIndex = jsPsych.data.get().select("response").values[0];
+    var choices = ['Easy', 'Medium', 'Hard'];
+    choice = choices[choiceIndex];
+    //console.log(choice);
+    difficulty_choice = choice;
+   
+  },
+  data: function() {
+      return {choice: difficulty_choice};
+  }
 };
 
+var digitspan_instructions = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: function() 
+      {
+        //var choiceIndex = jsPsych.data.getLastTrialData().select("response").values[0];
+        //var choices = ['Easy', 'Medium', 'Hard'];
+        //choice = choices[choiceIndex];
+        //console.log(difficulty_choice);
+
+        var sequence_num;
+
+        if (difficulty_choice == 'Easy') {
+            sequence_num = 4;
+        }
+        else if (difficulty_choice == "Medium") {
+            sequence_num = 6;
+        }       
+        else if (difficulty_choice == "Hard"){
+            sequence_num = 8;
+        }
+
+        return `
+            <p>In this part of the experiment, you will see a sequence of ${sequence_num} numbers and your task is to remember them in order. After each sequence, you will be asked to type the numbers you saw in the same order. Press "Continue" to begin.</p>
+          `
+      },
+      choices: ["Continue"]
+   }
+
+/*
 var digitspan_instructions_easy = {
   type: jsPsychHtmlButtonResponse,
   stimulus: '<p>In this part of the experiment, you will see a sequence of 4 numbers and your task is to remember them in order. After each sequence, you will be asked to type the numbers you saw in the same order. Press "Continue" to begin.</p>',
@@ -1774,6 +1814,7 @@ var digitspan_instructions_hard = {
   stimulus: '<p>In this part of the experiment, you will see a sequence of 8 numbers and your task is to remember them in order. After each sequence, you will be asked to type the numbers you saw in the same order. Press "Continue" to begin.</p>',
   choices: ['Continue'],
 };
+*/
 
   //end message//
 var ending = {
@@ -1782,7 +1823,7 @@ var ending = {
 };
 
   jsPsych.run([
-    preload,
+    /*preload,
     enter_fullscreen,
     consent,
     demographics,
@@ -1797,9 +1838,10 @@ var ending = {
     likert_trial2,
     followup_game,
     survey2,
-    selfchallenge_likert,
+    selfchallenge_likert, */
     digitspan_choices,
-    digitspan_instructions_medium,
+    digitspan_instructions,
+    //digitspan_instructions_medium,
     digitspan_medium,
     ending,
   ]);
