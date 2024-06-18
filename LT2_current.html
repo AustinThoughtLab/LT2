@@ -344,8 +344,8 @@ var consent = {
     </p>
 
     <p><b>Which measurement system are you most familiar with?</b>
-      <br><input type="radio" name="measurement-metric"> Metric (centimeters)
       <br><input type="radio" name="measurement-imperial"> Imperial (inches)
+      <br><input type="radio" name="measurement-metric"> Metric (centimeters)
       <br><input type="radio" name="measurement-equal"> Both are equally familiar
     </p>
 
@@ -992,7 +992,8 @@ var time_campus_initial_game = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: '<p>What time is it?</p>[ Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m. ]'
+      prompt: '<p>What time is it?<br>' +
+      '<i>Sunrise: 7:15 a.m. | Solar noon: 1:33 p.m. | Sunset: 7:52 p.m.</i></p>'
     }
   ],
   timeline_variables: [
@@ -1100,7 +1101,8 @@ var time_park_initial_game = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: '<p>What time is it?</p>[ Sunrise: 7:07 a.m. | Solar Noon: 1:31 p.m. | Sunset: 7:56 p.m. ]'
+      prompt: '<p>What time is it?<br>' +
+      '<i>Sunrise: 7:07 a.m. | Solar noon: 1:31 p.m. | Sunset: 7:56 p.m.</i></p>'
     }
   ],
   timeline_variables: [
@@ -1168,14 +1170,14 @@ var time_park_initial_game = {
 
   var initial_game_feedback = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: "You got <b>15</b> out of 30 trials within range. Below you will find your summarized performance."+"<p><img src='img/" + initial_game_feedback_image + ".png' height='500px'></p>",
+    stimulus: "You got <b>15</b> out of 30 trials within range. Below you will find your performance summary."+"<p><img src='img/" + initial_game_feedback_image + ".png' height='500px'></p>",
       choices: ["Continue"]
   }
 
 /*8 - Survey*/
 var open_ended = {
   type: jsPsychSurveyText,
-  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please anaswer all of the quesions.</i>`,
+  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the questions.</i>`,
   questions: [
     {prompt: 'How do you feel about your performance in the game?',name: 'feeling', rows: 5, required: true},
     {prompt: 'How much did you learn?',name: 'learning', rows: 5, required: true},
@@ -1417,7 +1419,8 @@ var time_park_response_instructions = {
           slider_number: true,
           feedback_correct: jsPsych.timelineVariable('feedback_correct'),
           feedback_display: true,
-          prompt: '<p>What time is it?</p>[ Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m. ]'
+          prompt: '<p>What time is it?<br>' +
+          '<i>Sunrise: 7:15 a.m. | Solar noon: 1:33 p.m. | Sunset: 7:52 p.m.</i></p>'
         }
       ],
       timeline_variables: [
@@ -1537,7 +1540,8 @@ var time_park_response_instructions = {
                   slider_number: true,
                   feedback_correct: jsPsych.timelineVariable('feedback_correct'),
                   feedback_display: true,
-                  prompt: '<p>What time is it?</p>[ Sunrise: 7:07 a.m. | Solar Noon: 1:31 p.m. | Sunset: 7:56 p.m. ]'
+                  prompt: '<p>What time is it?<br>' +
+                  '<i>Sunrise: 7:07 a.m. | Solar noon: 1:31 p.m. | Sunset: 7:56 p.m.</i></p>'
                 }
               ],
               timeline_variables: [
@@ -1739,7 +1743,7 @@ function createDigitSpanTask(numDigits) {
     // Add a typing task after the sequence
     task.timeline.push({
       type: jsPsychSurveyText,
-      questions: [{prompt: 'Please type the numbers you saw, in the order you saw them.', rows: 1}],
+      questions: [{prompt: 'Please type the numbers you saw in the order you saw them.', rows: 1}],
       data: { correct_sequence: sequence.join('') }
     });
   }
