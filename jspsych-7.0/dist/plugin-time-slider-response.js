@@ -250,11 +250,15 @@ var jsPsychTimeSliderResponse = (function (jspsych) {
              html += '<div style="display: inline-block; position: absolute; left: 0; transform: translateX(-50%); text-align: center; width: 10%;">'; // Adjusted left and added transform
              var min_hour = Math.floor(trial.min/60)
              var min_m = "a.m."
+             // Check if the number is 12 or greater
+             if (min_hour >= 12) {
+                 // Change a.m. to p.m.
+                 min_m = 'p.m.';
+             }
              // Check if the number is 13 or greater
              if (min_hour >= 13) {
                  // Subtract 12 from the number
                  min_hour -= 12;
-                 min_m = 'p.m.'
              }
              var min_minute_prep = trial.min%60;
              if (min_minute_prep <= 9) {
@@ -268,11 +272,15 @@ var jsPsychTimeSliderResponse = (function (jspsych) {
              html += '<div style="display: inline-block; position: absolute; right: 0; transform: translateX(50%); text-align: center; width: 10%;">'; // Adjusted right and added transform
              var max_hour = Math.floor(trial.max/60)
              var max_m = "a.m."
+             // Check if the number is 12 or greater
+             if (max_hour >= 12) {
+                 // Change a.m. to p.m.
+                 max_m = 'p.m.';
+             }
              // Check if the number is 13 or greater
              if (max_hour >= 13) {
                  // Subtract 12 from the number
                  max_hour -= 12;
-                 max_m = 'p.m.'
              }
              var max_minute_prep = trial.max%60;
              if (max_minute_prep <= 9) {

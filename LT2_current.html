@@ -268,7 +268,7 @@ var consent = {
 '<div style="text-align: left;"><p><b>Invitation to be Part of a Research Study</b>: You are invited to be part of a research study. This consent form will help you choose whether or not to participate in the study. Feel free to ask if anything is not clear in this consent form.</p>'+
 
 "<p><b>What is the study about and why are we doing it?</b><br>"+
-"This a research study about how people learn new words and concepts, and how language and cognitive development are related. We study how people think about objects, numbers, time, colors, and cause-and-effect relationships, and how they learn language related to these concepts. The purpose of this study is to understand how people's understanding of these concepts develops.</p>" + 
+"This is a research study about how people learn new words and concepts, and how language and cognitive development are related. We study how people think about objects, numbers, time, colors, and cause-and-effect relationships, and how they learn language related to these concepts. The purpose of this study is to understand how people's understanding of these concepts develops.</p>" + 
 
 "<p><b>What will happen if you take part in this study?</b></br>"+
 "If you agree to take part in this study, you may be asked to: Listen to sentences or stories, count, sort, label, make judgments about, or describe objects, evaluate statements about objects or pictures, choose which of two pictures or sets of objects better matches a sentence.</p>"+
@@ -292,7 +292,7 @@ var consent = {
 "We will keep your research data to use for comparison analysis in future studies for up to 3 years. Your name and other information that can directly identify them will be kept secure and stored separately from the research data collected as part of the project.</p>"+
 
 "<p><b>How will we compensate you for being part of the study?</b></br>"+
-"Students participating through SONA will receive 1 credit. Amazon Mechanical Turk adult participants will be paid a small amount determined by the length of the experiment and at a rate comparable to that of other experiments/tasks posted on the website. For tasks that take less than 5 minutes to complete, participants will be paid $0.50, for tasks that take 5-15 minutes, participants will be paid $1.00, and for tasks that take 15-30 minutes, participants will be paid $3.00. Participants are paid a flat fee for completing a task (i.e., this fee is not prorated based on the actual amount of time they spend on the task).</p>"+
+"Students participating through SONA will receive 1 credit. Amazon Mechanical Turk adult participants will be paid a small amount determined by the length of the experiment and at a rate comparable to that of other experiments/tasks posted on the website. For tasks that take less than 5 minutes to complete, participants will be paid $0.50; for tasks that take 5-15 minutes, participants will be paid $1.00; and for tasks that take 15-30 minutes, participants will be paid $3.00. Participants are paid a flat fee for completing a task (i.e., this fee is not prorated based on the actual amount of time they spend on the task).</p>"+
 
 "<p><b>Your Participation in this Study is Voluntary</b></br>"+
 "It is totally up to you to decide to be in this research study. Participating in this study is voluntary. Your decision to participate will not affect your relationship with The University of Texas at Austin. You will not lose any benefits or rights you already had if you decide not to participate. Even if you decide to be part of the study now, you may change your mind and stop at any time. You do not have to answer any questions you do not want to answer.</p>"+
@@ -326,6 +326,7 @@ var consent = {
     `
         //hi this is shaan.
   }
+
 
 
 
@@ -999,7 +1000,8 @@ var time_campus_initial_game = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: '<p>What time is it?</p>[ Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m. ]'
+      prompt: '<p>What time is it?<br>' +
+      '<i>Sunrise: 7:15 a.m. | Solar noon: 1:33 p.m. | Sunset: 7:52 p.m.</i></p>'
     }
   ],
   timeline_variables: [
@@ -1107,7 +1109,8 @@ var time_park_initial_game = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: '<p>What time is it?</p>[ Sunrise: 7:07 a.m. | Solar Noon: 1:31 p.m. | Sunset: 7:56 p.m. ]'
+      prompt: '<p>What time is it?<br>' +
+      '<i>Sunrise: 7:07 a.m. | Solar noon: 1:31 p.m. | Sunset: 7:56 p.m.</i></p>'
     }
   ],
   timeline_variables: [
@@ -1175,14 +1178,14 @@ var time_park_initial_game = {
 
   var initial_game_feedback = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: "You got <b>15</b> out of 30 trials within range. Below you will find your summarized performance."+"<p><img src='img/" + initial_game_feedback_image + ".png' height='500px'></p>",
+    stimulus: "You got <b>15</b> out of 30 trials within range. Below you will find your performance summary."+"<p><img src='img/" + initial_game_feedback_image + ".png' height='500px'></p>",
       choices: ["Continue"]
   }
 
 /*8 - Survey*/
 var open_ended = {
   type: jsPsychSurveyText,
-  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please anaswer all of the quesions.</i>`,
+  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the questions.</i>`,
   questions: [
     {prompt: 'How do you feel about your performance in the game?',name: 'feeling', rows: 5, required: true},
     {prompt: 'How much did you learn?',name: 'learning', rows: 5, required: true},
@@ -1424,7 +1427,8 @@ var time_park_response_instructions = {
           slider_number: true,
           feedback_correct: jsPsych.timelineVariable('feedback_correct'),
           feedback_display: true,
-          prompt: '<p>What time is it?</p>[ Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m. ]'
+          prompt: '<p>What time is it?<br>' +
+          '<i>Sunrise: 7:15 a.m. | Solar noon: 1:33 p.m. | Sunset: 7:52 p.m.</i></p>'
         }
       ],
       timeline_variables: [
@@ -1544,7 +1548,8 @@ var time_park_response_instructions = {
                   slider_number: true,
                   feedback_correct: jsPsych.timelineVariable('feedback_correct'),
                   feedback_display: true,
-                  prompt: '<p>What time is it?</p>[ Sunrise: 7:07 a.m. | Solar Noon: 1:31 p.m. | Sunset: 7:56 p.m. ]'
+                  prompt: '<p>What time is it?<br>' +
+                  '<i>Sunrise: 7:07 a.m. | Solar noon: 1:31 p.m. | Sunset: 7:56 p.m.</i></p>'
                 }
               ],
               timeline_variables: [
@@ -1746,7 +1751,7 @@ function createDigitSpanTask(numDigits) {
     // Add a typing task after the sequence
     task.timeline.push({
       type: jsPsychSurveyText,
-      questions: [{prompt: 'Please type the numbers you saw, in the order you saw them.', rows: 1}],
+      questions: [{prompt: 'Please type the numbers you saw in the order you saw them.', rows: 1}],
       data: { correct_sequence: sequence.join('') }
     });
   }
@@ -1772,7 +1777,7 @@ var digitspan_choices = {
     choice = choices[choiceIndex];
     //console.log(choice);
     difficulty_choice = choice;
-   
+
   },
   data: function() {
       return {choice: difficulty_choice};
@@ -1780,10 +1785,10 @@ var digitspan_choices = {
 };
 
 // displays instructions depending on choice
-var digitspan_game; 
+var digitspan_game;
 var digitspan_instructions = {
       type: jsPsychHtmlButtonResponse,
-      stimulus: function() 
+      stimulus: function()
       {
 
         var sequence_num;
@@ -1792,7 +1797,7 @@ var digitspan_instructions = {
         var choices = ['Easy', 'Medium', 'Hard'];
         choice = choices[choiceIndex];
         console.log(choice);
-      
+
         if (choice == 'Easy') {
             sequence_num = 4;
             //digitspan_game = digitspan_easy;
@@ -1800,7 +1805,7 @@ var digitspan_instructions = {
         else if (choice == "Medium") {
             sequence_num = 6;
             //digitspan_game = digitspan_medium;
-        }       
+        }
         else if (choice == "Hard"){
             sequence_num = 8;
             //digitspan_game = digitspan_hard;
@@ -1815,25 +1820,25 @@ var digitspan_instructions = {
           return {choice: difficulty_choice};
       },
       // adds to timeline the game mode
-      on_finish: function() { 
-          var task; 
-          if (choice == 'Easy') { 
-              task = digitspan_easy; 
+      on_finish: function() {
+          var task;
+          if (choice == 'Easy') {
+              task = digitspan_easy;
 
-          } 
-          else if (choice == 'Medium') { 
-              task = digitspan_medium; 
-          } 
-          else if (choice == 'Hard') { 
-              task = digitspan_hard; 
-          } 
-          jsPsych.addNodeToEndOfTimeline(task); 
+          }
+          else if (choice == 'Medium') {
+              task = digitspan_medium;
+          }
+          else if (choice == 'Hard') {
+              task = digitspan_hard;
+          }
+          jsPsych.addNodeToEndOfTimeline(task);
 
           // adds ending to end of timeline, if need to add anything after digit span, put it in between here rather than in jsPsych.run() line
           jsPsych.addNodeToEndOfTimeline(ending);
 
 
-      } 
+      }
 
    };
 
@@ -1859,12 +1864,12 @@ var ending = {
     survey,
     games_description2,
     likert_trial2,
-    followup_game, 
-    survey2, 
-    selfchallenge_likert, 
+    followup_game,
+    survey2,
+    selfchallenge_likert,
     digitspan_choices,
     digitspan_instructions
-  ]); 
+  ]);
 
   </script>
 </html>
