@@ -16,6 +16,8 @@
     <script src="jspsych-7.0/dist/plugin-survey-likert.js"></script>
     <script src="jspsych-7.0/dist/plugin-fullscreen.js"></script>
     <script src="jspsych-7.0/dist/plugin-survey-text.js"></script>
+    <script src="jspsych-7.0/dist/plugin-survey-multi-choice.js"></script>
+    <script src="jspsych-7.0/dist/plugin-survey-multi-select.js"></script>
     <link href="jspsych-7.0/dist/jspsych.css" rel="stylesheet" type="text/css" />
     <style>
     body, html {
@@ -303,7 +305,9 @@ var consent = {
 }
 
 /* 1 - demographics survey */
-  var demographics = {
+
+
+  var demographics_1 = {
     type: jsPsychSurveyHtmlForm,
     preamble: '<h2>DEMOGRAPHICS QUESTIONNAIRE </h2><p><i>Please fill out this demographic form. You may skip any questions you do not wish to answer.</i></p>',
     html: `<p><b>First Name: </b><input type="text" name="name-first"><b> Last Name: </b><input type="text" name="name-last"></p>
@@ -319,39 +323,42 @@ var consent = {
       <br><input type="checkbox" name="race-undisclosed"> Do not wish to diclose
     </p>
 
-    <p><b>Ethnicity:</b>
-      <br><input type="radio" name="ethnicity-hispanic"> Hispanic or Latino
-      <br><input type="radio" name="ethnicity-nonhispanic"> Non-Hispanic or Non-Latino
-      <br><input type="radio" name="ethnicity-undisclosed"> Do not wish to disclose
-    </p>
-
-    <p><b>Sex:
-      </b><br><input type="radio" name="sex-female"> Female
-      <br><input type="radio" name="sex-male"> Male
-      <br><input type="radio" name="sex-nb"> Non-binary
-      <br><input type="radio" name="sex-undisclosed"> Do not wish to disclose
-    </p>
-
-    <p><b>What is the highest level of education you have completed?</b>
-      <br><input type="radio" name="education-somehs"> Some High School
-      <br><input type="radio" name="education-hs"> High School Degree
-      <br><input type="radio" name="education-somecollege"> Some College
-      <br><input type="radio" name="education-college"> College Degree
-      <br><input type="radio" name="education-technical"> Technical/AA Degree
-      <br><input type="radio" name="education-somegrad"> Some Graduate School
-      <br><input type="radio" name="education-grad"> Graduate Degree
-      <br><input type="radio" name="education-undisclosed"> Unsure/Do not wish to disclose
-    </p>
-
-    <p><b>Which measurement system are you most familiar with?</b>
-      <br><input type="radio" name="measurement-metric"> Metric (centimeters)
-      <br><input type="radio" name="measurement-imperial"> Imperial (inches)
-      <br><input type="radio" name="measurement-equal"> Both are equally familiar
-    </p>
-
     `
         //hi this is shaan.
   }
+
+
+
+var demographics_2 = {
+  type: jsPsychSurveyMultiChoice,
+  preamble: '<h2>DEMOGRAPHICS QUESTIONNAIRE </h2><p><i>Please fill out this demographic form. You may skip any questions you do not wish to answer.</i></p>',
+  questions: [
+  {
+    prompt: "<b>Ethnicity:</b>",
+    name: 'ethnicity',
+    options: ['Hispanic or Latino', 'Non-Hispanic or Non-Latino', 'Do not wish to disclose'],
+    required: false
+  },
+  {
+    prompt: "<b>Sex:</b>",
+    name: 'sex',
+    options: ['Female', 'Male', 'Non-binary', 'Do not wish to disclose'],
+    required: false
+  },
+  {
+    prompt: '<b>What is the highest level of education you have completed?</b>',
+    name: 'education',
+    options: ['Some High School', 'High School Degree', 'Some College', 'College Degree', 'Technical/AA Degree', 'Some Graduate School', 'Graduate Degree', 'Unsure/Do not wish to disclose'],
+    required: false
+  },
+  {
+    prompt: "<b>Which measurement system are you most familiar with?</b>",
+    name: 'measurement',
+    options: ['Imperial (inches)', 'Metric (centimeters)', 'Both are equally familiar'],
+    required: false
+  }
+  ]
+};
 
 /* 2- Desciptions of Games */
 
@@ -1841,7 +1848,8 @@ var ending = {
     preload,
     enter_fullscreen,
     consent,
-    demographics,
+    demographics_1,
+    demographics_2,
     games_description,
     likert_trial,
     initial_game_instructions,
