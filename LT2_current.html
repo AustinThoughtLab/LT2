@@ -16,8 +16,6 @@
     <script src="jspsych-7.0/dist/plugin-survey-likert.js"></script>
     <script src="jspsych-7.0/dist/plugin-fullscreen.js"></script>
     <script src="jspsych-7.0/dist/plugin-survey-text.js"></script>
-    <script src="jspsych-7.0/dist/plugin-survey-multi-choice.js"></script>
-    <script src="jspsych-7.0/dist/plugin-survey-multi-select.js"></script>
     <link href="jspsych-7.0/dist/jspsych.css" rel="stylesheet" type="text/css" />
     <style>
     body, html {
@@ -172,10 +170,10 @@ var images_block_1 = [
 'img/distance_instructions.png',
 'img/time_instructions_crop.png',
 'img/distance_instructions_crop.png',
-'img/distance_goal_specific.png',
-'img/distance_goal_nonspecific.png',
-'img/time_goal_specific.png',
-'img/time_goal_nonspecific.png',
+'img/goal_specific.png',
+'img/goal_nonspecific.png',
+'img/time_instructions_within_range.png',
+'img/distance_instructions_within_range.png',
 'img/1.png',
 'img/2.png',
 'img/3.png',
@@ -268,7 +266,7 @@ var consent = {
 '<div style="text-align: left;"><p><b>Invitation to be Part of a Research Study</b>: You are invited to be part of a research study. This consent form will help you choose whether or not to participate in the study. Feel free to ask if anything is not clear in this consent form.</p>'+
 
 "<p><b>What is the study about and why are we doing it?</b><br>"+
-"This is a research study about how people learn new words and concepts, and how language and cognitive development are related. We study how people think about objects, numbers, time, colors, and cause-and-effect relationships, and how they learn language related to these concepts. The purpose of this study is to understand how people's understanding of these concepts develops.</p>" + 
+"This a research study about how people learn new words and concepts, and how language and cognitive development are related. We study how people think about objects, numbers, time, colors, and cause-and-effect relationships, and how they learn language related to these concepts. The purpose of this study is to understand how people's understanding of these concepts develops.</p>" + 
 
 "<p><b>What will happen if you take part in this study?</b></br>"+
 "If you agree to take part in this study, you may be asked to: Listen to sentences or stories, count, sort, label, make judgments about, or describe objects, evaluate statements about objects or pictures, choose which of two pictures or sets of objects better matches a sentence.</p>"+
@@ -292,7 +290,7 @@ var consent = {
 "We will keep your research data to use for comparison analysis in future studies for up to 3 years. Your name and other information that can directly identify them will be kept secure and stored separately from the research data collected as part of the project.</p>"+
 
 "<p><b>How will we compensate you for being part of the study?</b></br>"+
-"Students participating through SONA will receive 1 credit. Amazon Mechanical Turk adult participants will be paid a small amount determined by the length of the experiment and at a rate comparable to that of other experiments/tasks posted on the website. For tasks that take less than 5 minutes to complete, participants will be paid $0.50; for tasks that take 5-15 minutes, participants will be paid $1.00; and for tasks that take 15-30 minutes, participants will be paid $3.00. Participants are paid a flat fee for completing a task (i.e., this fee is not prorated based on the actual amount of time they spend on the task).</p>"+
+"Students participating through SONA will receive 1 credit. Amazon Mechanical Turk adult participants will be paid a small amount determined by the length of the experiment and at a rate comparable to that of other experiments/tasks posted on the website. For tasks that take less than 5 minutes to complete, participants will be paid $0.50, for tasks that take 5-15 minutes, participants will be paid $1.00, and for tasks that take 15-30 minutes, participants will be paid $3.00. Participants are paid a flat fee for completing a task (i.e., this fee is not prorated based on the actual amount of time they spend on the task).</p>"+
 
 "<p><b>Your Participation in this Study is Voluntary</b></br>"+
 "It is totally up to you to decide to be in this research study. Participating in this study is voluntary. Your decision to participate will not affect your relationship with The University of Texas at Austin. You will not lose any benefits or rights you already had if you decide not to participate. Even if you decide to be part of the study now, you may change your mind and stop at any time. You do not have to answer any questions you do not want to answer.</p>"+
@@ -305,9 +303,7 @@ var consent = {
 }
 
 /* 1 - demographics survey */
-
-
-  var demographics_1 = {
+  var demographics = {
     type: jsPsychSurveyHtmlForm,
     preamble: '<h2>DEMOGRAPHICS QUESTIONNAIRE </h2><p><i>Please fill out this demographic form. You may skip any questions you do not wish to answer.</i></p>',
     html: `<p><b>First Name: </b><input type="text" name="name-first"><b> Last Name: </b><input type="text" name="name-last"></p>
@@ -323,43 +319,39 @@ var consent = {
       <br><input type="checkbox" name="race-undisclosed"> Do not wish to diclose
     </p>
 
+    <p><b>Ethnicity:</b>
+      <br><input type="radio" name="ethnicity-hispanic"> Hispanic or Latino
+      <br><input type="radio" name="ethnicity-nonhispanic"> Non-Hispanic or Non-Latino
+      <br><input type="radio" name="ethnicity-undisclosed"> Do not wish to disclose
+    </p>
+
+    <p><b>Sex:
+      </b><br><input type="radio" name="sex-female"> Female
+      <br><input type="radio" name="sex-male"> Male
+      <br><input type="radio" name="sex-nb"> Non-binary
+      <br><input type="radio" name="sex-undisclosed"> Do not wish to disclose
+    </p>
+
+    <p><b>What is the highest level of education you have completed?</b>
+      <br><input type="radio" name="education-somehs"> Some High School
+      <br><input type="radio" name="education-hs"> High School Degree
+      <br><input type="radio" name="education-somecollege"> Some College
+      <br><input type="radio" name="education-college"> College Degree
+      <br><input type="radio" name="education-technical"> Technical/AA Degree
+      <br><input type="radio" name="education-somegrad"> Some Graduate School
+      <br><input type="radio" name="education-grad"> Graduate Degree
+      <br><input type="radio" name="education-undisclosed"> Unsure/Do not wish to disclose
+    </p>
+
+    <p><b>Which measurement system are you most familiar with?</b>
+      <br><input type="radio" name="measurement-metric"> Metric (centimeters)
+      <br><input type="radio" name="measurement-imperial"> Imperial (inches)
+      <br><input type="radio" name="measurement-equal"> Both are equally familiar
+    </p>
+
     `
         //hi this is shaan.
   }
-
-
-
-
-var demographics_2 = {
-  type: jsPsychSurveyMultiChoice,
-  preamble: '<h2>DEMOGRAPHICS QUESTIONNAIRE </h2><p><i>Please fill out this demographic form. You may skip any questions you do not wish to answer.</i></p>',
-  questions: [
-  {
-    prompt: "<b>Ethnicity:</b>",
-    name: 'ethnicity',
-    options: ['Hispanic or Latino', 'Non-Hispanic or Non-Latino', 'Do not wish to disclose'],
-    required: false
-  },
-  {
-    prompt: "<b>Sex:</b>",
-    name: 'sex',
-    options: ['Female', 'Male', 'Non-binary', 'Do not wish to disclose'],
-    required: false
-  },
-  {
-    prompt: '<b>What is the highest level of education you have completed?</b>',
-    name: 'education',
-    options: ['Some High School', 'High School Degree', 'Some College', 'College Degree', 'Technical/AA Degree', 'Some Graduate School', 'Graduate Degree', 'Unsure/Do not wish to disclose'],
-    required: false
-  },
-  {
-    prompt: "<b>Which measurement system are you most familiar with?</b>",
-    name: 'measurement',
-    options: ['Imperial (inches)', 'Metric (centimeters)', 'Both are equally familiar'],
-    required: false
-  }
-  ]
-};
 
 /* 2- Desciptions of Games */
 
@@ -758,37 +750,94 @@ if (initial_game_type == 1) {
   initial_game_instructions = time_park_initial_instructions
 }
 
+
 var distance_initial_goal_specific = {
   type: jsPsychHtmlButtonResponse,
   stimulus: "<p>After submitting each answer, you will see if you were within range or out of range.<br>Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
-  "<p><img src='img/distance_goal_specific.png' height='550px'></p>",
+  "<p><img src='img/distance_instructions_within_range.png' height='400px'></p>",
 
     choices: ["Continue"]
 }
+//add a separate page for the goal
+var distance_initial_goal_specific2 = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: "<p><img src='img/goal_specific.png' height='550px'></p>",
+
+    choices: ["Continue"]
+}
+//make them the same var
+var distance_initial_goal_specific = {
+  timeline: [
+    distance_initial_goal_specific,
+    distance_initial_goal_specific2
+    ]
+  }
 
 var distance_initial_goal_non_specific = {
   type: jsPsychHtmlButtonResponse,
   stimulus: "<p>After submitting each answer, you will see if you were within range or out of range.<br>Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
-  "<p><img src='img/distance_goal_nonspecific.png' height='550px'></p>",
+  "<p><img src='img/distance_instructions_within_range.png' height='400px'></p>",
 
     choices: ["Continue"]
 }
-
-var time_initial_goal_specific = {
+//add a separate page for the goal
+var distance_initial_goal_non_specific2 = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p>After submitting each answer, you will see if you were within range or out of range.<br>Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
-  "<p><img src='img/time_goal_specific.png' height='550px'></p>",
+  stimulus: "<p><img src='img/goal_nonspecific.png' height='550px'></p>",
 
     choices: ["Continue"]
 }
+//make them the same var
+var distance_initial_goal_non_specific = {
+  timeline: [
+    distance_initial_goal_non_specific,
+    distance_initial_goal_non_specific2
+    ]
+  }
+  //now same two page instructions for time games
+  var time_initial_goal_specific = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: "<p>After submitting each answer, you will see if you were within range or out of range.<br>Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
+    "<p><img src='img/time_instructions_within_range.png' height='400px'></p>",
 
-var time_initial_goal_non_specific = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: "<p>After submitting each answer, you will see if you were within range or out of range.<br>Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
-  "<p><img src='img/time_goal_nonspecific.png' height='550px'></p>",
+      choices: ["Continue"]
+  }
+  //add a separate page for the goal
+  var time_initial_goal_specific2 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: "<p><img src='img/goal_specific.png' height='550px'></p>",
 
-    choices: ["Continue"]
-}
+      choices: ["Continue"]
+  }
+  //make them the same var
+  var time_initial_goal_specific = {
+    timeline: [
+      time_initial_goal_specific,
+      time_initial_goal_specific2
+      ]
+    }
+
+  var time_initial_goal_non_specific = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: "<p>After submitting each answer, you will see if you were within range or out of range.<br>Answers will be considered within range if they fall within 20% of the correct answer on the scale.</p>"+
+    "<p><img src='img/time_instructions_within_range.png' height='400px'></p>",
+
+      choices: ["Continue"]
+  }
+  //add a separate page for the goal
+  var time_initial_goal_non_specific2 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: "<p><img src='img/goal_nonspecific.png' height='550px'></p>",
+
+      choices: ["Continue"]
+  }
+  //make them the same var
+  var time_initial_goal_non_specific = {
+    timeline: [
+      time_initial_goal_non_specific,
+      time_initial_goal_non_specific2
+      ]
+    }
 
 // goal assignment
 /*if (initial_game_goal_number == 1) {
@@ -1000,8 +1049,7 @@ var time_campus_initial_game = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: '<p>What time is it?<br>' +
-      '<i>Sunrise: 7:15 a.m. | Solar noon: 1:33 p.m. | Sunset: 7:52 p.m.</i></p>'
+      prompt: '<p>What time is it?</p>[ Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m. ]'
     }
   ],
   timeline_variables: [
@@ -1109,8 +1157,7 @@ var time_park_initial_game = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: '<p>What time is it?<br>' +
-      '<i>Sunrise: 7:07 a.m. | Solar noon: 1:31 p.m. | Sunset: 7:56 p.m.</i></p>'
+      prompt: '<p>What time is it?</p>[ Sunrise: 7:07 a.m. | Solar Noon: 1:31 p.m. | Sunset: 7:56 p.m. ]'
     }
   ],
   timeline_variables: [
@@ -1178,14 +1225,14 @@ var time_park_initial_game = {
 
   var initial_game_feedback = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: "You got <b>15</b> out of 30 trials within range. Below you will find your performance summary."+"<p><img src='img/" + initial_game_feedback_image + ".png' height='500px'></p>",
+    stimulus: "You got <b>15</b> out of 30 trials within range. Below you will find your summarized performance."+"<p><img src='img/" + initial_game_feedback_image + ".png' height='500px'></p>",
       choices: ["Continue"]
   }
 
 /*8 - Survey*/
 var open_ended = {
   type: jsPsychSurveyText,
-  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the questions.</i>`,
+  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please anaswer all of the quesions.</i>`,
   questions: [
     {prompt: 'How do you feel about your performance in the game?',name: 'feeling', rows: 5, required: true},
     {prompt: 'How much did you learn?',name: 'learning', rows: 5, required: true},
@@ -1427,8 +1474,7 @@ var time_park_response_instructions = {
           slider_number: true,
           feedback_correct: jsPsych.timelineVariable('feedback_correct'),
           feedback_display: true,
-          prompt: '<p>What time is it?<br>' +
-          '<i>Sunrise: 7:15 a.m. | Solar noon: 1:33 p.m. | Sunset: 7:52 p.m.</i></p>'
+          prompt: '<p>What time is it?</p>[ Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m. ]'
         }
       ],
       timeline_variables: [
@@ -1548,8 +1594,7 @@ var time_park_response_instructions = {
                   slider_number: true,
                   feedback_correct: jsPsych.timelineVariable('feedback_correct'),
                   feedback_display: true,
-                  prompt: '<p>What time is it?<br>' +
-                  '<i>Sunrise: 7:07 a.m. | Solar noon: 1:31 p.m. | Sunset: 7:56 p.m.</i></p>'
+                  prompt: '<p>What time is it?</p>[ Sunrise: 7:07 a.m. | Solar Noon: 1:31 p.m. | Sunset: 7:56 p.m. ]'
                 }
               ],
               timeline_variables: [
@@ -1735,7 +1780,7 @@ function createDigitSpanTask(numDigits) {
 
   var digitList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < 3; i++) {
     var sequence = getRandomSubset(digitList, numDigits); // Generate a sequence of `numDigits` numbers for each trial
 
     // Add each number to the timeline individually
@@ -1751,7 +1796,7 @@ function createDigitSpanTask(numDigits) {
     // Add a typing task after the sequence
     task.timeline.push({
       type: jsPsychSurveyText,
-      questions: [{prompt: 'Please type the numbers you saw in the order you saw them.', rows: 1}],
+      questions: [{prompt: 'Please type the numbers you saw, in the order you saw them.', rows: 1}],
       data: { correct_sequence: sequence.join('') }
     });
   }
@@ -1853,8 +1898,7 @@ var ending = {
     preload,
     enter_fullscreen,
     consent,
-    demographics_1,
-    demographics_2,
+    demographics,
     games_description,
     likert_trial,
     initial_game_instructions,
