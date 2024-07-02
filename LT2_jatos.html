@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My experiment</title>
+    <title>Computer Game</title>
     <script src="jatos.js"></script>
     <script src="jspsych-7.0/dist/jspsych.js"></script>
     <script src="jspsych-7.0/dist/plugin-distance-slider-binary.js"></script>
@@ -1007,7 +1007,7 @@ var time_campus_initial_game = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: '<p>What time is it?</p>[ Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m. ]'
+      prompt: '<p>What time is it?</br><i>[ Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m. ]</i>'
     }
   ],
   timeline_variables: [
@@ -1115,7 +1115,7 @@ var time_park_initial_game = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: '<p>What time is it?</p>[ Sunrise: 7:07 a.m. | Solar Noon: 1:31 p.m. | Sunset: 7:56 p.m. ]'
+      prompt: '<p>What time is it?</br><i>Sunrise: 7:07 a.m. | Solar Noon: 1:31 p.m. | Sunset: 7:56 p.m.</i>'
     }
   ],
   timeline_variables: [
@@ -1237,7 +1237,7 @@ var survey = {
   var games_instructions2 = {
     type: jsPsychSurveyHtmlForm,
     preamble:
-    'Now, you are going to rate how much you would like to play different games 😍.<br> Similar to beofore, you will read what each game is about and rate how much you want to play them.',
+    'Now, you are going to rate how much you would like to play different games 😍.<br> Similar to before, you will read what each game is about and rate how much you want to play them.',
     html:''
   }
 
@@ -1432,7 +1432,7 @@ var time_park_response_instructions = {
           slider_number: true,
           feedback_correct: jsPsych.timelineVariable('feedback_correct'),
           feedback_display: true,
-          prompt: '<p>What time is it?</p>[ Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m. ]'
+          prompt: '<p>What time is it?</br><i>Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m.</i>'
         }
       ],
       timeline_variables: [
@@ -1552,7 +1552,7 @@ var time_park_response_instructions = {
                   slider_number: true,
                   feedback_correct: jsPsych.timelineVariable('feedback_correct'),
                   feedback_display: true,
-                  prompt: '<p>What time is it?</p>[ Sunrise: 7:07 a.m. | Solar Noon: 1:31 p.m. | Sunset: 7:56 p.m. ]'
+                  prompt: '<p>What time is it?</br><i>Sunrise: 7:07 a.m. | Solar Noon: 1:31 p.m. | Sunset: 7:56 p.m.</i>'
                 }
               ],
               timeline_variables: [
@@ -1780,7 +1780,7 @@ var digitspan_choices = {
     choice = choices[choiceIndex];
     //console.log(choice);
     difficulty_choice = choice;
-   
+
   },
   data: function() {
       return {choice: difficulty_choice};
@@ -1788,10 +1788,10 @@ var digitspan_choices = {
 };
 
 // displays instructions depending on choice
-var digitspan_game; 
+var digitspan_game;
 var digitspan_instructions = {
       type: jsPsychHtmlButtonResponse,
-      stimulus: function() 
+      stimulus: function()
       {
 
         var sequence_num;
@@ -1800,7 +1800,7 @@ var digitspan_instructions = {
         var choices = ['Easy', 'Medium', 'Hard'];
         choice = choices[choiceIndex];
         console.log(choice);
-      
+
         if (choice == 'Easy') {
             sequence_num = 4;
             //digitspan_game = digitspan_easy;
@@ -1808,7 +1808,7 @@ var digitspan_instructions = {
         else if (choice == "Medium") {
             sequence_num = 6;
             //digitspan_game = digitspan_medium;
-        }       
+        }
         else if (choice == "Hard"){
             sequence_num = 8;
             //digitspan_game = digitspan_hard;
@@ -1823,25 +1823,25 @@ var digitspan_instructions = {
           return {choice: difficulty_choice};
       },
       // adds to timeline the game mode
-      on_finish: function() { 
-          var task; 
-          if (choice == 'Easy') { 
-              task = digitspan_easy; 
+      on_finish: function() {
+          var task;
+          if (choice == 'Easy') {
+              task = digitspan_easy;
 
-          } 
-          else if (choice == 'Medium') { 
-              task = digitspan_medium; 
-          } 
-          else if (choice == 'Hard') { 
-              task = digitspan_hard; 
-          } 
-          jsPsych.addNodeToEndOfTimeline(task); 
+          }
+          else if (choice == 'Medium') {
+              task = digitspan_medium;
+          }
+          else if (choice == 'Hard') {
+              task = digitspan_hard;
+          }
+          jsPsych.addNodeToEndOfTimeline(task);
 
           // adds ending to end of timeline, if need to add anything after digit span, put it in between here rather than in jsPsych.run() line
           jsPsych.addNodeToEndOfTimeline(ending);
 
 
-      } 
+      }
 
    };
 
@@ -1857,7 +1857,7 @@ timeline = [preload,
     enter_fullscreen,
     consent,
     demographics_1,
-    demographics_2 
+    demographics_2
     games_description,
     likert_trial,
     initial_game_instructions,
@@ -1867,9 +1867,9 @@ timeline = [preload,
     survey,
     games_description2,
     likert_trial2,
-    followup_game, 
-    survey2, 
-    selfchallenge_likert, 
+    followup_game,
+    survey2,
+    selfchallenge_likert,
     digitspan_choices,
     digitspan_instructions];
 
@@ -1893,9 +1893,9 @@ jatos.onLoad(() => {
     survey,
     games_description2,
     likert_trial2,
-    followup_game, 
-    survey2, 
-    selfchallenge_likert, 
+    followup_game,
+    survey2,
+    selfchallenge_likert,
     digitspan_choices,
     digitspan_instructions
   ]) }); */
