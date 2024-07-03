@@ -649,7 +649,7 @@ if (initial_games_description == 1) {
   var name4 = prompt4;
 }
 
-var likert_trial = {
+var game_preference = {
     type: jsPsychSurveyImageLikert,
     stimulus: "img/v"+initial_games_description+".png",
     preamble: "Please rate how much you want to play each game.",
@@ -1181,16 +1181,29 @@ var time_park_initial_game = {
     var initial_game_feedback_image = "NEG_nonspecific";
   }
 
-  var initial_game_feedback = {
+  var initial_game_feedback_text = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: "You got <b>15</b> out of 30 trials within range. Below you will find your summarized performance."+"<p><img src='img/" + initial_game_feedback_image + ".png' height='500px'></p>",
+    stimulus: "You got <b>15</b> out of 30 trials within range. On the next page you will see your performance summary.</p>",
       choices: ["Continue"]
+  }
+
+  var initial_game_feedback_summary = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: "<p><img src='img/" + initial_game_feedback_image + ".png' height='500px'></p>",
+      choices: ["Continue"]
+  }
+
+  var initial_game_feedback = {
+    timeline: [
+      initial_game_feedback_text,
+      initial_game_feedback_summary
+    ]
   }
 
 /*8 - Survey*/
 var open_ended = {
   type: jsPsychSurveyText,
-  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please anaswer all of the quesions.</i>`,
+  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the quesions.</i>`,
   questions: [
     {prompt: 'How do you feel about your performance in the game?',name: 'feeling', rows: 5, required: true},
     {prompt: 'How much did you learn?',name: 'learning', rows: 5, required: true},
@@ -1256,9 +1269,9 @@ var survey = {
 
 /*10 - Likert Ratings for follow up tasks*/
 
-var likert_trial2 = {
+var game_preference2 = {
   timeline: [
-    likert_trial,
+    game_preference,
     ]
   }
 /*11-12 - Accuracy game*/
@@ -1754,7 +1767,7 @@ function createDigitSpanTask(numDigits) {
     // Add a typing task after the sequence
     task.timeline.push({
       type: jsPsychSurveyText,
-      questions: [{prompt: 'Please type the numbers you saw, in the order you saw them.', rows: 1}],
+      questions: [{prompt: 'Please type the numbers you saw in the order you saw them.', rows: 1}],
       data: { correct_sequence: sequence.join('') }
     });
   }
@@ -1859,14 +1872,14 @@ timeline = [preload,
     demographics_1,
     demographics_2
     games_description,
-    likert_trial,
+    game_preference,
     initial_game_instructions,
     initial_game_goal,
     initial_game,
     initial_game_feedback,
     survey,
     games_description2,
-    likert_trial2,
+    game_preference2,
     followup_game,
     survey2,
     selfchallenge_likert,
@@ -1887,14 +1900,14 @@ jatos.onLoad(() => {
     demographics_1,
     demographics_2,
     games_description,
-    likert_trial,
+    game_preference,
     initial_game_instructions,
     initial_game_goal,
     initial_game,
     initial_game_feedback,
     survey,
     games_description2,
-    likert_trial2,
+    game_preference2,
     followup_game,
     survey2,
     selfchallenge_likert,
