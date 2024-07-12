@@ -263,7 +263,7 @@ var consent = {
 
 "<p><b>Title of the Project</b>: Language and Cognitive Development in Childhood</p>"+
 
-"<p><b>Principal Investigator</b>: Katharine Tillman, Ph.D., University of Texas at Austin</p>"+
+"<p><b>Principal Investigator</b>: Katharine Tillman, Ph.D., The University of Texas at Austin</p>"+
 
 '<div style="text-align: left;"><p><b>Invitation to be Part of a Research Study</b>: You are invited to be part of a research study. This consent form will help you choose whether or not to participate in the study. Feel free to ask if anything is not clear in this consent form.</p>'+
 
@@ -307,7 +307,7 @@ var consent = {
 /* 1 - demographics survey */
  var demographics_1 = {
     type: jsPsychSurveyHtmlForm,
-    preamble: '<h2>DEMOGRAPHICS QUESTIONNAIRE </h2><p><i>Please fill out this demographic form. You may skip any questions you do not wish to answer.</i></p>',
+    preamble: '<h2>DEMOGRAPHICS QUESTIONNAIRE </h2><p><i>Please fill out this demographics form. You may skip any questions you do not wish to answer.</i></p>',
     html: `<p><b>First Name: </b><input type="text" name="name-first"><b> Last Name: </b><input type="text" name="name-last"></p>
 
     <p><b>Date of birth (MM/DD/YYYY): </b><input type="text" name="birthdate"></p>
@@ -329,7 +329,7 @@ var consent = {
 
 var demographics_2 = {
   type: jsPsychSurveyMultiChoice,
-  preamble: '<h2>DEMOGRAPHICS QUESTIONNAIRE </h2><p><i>Please fill out this demographic form. You may skip any questions you do not wish to answer.</i></p>',
+  preamble: '<h2>DEMOGRAPHICS QUESTIONNAIRE </h2><p><i>Please fill out this demographics form. You may skip any questions you do not wish to answer.</i></p>',
   questions: [
   {
     prompt: "<b>Ethnicity:</b>",
@@ -672,7 +672,7 @@ var distance_campus_initial_instructions = {
         //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
       step: 0.1, // Slider moves in increments of how much?
       slider_number: true,
-      prompt: 'You are going to play a game in which you will guess the distance between two cones.<br>Estimate the distance between the <b>tip</b> of each cone.<p>Use the slider to mark your answers.<br> Click <i>Submit</i> to lock your answer and <i>Continue</i> to move to the next page.</p>'
+      prompt: 'You are going to play a game in which you will guess the distance between two cones.<br>Estimate the distance between the <b>tip</b> of each cone.<p>Below is an example for you to practice.<br>Use the slider to mark your answers.<br> Click <i>Submit</i> to lock your answer and <i>Continue</i> to move to the next page.</p>'
     }
   ],
   timeline_variables: [
@@ -693,7 +693,7 @@ var time_campus_initial_instructions = {
         //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
       step: 0.1, // Slider moves in increments of how much?
       slider_number: true,
-      prompt: 'You are going to play a game in which you will guess the time of day in the picture.<br>The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky)<br>for the day the pictures were taken are provided above each picture.<p>Use the slider to mark your answers.<br> Click <i>Submit</i> to lock your answer and <i>Continue</i> to move to the next page.</p>'
+      prompt: 'You are going to play a game in which you will guess the time of day in the picture.<br>The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky)<br>for the day the pictures were taken are provided above each picture.<p>Below is an example for you to practice.<br>Use the slider to mark your answers.<br> Click <i>Submit</i> to lock your answer and <i>Continue</i> to move to the next page.</p></br><i>Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m.</i>'
     }
   ],
   timeline_variables: [
@@ -714,7 +714,7 @@ var distance_park_initial_instructions = {
         //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
       step: 0.1, // Slider moves in increments of how much?
       slider_number: true,
-      prompt: 'You are going to play a game in which you will guess the distance between two cones.<br>Estimate the distance between the <b>tip</b> of each cone.<p>Use the slider to mark your answers.<br> Click <i>Submit</i> to lock your answer and <i>Continue</i> to move to the next page.</p>'
+      prompt: 'You are going to play a game in which you will guess the distance between two cones.<br>Estimate the distance between the <b>tip</b> of each cone.<p>Below is an example for you to practice.<br>Use the slider to mark your answers.<br> Click <i>Submit</i> to lock your answer and <i>Continue</i> to move to the next page.</p>'
     }
   ],
   timeline_variables: [
@@ -735,7 +735,7 @@ var time_park_initial_instructions = {
         //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
       step: 0.1, // Slider moves in increments of how much?
       slider_number: true,
-      prompt: 'You are going to play a game in which you will guess the time of day in the picture.<br>The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky)<br>for the day the pictures were taken are provided above each picture.<p>Use the slider to mark your answers.<br> Click <i>Submit</i> to lock your answer and <i>Continue</i> to move to the next page.</p>'
+      prompt: 'You are going to play a game in which you will guess the time of day in the picture.<br>The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky)<br>for the day the pictures were taken are provided above each picture.<p>Below is an example for you to practice.<br>Use the slider to mark your answers.<br> Click <i>Submit</i> to lock your answer and <i>Continue</i> to move to the next page.</p></br><i>Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m.</i>'
     }
   ],
   timeline_variables: [
@@ -1000,7 +1000,7 @@ var distance_campus_initial_game = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: '<p>How far apart are the cones?</p>'
+      prompt: '<p>How far apart are the <b>tips</b> of the cones?</p>'
     }
   ],
   timeline_variables: [
@@ -1108,7 +1108,7 @@ var distance_park_initial_game = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: '<p>How far apart are the cones?</p>'
+      prompt: '<p>How far apart are the <b>tips</b> of the cones?</p>'
     }
   ],
   timeline_variables: [
@@ -1250,7 +1250,7 @@ var initial_game_feedback = {
 /*8 - Survey*/
 var open_ended = {
   type: jsPsychSurveyText,
-  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the quesions.</i>`,
+  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the questions.</i>`,
   questions: [
     {prompt: 'How do you feel about your performance in the game?',name: 'feeling', rows: 5, required: true},
     {prompt: 'How much did you learn?',name: 'learning', rows: 5, required: true},
@@ -1267,6 +1267,12 @@ var likert_scale = [
   "6",
   "7<br>(Strongly Agree)"
 ];
+
+var self_eval_instructions1 = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<p>In the next section, we ask you to tell us about your game experience.</p>',
+  choices: ['Continue']
+};
 
 var self_evaluation_likert = {
     type: jsPsychSurveyLikert,
@@ -1289,7 +1295,7 @@ var self_evaluation_likert = {
 
 var survey = {
   timeline: [
-    open_ended, self_evaluation_likert,
+    open_ended, self_eval_instructions1, self_evaluation_likert,
     ]
   }
 
@@ -1337,7 +1343,7 @@ var distance_campus_response_instructions = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: 'You are going to play a game in which you will guess the distance between two cones.<br>Estimate the distance between the <b>tip</b> of each cone.<p>After submitting each answer, you will see the <b>correct</b> distance<br>Try your best to get as close to the correct distance as possible.</p>'
+      prompt: 'You are going to play a game in which you will guess the distance between two cones.<br>Estimate the distance between the <b>tip</b> of each cone.<p>Below is an example for you to practice.<br>Use the slider to mark your answers.<br> Click <i>Submit</i> to lock your answer and <i>Continue</i> to move to the next page.</p><p>After submitting each answer, you will see the <b>correct</b> distance.<br>Try your best to get as close to the correct distance as possible.</p>'
     }
   ],
   timeline_variables: [
@@ -1360,7 +1366,7 @@ var distance_park_response_instructions = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: 'You are going to play a game in which you will guess the distance between two cones.<br>Estimate the distance between the <b>tip</b> of each cone.<p>After submitting each answer, you will see the <b>correct</b> distance<br>Try your best to get as close to the correct distance as possible.</p>'
+      prompt: 'You are going to play a game in which you will guess the distance between two cones.<br>Estimate the distance between the <b>tip</b> of each cone.<p>Below is an example for you to practice.<br>Use the slider to mark your answers.<br> Click <i>Submit</i> to lock your answer and <i>Continue</i> to move to the next page.</p><p>After submitting each answer, you will see the <b>correct</b> distance.<br>Try your best to get as close to the correct distance as possible.</p>'
     }
   ],
   timeline_variables: [
@@ -1384,7 +1390,7 @@ var time_campus_response_instructions = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: 'You are going to play a game in which you will guess the time of day in the picture.<br>The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky)<br>for the day the pictures were taken are provided above each picture.</p><p>After submitting each answer, you will see the <b>correct</b> distance<br>Try your best to get as close to the correct distance as possible.</p>'
+      prompt: 'You are going to play a game in which you will guess the time of day in the picture.<br>The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky)<br>for the day the pictures were taken are provided above each picture.</p><p>Below is an example for you to practice.<br>Use the slider to mark your answers.<br> Click <i>Submit</i> to lock your answer and <i>Continue</i> to move to the next page.</p><p>After submitting each answer, you will see the <b>correct</b> time.<br>Try your best to get as close to the correct time as possible.</p></br><i>Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m.</i>'
     }
   ],
   timeline_variables: [
@@ -1408,7 +1414,7 @@ var time_park_response_instructions = {
       slider_number: true,
       feedback_correct: jsPsych.timelineVariable('feedback_correct'),
       feedback_display: true,
-      prompt: 'You are going to play a game in which you will guess the time of day in the picture.<br>The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky)<br>for the day the pictures were taken are provided above each picture.</p><p>After submitting each answer, you will see the <b>correct</b> distance<br>Try your best to get as close to the correct distance as possible.</p>'
+      prompt: 'You are going to play a game in which you will guess the time of day in the picture.<br>The times of sunrise, sunset, and solar noon (that is, the highest point of the sun in the sky)<br>for the day the pictures were taken are provided above each picture.</p><p>Below is an example for you to practice.<br>Use the slider to mark your answers.<br> Click <i>Submit</i> to lock your answer and <i>Continue</i> to move to the next page.</p><p>After submitting each answer, you will see the <b>correct</b> time.<br>Try your best to get as close to the correct time as possible.</p></br><i>Sunrise: 7:15 a.m. | Solar Noon: 1:33 p.m. | Sunset: 7:52 p.m.</i>'
     }
   ],
   timeline_variables: [
@@ -1431,7 +1437,7 @@ var time_park_response_instructions = {
         slider_number: true,
         feedback_correct: jsPsych.timelineVariable('feedback_correct'),
         feedback_display: true,
-        prompt: '<p>How far apart are the cones?</p>'
+        prompt: '<p>How far apart are the <b>tips</b> of the cones?</p>'
       }
     ],
     timeline_variables: [
@@ -1552,7 +1558,7 @@ var time_park_response_instructions = {
                 slider_number: true,
                 feedback_correct: jsPsych.timelineVariable('feedback_correct'),
                 feedback_display: true,
-                prompt: '<p>How far apart are the cones?</p>'
+                prompt: '<p>How far apart are the <b>tips</b> of the cones?</p>'
               }
             ],
             timeline_variables: [
@@ -1707,7 +1713,7 @@ if (initial_game_type == 4) {
 /*13 - Survey*/
 var open_ended2 = {
   type: jsPsychSurveyText,
-  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please anaswer all of the quesions.</i>`,
+  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the questions.</i>`,
   questions: [
     {prompt: 'How do you feel about your performance in the game?',name: 'feeling', rows: 5, required: true},
     {prompt: 'How much did you learn?',name: 'learning', rows: 5, required: true},
@@ -1724,6 +1730,12 @@ var likert_scale = [
   "6",
   "7<br>(Strongly Agree)"
 ];
+
+var self_eval_instructions2 = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<p>In the next section, we ask you to tell us about your game experience.</p>',
+  choices: ['Continue']
+};
 
 var self_evaluation_likert2 = {
     type: jsPsychSurveyLikert,
@@ -1746,7 +1758,7 @@ var self_evaluation_likert2 = {
 
 var survey2 = {
   timeline: [
-    open_ended2, self_evaluation_likert2,
+    open_ended2, self_eval_instructions2, self_evaluation_likert2,
     ]
   }
 
@@ -1761,6 +1773,12 @@ var likert_scale = [
   "7<br>(Strongly Agree)"
 ];
 
+var self_chal_instructions = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<p>In the next section, we ask you to tell us about you in general.</p>',
+  choices: ['Continue']
+};
+
 var selfchallenge_likert = {
     type: jsPsychSurveyLikert,
     preamble: "Please rate the following statements from 1 (Strongly Disagree) to 7 (Strongly Agree).",
@@ -1768,7 +1786,7 @@ var selfchallenge_likert = {
     scale_width: 500,
     questions:[
         {prompt: "I like to challenge myself.", name: "challenge1", labels: likert_scale, required: true},
-        {prompt: "I enjoy challenging and difficutlt tasks.", name: "challenge2", labels: likert_scale, required: true},
+        {prompt: "I enjoy challenging and difficult tasks.", name: "challenge2", labels: likert_scale, required: true},
         {prompt: "I like to learn challenging and complex ideas.", name: "challenge3", labels: likert_scale, required: true},
         {prompt: "I am <b>not</b> confident in my abilities to problem-solve.", name: "challenge4", labels: likert_scale, required: true},
   ],
@@ -1875,7 +1893,7 @@ var digitspan_instructions = {
         }
 
         return `
-            <p>In this part of the experiment, you will see a sequence of ${sequence_num} numbers and your task is to remember them in order. <br>After each sequence, you will be asked to type the numbers you saw in the same order.</p><p>Press "Continue" to begin.</p>
+            <p>In this part of the experiment, you will see a sequence of ${sequence_num} numbers, and your task is to remember them in order. <br>After each sequence, you will be asked to type the numbers you saw in the same order.</p><p>Press "Continue" to begin.</p>
           `
       },
       choices: ["Continue"],
@@ -1915,7 +1933,7 @@ var ending = {
   jsPsych.run([
     preload_1,
     preload_2,
-    enter_fullscreen,
+    enter_fullscreen, 
     consent,
     demographics_1,
     demographics_2,
@@ -1924,12 +1942,13 @@ var ending = {
     initial_game_instructions,
     initial_game_goal,
     initial_game,
-    initial_game_feedback,
+    initial_game_feedback, 
     survey,
     games_description2,
-    game_preference2,
-    followup_game,
+    game_preference2, 
+    followup_game, 
     survey2,
+    self_chal_instructions,
     selfchallenge_likert,
     digitspan_choices,
     digitspan_instructions
