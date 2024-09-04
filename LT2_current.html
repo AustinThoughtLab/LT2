@@ -919,11 +919,11 @@ if (initial_game_feedback_number == 1) { // positive
   feedback_correct_29 = "✘ Out of range";
   feedback_correct_30 = "⭐ Within range! 😃";
 } else if (initial_game_feedback_number == 2) { //neutral
-    feedback_correct_1 = "⭐ Within range! 😃";
+    feedback_correct_1 = "✘ Out of range";
   feedback_correct_2 = "⭐ Within range! 😃";
   feedback_correct_3 = "✘ Out of range";
   feedback_correct_4 = "⭐ Within range! 😃";
-  feedback_correct_5 = "✘ Out of range";
+  feedback_correct_5 = "⭐ Within range! 😃";
   feedback_correct_6 = "✘ Out of range";
   feedback_correct_7 = "⭐ Within range! 😃";
   feedback_correct_8 = "✘ Out of range";
@@ -947,8 +947,8 @@ if (initial_game_feedback_number == 1) { // positive
   feedback_correct_26 = "⭐ Within range! 😃";
   feedback_correct_27 = "✘ Out of range";
   feedback_correct_28 = "⭐ Within range! 😃";
-  feedback_correct_29 = "⭐ Within range! 😃";
-  feedback_correct_30 = "✘ Out of range";
+  feedback_correct_29 = "✘ Out of range";
+  feedback_correct_30 = "⭐ Within range! 😃";
 }
 
 //distance campus
@@ -1200,7 +1200,7 @@ var initial_game_feedback_text = {
 var initial_game_feedback_summary = {
   type: jsPsychHtmlButtonResponse,
   stimulus: "<p><img src='img/" + initial_game_feedback_image + ".png' height='500px'></p>",
-    choices: ["Continue"]
+  choices: ["Continue"]
 }
 
 var initial_game_feedback = {
@@ -1211,6 +1211,24 @@ var initial_game_feedback = {
 }
 
 /*8 - Survey*/
+
+var thoughtprocess1 = {
+  type: jsPsychSurveyText,
+  preamble: ``,
+  questions: [
+    {prompt: "How would you explain your preferences for the games?<br>" +
+    "What made you more interested or less interested in the options?<br>" +
+    "Include any reasons that seem relevant.",
+      name: 'explain2', rows: 10, required: true}
+  ]
+}
+
+var survey1instructions = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<p>Before playing the next game, we ask you to answer the following questions about the previous game.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the questions.</i></p>',
+  choices: ['Continue']
+};
+
 var manicheck1 = {
   type: jsPsychSurveyMultiChoice,
   preamble: '',
@@ -1218,18 +1236,19 @@ var manicheck1 = {
   {
     prompt: "As the game progressed, did you get:",
     name: 'ethnicity',
-    options: ['<b>More</b> answers within range?', '<b>Fewer</b> answers within range?', '<b>About the same</b> number of answers within range?'],
+    options: ['<b>More</b> answers within range?', '<b>About the same</b> number of answers within range?', '<b>Fewer</b> answers within range?'],
     required: true
   }
   ]
 };
 
-var open_ended = {
+var open_ended1 = {
   type: jsPsychSurveyText,
-  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the questions.</i>`,
+  preamble: '',
   questions: [
-    {prompt: 'How would you explain your rate of progress in the game (i.e., the rate at which you got answers within range)? Include any reasons that seem relevant towards explaining your performance.',
-      name: 'explain', rows: 5, required: true}
+    {prompt: "How would you explain your rate of progress in the game - that is, the rate at which you improved (or didn't)?<br>" +
+    "Include any reasons that seem relevant.",
+      name: 'explain', rows: 10, required: true}
   ]
 }
 
@@ -1251,26 +1270,26 @@ var self_eval_instructions1 = {
 
 var self_evaluation_likert = {
     type: jsPsychSurveyLikert,
-    preamble: "Please rate the following statements from 1 (Strongly Disagree) to 7 (Strongly Agree).",
+    preamble: "Please rate the following statements about the game from 1 (Strongly Disagree) to 7 (Strongly Agree).",
     scale_height: 800,
     scale_width: 500,
     questions:[
         {prompt: "I think I was pretty good at the task.", name: "competence1", labels: likert_scale, required: true},
         {prompt: "I found the task very interesting.", name: "enjoyment1", labels: likert_scale, required: true},
-        {prompt: "I think I did pretty well at this task compared to other people.", name: "competence2", labels: likert_scale, required: true},
+        {prompt: "I think I did pretty well at the task compared to other people.", name: "competence2", labels: likert_scale, required: true},
         {prompt: "Doing the task was fun.", name: "enjoyment2", labels: scale, required: true},
-        {prompt: "I am satisfied with my performance at this task.", name: "competence3", labels: likert_scale, required: true},
+        {prompt: "I am satisfied with my performance at the task.", name: "competence3", labels: likert_scale, required: true},
         {prompt: "I thought the task was very boring.", name: "enjoyment3", labels: likert_scale, required: true},
-        {prompt: "I felt pretty skilled at this task.", name: "competence4", labels: likert_scale, required: true},
+        {prompt: "I felt pretty skilled at the task.", name: "competence4", labels: likert_scale, required: true},
         {prompt: "I would describe the task as very enjoyable.", name: "enjoyment4", labels: likert_scale, required: true},
         {prompt: "After working at this task for a while, I felt pretty competent.", name: "competence5", labels: likert_scale, required: true},
   ],
     randomize_question_order: false
 };
 
-var survey = {
+var survey1 = {
   timeline: [
-    manicheck1, open_ended, self_eval_instructions1, self_evaluation_likert,
+    thoughtprocess1, survey1instructions, manicheck1, open_ended1, self_evaluation_likert,
     ]
   }
 
@@ -1278,7 +1297,7 @@ var survey = {
   var games_instructions2 = {
     type: jsPsychSurveyHtmlForm,
     preamble:
-    'Now, you are going to rate how much you would like to play different games.<br> Similar to before, you will read what each game is about and rate how much you want to play them.',
+    'Now you are going to rate how much you would like to play different games.<br> Similarly to before, you will read what each game is about and rate how much you want to play them.',
     html:''
   }
 
@@ -1686,6 +1705,12 @@ if (initial_game_type == 4) {
 }
 
 /*13 - Survey*/
+var survey2instructions = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: '<p>In the next section, we ask you to answer the following questions about the previous game.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the questions.</i></p>',
+  choices: ['Continue']
+};
+
 var manicheck2 = {
   type: jsPsychSurveyMultiChoice,
   preamble: '',
@@ -1693,7 +1718,7 @@ var manicheck2 = {
   {
     prompt: "As the game progressed, did you get:",
     name: 'ethnicity',
-    options: ['<b>More</b> correct answers?', '<b>Fewer</b> correct answers?', '<b>About the same</b> number of correct answers?'],
+    options: ['<b>Better</b> at making estimates?', '<b>About the same</b> at making estimates?', '<b>Worse</b>  at making estimates?'],
     required: true
   }
   ]
@@ -1701,10 +1726,12 @@ var manicheck2 = {
 
 var open_ended2 = {
   type: jsPsychSurveyText,
-  preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the questions.</i>`,
+  preamble: ``,
   questions: [
-    {prompt: 'How would you explain your rate of progress in the game (i.e., the rate at which you got answers within range)? Include any reasons that seem relevant towards explaining your performance.',
-      name: 'explain', rows: 5, required: true}
+    {prompt: "How would you explain your rate of progress in the game - that is, the rate at which you improved (or didn't)?<br>" +
+    "Were the causes of your performance any different than in the first game?<br>" +
+    "Include any reasons that seem relevant.",
+      name: 'explain2', rows: 10, required: true}
   ]
 }
 
@@ -1732,11 +1759,11 @@ var self_evaluation_likert2 = {
     questions:[
         {prompt: "I think I was pretty good at the task.", name: "competence1", labels: likert_scale, required: true},
         {prompt: "I found the task very interesting.", name: "enjoyment1", labels: likert_scale, required: true},
-        {prompt: "I think I did pretty well at this task compared to other people.", name: "competence2", labels: likert_scale, required: true},
+        {prompt: "I think I did pretty well at the task compared to other people.", name: "competence2", labels: likert_scale, required: true},
         {prompt: "Doing the task was fun.", name: "enjoyment2", labels: likert_scale, required: true},
-        {prompt: "I am satisfied with my performance at this task.", name: "competence3", labels: likert_scale, required: true},
+        {prompt: "I am satisfied with my performance at the task.", name: "competence3", labels: likert_scale, required: true},
         {prompt: "I thought the task was very boring.", name: "enjoyment3", labels: likert_scale, required: true},
-        {prompt: "I felt pretty skilled at this task.", name: "competence4", labels: likert_scale, required: true},
+        {prompt: "I felt pretty skilled at the task.", name: "competence4", labels: likert_scale, required: true},
         {prompt: "I would describe the task as very enjoyable.", name: "enjoyment4", labels: likert_scale, required: true},
         {prompt: "After working at this task for a while, I felt pretty competent.", name: "competence5", labels: likert_scale, required: true},
   ],
@@ -1745,7 +1772,7 @@ var self_evaluation_likert2 = {
 
 var survey2 = {
   timeline: [
-    manicheck2, open_ended2, self_eval_instructions2, self_evaluation_likert2,
+    survey2instructions, manicheck2, open_ended2, self_evaluation_likert2,
     ]
   }
 
@@ -1760,15 +1787,9 @@ var likert_scale = [
   "7<br>(Strongly Agree)"
 ];
 
-var self_chal_instructions = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: '<p>In the next section, we ask you to tell us about you in general.</p>',
-  choices: ['Continue']
-};
-
 var selfchallenge_likert = {
     type: jsPsychSurveyLikert,
-    preamble: "Please rate the following statements from 1 (Strongly Disagree) to 7 (Strongly Agree).",
+    preamble: "In this section, please tell us about yourself in general by rating the following statements from 1 (Strongly Disagree) to 7 (Strongly Agree).",
     scale_height: 800,
     scale_width: 500,
     questions:[
@@ -1852,6 +1873,15 @@ var digitspan_choices = {
   }
 };
 
+//end message//
+var ending = {
+type: jsPsychHtmlKeyboardResponse,
+stimulus: "<p>Thank you for playing this game!</p>",
+on_start: function(data){
+  jsPsych.data.get().localSave('csv','LT2.csv'); // Saves a file on the computer running the experiment. First localSave argument is the format, second is the filename.
+}
+};
+
 // displays instructions depending on choice
 var digitspan_game;
 var digitspan_instructions = {
@@ -1880,7 +1910,7 @@ var digitspan_instructions = {
         }
 
         return `
-            <p>In this part of the experiment, you will see a sequence of ${sequence_num} numbers, and your task is to remember them in order. <br>After each sequence, you will be asked to type the numbers you saw in the same order.</p><p>Press "Continue" to begin.</p>
+            <p>In this game, you will see sequences of ${sequence_num} numbers. Your task is to remember them in order. <br>After each sequence, you will be asked to type the numbers you saw in the same order.</p><p>Press "Continue" to begin.</p>
           `
       },
       choices: ["Continue"],
@@ -1903,6 +1933,7 @@ var digitspan_instructions = {
           jsPsych.addNodeToEndOfTimeline(task);
 
           // adds ending to end of timeline, if need to add anything after digit span, put it in between here rather than in jsPsych.run() line
+          jsPsych.addNodeToEndOfTimeline(selfchallenge_likert);
           jsPsych.addNodeToEndOfTimeline(ending);
 
 
@@ -1911,38 +1942,26 @@ var digitspan_instructions = {
    };
 
 
-  //end message//
-var ending = {
-  type: jsPsychHtmlKeyboardResponse,
-  stimulus: "<p>Thank you for playing this game!</p>",
-  on_start: function(data){
-    jsPsych.data.get().localSave('csv','LT2.csv'); // Saves a file on the computer running the experiment. First localSave argument is the format, second is the filename.
-  }
-};
-
   jsPsych.run([
     preload_1,
     preload_2,
     enter_fullscreen,
-    //consent,
-    //demographics_1,
-    //demographics_2,
-    //games_description,
-    //game_preference,
+    consent,
+    demographics_1,
+    demographics_2,
+    games_description,
+    game_preference,
     initial_game_instructions,
     initial_game_goal,
-    //initial_game,
-    //initial_game_feedback,
-    survey,
+    initial_game,
+    initial_game_feedback,
     games_description2,
     game_preference2,
+    survey1,
     followup_game,
     survey2,
-    self_chal_instructions,
-    selfchallenge_likert,
     digitspan_choices,
-    //digitspan_instructions,
-    ending
+    digitspan_instructions
   ]);
 
   </script>
