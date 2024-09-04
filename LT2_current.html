@@ -224,10 +224,8 @@ var images_block_1 = [
 'img/v22.png',
 'img/v23.png',
 'img/v24.png',
-'img/NEG_nonspecific.png',
 'img/POS_nonspecific.png',
 'img/NEU_nonspecific.png',
-'img/NEG_specific.png',
 'img/POS_specific.png',
 'img/NEU_specific.png',
 ];
@@ -378,7 +376,7 @@ var demographics_2 = {
   //if RandomNumber = 2, time-campus
   //if RandomNumber = 3, distance-park
   //if RandomNumber = 4, time-park
-  const initial_game_feedback_number = generateRandomNumber(1,3); //(POS, NEU, NEG)
+  const initial_game_feedback_number = generateRandomNumber(1,2); //(POS, NEU)
   //if RandomNumber = 1, Positive
   const initial_game_goal_number = generateRandomNumber(1,2); //(specific vs non) x 2 for each game
   //if RandomNumber = 1, specific distance
@@ -392,7 +390,7 @@ var demographics_2 = {
   var games_instructions = {
     type: jsPsychSurveyHtmlForm,
     preamble:
-    'You are going to rate how much you would like to play different games 😍.<br> First, you will read what each game is about.<br> Then, you will rate how much you want to play them.',
+    'You are going to rate how much you would like to play different games.<br> First, you will read what each game is about.<br> Then, you will rate how much you want to play them.',
     html:''
   }
 
@@ -893,7 +891,7 @@ if (initial_game_feedback_number == 1) { // positive
   feedback_correct_1 = "✘ Out of range";
   feedback_correct_2 = "✘ Out of range";
   feedback_correct_3 = "✘ Out of range";
-  feedback_correct_4 = "✘ Out of range";
+  feedback_correct_4 = "⭐ Within range! 😃";
   feedback_correct_5 = "✘ Out of range";
   feedback_correct_6 = "✘ Out of range";
   feedback_correct_7 = "⭐ Within range! 😃";
@@ -901,24 +899,24 @@ if (initial_game_feedback_number == 1) { // positive
   feedback_correct_9 = "✘ Out of range";
   feedback_correct_10 = "⭐ Within range! 😃";
   feedback_correct_11 = "✘ Out of range";
-  feedback_correct_12 = "✘ Out of range";
-  feedback_correct_13 = "⭐ Within range! 😃";
+  feedback_correct_12 = "⭐ Within range! 😃";
+  feedback_correct_13 = "✘ Out of range";
   feedback_correct_14 = "✘ Out of range";
-  feedback_correct_15 = "✘ Out of range";
+  feedback_correct_15 = "⭐ Within range! 😃";
   feedback_correct_16 = "⭐ Within range! 😃";
-  feedback_correct_17 = "⭐ Within range! 😃";
+  feedback_correct_17 = "✘ Out of range";
   feedback_correct_18 = "⭐ Within range! 😃";
   feedback_correct_19 = "⭐ Within range! 😃";
   feedback_correct_20 = "✘ Out of range";
-  feedback_correct_21 = "✘ Out of range";
+  feedback_correct_21 = "⭐ Within range! 😃";
   feedback_correct_22 = "⭐ Within range! 😃";
-  feedback_correct_23 = "⭐ Within range! 😃";
-  feedback_correct_24 = "⭐ Within range! 😃";
+  feedback_correct_23 = "✘ Out of range";
+  feedback_correct_24 = "✘ Out of range";
   feedback_correct_25 = "⭐ Within range! 😃";
-  feedback_correct_26 = "✘ Out of range";
+  feedback_correct_26 = "⭐ Within range! 😃";
   feedback_correct_27 = "⭐ Within range! 😃";
   feedback_correct_28 = "⭐ Within range! 😃";
-  feedback_correct_29 = "⭐ Within range! 😃";
+  feedback_correct_29 = "✘ Out of range";
   feedback_correct_30 = "⭐ Within range! 😃";
 } else if (initial_game_feedback_number == 2) { //neutral
     feedback_correct_1 = "⭐ Within range! 😃";
@@ -950,37 +948,6 @@ if (initial_game_feedback_number == 1) { // positive
   feedback_correct_27 = "✘ Out of range";
   feedback_correct_28 = "⭐ Within range! 😃";
   feedback_correct_29 = "⭐ Within range! 😃";
-  feedback_correct_30 = "✘ Out of range";
-} else if (initial_game_feedback_number == 3) { //negative
-  feedback_correct_1 = "⭐ Within range! 😃";
-  feedback_correct_2 = "⭐ Within range! 😃";
-  feedback_correct_3 = "⭐ Within range! 😃";
-  feedback_correct_4 = "⭐ Within range! 😃";
-  feedback_correct_5 = "✘ Out of range";
-  feedback_correct_6 = "⭐ Within range! 😃";
-  feedback_correct_7 = "⭐ Within range! 😃";
-  feedback_correct_8 = "⭐ Within range! 😃";
-  feedback_correct_9 = "⭐ Within range! 😃";
-  feedback_correct_10 = "✘ Out of range";
-  feedback_correct_11 = "✘ Out of range";
-  feedback_correct_12 = "⭐ Within range! 😃";
-  feedback_correct_13 = "⭐ Within range! 😃";
-  feedback_correct_14 = "⭐ Within range! 😃";
-  feedback_correct_15 = "⭐ Within range! 😃";
-  feedback_correct_16 = "✘ Out of range";
-  feedback_correct_17 = "✘ Out of range";
-  feedback_correct_18 = "⭐ Within range! 😃";
-  feedback_correct_19 = "✘ Out of range";
-  feedback_correct_20 = "✘ Out of range";
-  feedback_correct_21 = "⭐ Within range! 😃";
-  feedback_correct_22 = "✘ Out of range";
-  feedback_correct_23 = "✘ Out of range";
-  feedback_correct_24 = "⭐ Within range! 😃";
-  feedback_correct_25 = "✘ Out of range";
-  feedback_correct_26 = "✘ Out of range";
-  feedback_correct_27 = "✘ Out of range";
-  feedback_correct_28 = "✘ Out of range";
-  feedback_correct_29 = "✘ Out of range";
   feedback_correct_30 = "✘ Out of range";
 }
 
@@ -1222,10 +1189,6 @@ var time_park_initial_game = {
     var initial_game_feedback_image = "NEU_specific";
   } else if (initial_game_feedback_number == 2 && initial_game_goal_number == 2) {
     var initial_game_feedback_image = "NEU_nonspecific";
-  } else if (initial_game_feedback_number == 3 && initial_game_goal_number == 1) {
-    var initial_game_feedback_image = "NEG_specific";
-  } else if (initial_game_feedback_number == 3 && initial_game_goal_number == 2) {
-    var initial_game_feedback_image = "NEG_nonspecific";
   }
 
 var initial_game_feedback_text = {
@@ -1248,13 +1211,25 @@ var initial_game_feedback = {
 }
 
 /*8 - Survey*/
+var manicheck1 = {
+  type: jsPsychSurveyMultiChoice,
+  preamble: '',
+  questions: [
+  {
+    prompt: "As the game progressed, did you get:",
+    name: 'ethnicity',
+    options: ['<b>More</b> answers within range?', '<b>Fewer</b> answers within range?', '<b>About the same</b> number of answers within range?'],
+    required: true
+  }
+  ]
+};
+
 var open_ended = {
   type: jsPsychSurveyText,
   preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the questions.</i>`,
   questions: [
-    {prompt: 'How do you feel about your performance in the game?',name: 'feeling', rows: 5, required: true},
-    {prompt: 'How much did you learn?',name: 'learning', rows: 5, required: true},
-    {prompt: 'What strategies did you use?',name: 'strategies', rows: 5, required: true}
+    {prompt: 'How would you explain your rate of progress in the game (i.e., the rate at which you got answers within range)? Include any reasons that seem relevant towards explaining your performance.',
+      name: 'explain', rows: 5, required: true}
   ]
 }
 
@@ -1290,12 +1265,12 @@ var self_evaluation_likert = {
         {prompt: "I would describe the task as very enjoyable.", name: "enjoyment4", labels: likert_scale, required: true},
         {prompt: "After working at this task for a while, I felt pretty competent.", name: "competence5", labels: likert_scale, required: true},
   ],
-    randomize_question_order: true
+    randomize_question_order: false
 };
 
 var survey = {
   timeline: [
-    open_ended, self_eval_instructions1, self_evaluation_likert,
+    manicheck1, open_ended, self_eval_instructions1, self_evaluation_likert,
     ]
   }
 
@@ -1303,7 +1278,7 @@ var survey = {
   var games_instructions2 = {
     type: jsPsychSurveyHtmlForm,
     preamble:
-    'Now, you are going to rate how much you would like to play different games 😍.<br> Similar to before, you will read what each game is about and rate how much you want to play them.',
+    'Now, you are going to rate how much you would like to play different games.<br> Similar to before, you will read what each game is about and rate how much you want to play them.',
     html:''
   }
 
@@ -1711,13 +1686,25 @@ if (initial_game_type == 4) {
 }
 
 /*13 - Survey*/
+var manicheck2 = {
+  type: jsPsychSurveyMultiChoice,
+  preamble: '',
+  questions: [
+  {
+    prompt: "As the game progressed, did you get:",
+    name: 'ethnicity',
+    options: ['<b>More</b> correct answers?', '<b>Fewer</b> correct answers?', '<b>About the same</b> number of correct answers?'],
+    required: true
+  }
+  ]
+};
+
 var open_ended2 = {
   type: jsPsychSurveyText,
   preamble: `In this section, we ask you to provide your responses to the following open-ended questions.<br>Please take your time and provide thoughtful and detailed answers to each question.<br><i>Please answer all of the questions.</i>`,
   questions: [
-    {prompt: 'How do you feel about your performance in the game?',name: 'feeling', rows: 5, required: true},
-    {prompt: 'How much did you learn?',name: 'learning', rows: 5, required: true},
-    {prompt: 'What strategies did you use?',name: 'strategies', rows: 5, required: true}
+    {prompt: 'How would you explain your rate of progress in the game (i.e., the rate at which you got answers within range)? Include any reasons that seem relevant towards explaining your performance.',
+      name: 'explain', rows: 5, required: true}
   ]
 }
 
@@ -1753,12 +1740,12 @@ var self_evaluation_likert2 = {
         {prompt: "I would describe the task as very enjoyable.", name: "enjoyment4", labels: likert_scale, required: true},
         {prompt: "After working at this task for a while, I felt pretty competent.", name: "competence5", labels: likert_scale, required: true},
   ],
-    randomize_question_order: true
+    randomize_question_order: false
 };
 
 var survey2 = {
   timeline: [
-    open_ended2, self_eval_instructions2, self_evaluation_likert2,
+    manicheck2, open_ended2, self_eval_instructions2, self_evaluation_likert2,
     ]
   }
 
@@ -1790,7 +1777,7 @@ var selfchallenge_likert = {
         {prompt: "I like to learn challenging and complex ideas.", name: "challenge3", labels: likert_scale, required: true},
         {prompt: "I am <b>not</b> confident in my abilities to problem-solve.", name: "challenge4", labels: likert_scale, required: true},
   ],
-  randomize_question_order: true
+  randomize_question_order: false
 };
 
 /*digit span task */
@@ -1928,30 +1915,34 @@ var digitspan_instructions = {
 var ending = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: "<p>Thank you for playing this game!</p>",
+  on_start: function(data){
+    jsPsych.data.get().localSave('csv','LT2.csv'); // Saves a file on the computer running the experiment. First localSave argument is the format, second is the filename.
+  }
 };
 
   jsPsych.run([
     preload_1,
     preload_2,
-    enter_fullscreen, 
-    consent,
-    demographics_1,
-    demographics_2,
-    games_description,
-    game_preference,
+    enter_fullscreen,
+    //consent,
+    //demographics_1,
+    //demographics_2,
+    //games_description,
+    //game_preference,
     initial_game_instructions,
     initial_game_goal,
-    initial_game,
-    initial_game_feedback, 
+    //initial_game,
+    //initial_game_feedback,
     survey,
     games_description2,
-    game_preference2, 
-    followup_game, 
+    game_preference2,
+    followup_game,
     survey2,
     self_chal_instructions,
     selfchallenge_likert,
     digitspan_choices,
-    digitspan_instructions
+    //digitspan_instructions,
+    ending
   ]);
 
   </script>
