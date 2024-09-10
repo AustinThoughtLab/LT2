@@ -783,6 +783,19 @@ var time_campus_initial_instructions = {
       ]
 }
 
+var if_time_camp_init_instr = {
+  timeline: [time_campus_initial_instructions],
+  conditional_function: function() {
+    console.log(jsPsych.data.get().select('game1').values[0])
+    if (jsPsych.data.get().select('game1').values[0] == "G1_Time-campus") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+}
+
 var distance_park_initial_instructions = {
   timeline: [
     {
@@ -802,6 +815,19 @@ var distance_park_initial_instructions = {
   timeline_variables: [
     {stimulus: 'img/distance_instructions_crop.png', min: 120.1,  max: 153.6},
       ]
+}
+
+var if_dist_park_init_instr = {
+  timeline: [distance_park_initial_instructions],
+  conditional_function: function() {
+    console.log(jsPsych.data.get().select('game1').values[0])
+    if (jsPsych.data.get().select('game1').values[0] == "G1_Dist-park") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 }
 
 var time_park_initial_instructions = {
@@ -824,6 +850,19 @@ var time_park_initial_instructions = {
     {
       stimulus: 'img/time_instructions_crop.png', min: 1080,  max: 1170},
       ]
+}
+
+var if_time_park_init_instr = {
+  timeline: [time_park_initial_instructions],
+  conditional_function: function() {
+    console.log(jsPsych.data.get().select('game1').values[0])
+    if (jsPsych.data.get().select('game1').values[0] == "G1_Time-park") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 }
 
 // instructions assignment 
@@ -2043,7 +2082,10 @@ var digitspan_instructions = {
     demographics_2,
     games_description,
     game_preference,
-    if_dist_camp_init_instr
+    if_dist_camp_init_instr,
+    if_dist_park_init_instr,
+    if_time_camp_init_instr,
+    if_time_park_init_instr
     /*initial_game_instructions,
     initial_game_goal,
     initial_game,
