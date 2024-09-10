@@ -18,6 +18,7 @@
     <script src="jspsych-7.0/dist/plugin-survey-text.js"></script>
     <script src="jspsych-7.0/dist/plugin-survey-multi-choice.js"></script>
     <script src="jspsych-7.0/dist/plugin-survey-multi-select.js"></script>
+    <script src="jspsych-7.0/dist/plugin-survey.js"></script>
     <link href="jspsych-7.0/dist/jspsych.css" rel="stylesheet" type="text/css" />
     <style>
     body, html {
@@ -45,7 +46,11 @@
   <body></body>
   <script>
 
-const jsPsych = initJsPsych();
+const jsPsych = initJsPsych({
+  timeline: timeline
+});
+
+var timeline = []; 
 
 var images_block_1 = [
 'img/distance_campus_01.jpg',
@@ -245,6 +250,72 @@ var images_block_1 = [
       preload_2
       ]
     }
+
+/*participant info*/
+var participant_info = {
+  type: jsPsychSurveyText,
+  questions: [
+    {prompt: "Participant name", name: "participant_name"},
+    {prompt: "Participant ID", name: "participant_ID"}
+  ],
+  data: {task_part: 'id-question'}
+}
+
+var version = {
+  type: jsPsychSurvey,
+  pages: [
+    [
+      {
+        type: 'multi-choice',
+        prompt: "LP",
+        name: 'LP',
+        options: ['POS','NEU'],
+        required: true
+      },
+      {
+        type: 'multi-choice',
+        prompt: "Goal type",
+        name: 'Goal type',
+        options: ['Specific','Non-specific'],
+        required: true
+      },
+      {
+        type: 'multi-choice',
+        prompt: "Initial game",
+        name: 'Initial game',
+        options: ['Dist-campus','Dist-park','Time-campus','Time-park'],
+        required: true
+      },
+      {
+        type: 'multi-choice',
+        prompt: "Follow-up game",
+        name: 'Follow-up game',
+        options: ['Dist-campus','Dist-park','Time-campus','Time-park'],
+        required: true
+      },
+      {
+        type: 'drop-down',
+        prompt: 'Order',
+        name: 'order',
+        options: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
+        required: true
+      }
+    ]
+  ],
+  data: {task_part: 'version'},
+  on_finish: function(data){
+    var lp = "LP_" + jsPsych.data.get().filter({task_part: 'version'}).values()[0].response['LP'];
+    var goaltype = "G_" + jsPsych.data.get().filter({task_part: 'version'}).values()[0].response['Goal type'];
+    var game1 = "G1_" + jsPsych.data.get().filter({task_part: 'version'}).values()[0].response['Initial game'];
+    var game2 = "G2_" + jsPsych.data.get().filter({task_part: 'version'}).values()[0].response['Follow-up game'];
+    var order = "o" + jsPsych.data.get().filter({task_part: 'version'}).values()[0].response['order'];
+    jsPsych.data.addProperties({lp: lp, goaltype: goaltype, game1: game1, game2: game2, order: order});
+    console.log(lp, goaltype, game1, game2, order);
+    console.log(jsPsych.data.get().select('lp').values[0]);
+    console.log(jsPsych.data.get().select('game1').values[0]);
+  }
+}
+
 /*enter fullscreen*/
 
 var enter_fullscreen = {
@@ -371,7 +442,7 @@ var demographics_2 = {
 
   const initial_games_description = generateRandomNumber(1,24)  //randomize desciptions of games/likert scales of games
   //if RandomNumber = 1, use image with order 1,2,3,4 labled "1.png"
-  const initial_game_type = generateRandomNumber(1,4); // (time park, campus park, etc.), 2(specific vs non)
+  //const initial_game_type = generateRandomNumber(1,4); // (time park, campus park, etc.), 2(specific vs non)
   //if RandomNumber = 1, distance-campus
   //if RandomNumber = 2, time-campus
   //if RandomNumber = 3, distance-park
@@ -678,6 +749,19 @@ var distance_campus_initial_instructions = {
       ]
 }
 
+var if_dist_camp_init_instr = {
+  timeline: [distance_campus_initial_instructions],
+  conditional_function: function() {
+    console.log(jsPsych.data.get().select('game1').values[0])
+    if (jsPsych.data.get().select('game1').values[0] == "G1_Dist-campus") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+}
+
 var time_campus_initial_instructions = {
   timeline: [
     {
@@ -742,7 +826,8 @@ var time_park_initial_instructions = {
       ]
 }
 
-// instructions assignment
+// instructions assignment 
+/*
 if (initial_game_type == 1) {
   initial_game_instructions = distance_campus_initial_instructions
 } else if (initial_game_type == 2) {
@@ -750,9 +835,9 @@ if (initial_game_type == 1) {
 } else if (initial_game_type == 3) {
   initial_game_instructions = distance_park_initial_instructions
 } else if (initial_game_type == 4) {
-  initial_game_instructions = time_park_initial_instructions
+  initial_game_instructions = time_park_initial_instructions 
 }
-
+*/
 
 var distance_initial_goal_specific = {
   type: jsPsychHtmlButtonResponse,
@@ -856,6 +941,7 @@ else if (initial_game_goal_number == 4) {
 }*/
 
 // instructions assignment
+    /*
 if (initial_game_type == 1) {
   initial_game_instructions = distance_campus_initial_instructions;
   if (initial_game_goal_number == 1) {
@@ -885,6 +971,7 @@ if (initial_game_type == 1) {
     initial_game_goal = time_initial_goal_non_specific
   }
 }
+*/
 
 // feedback assignment
 if (initial_game_feedback_number == 1) { // positive
@@ -1169,6 +1256,7 @@ var time_park_initial_game = {
 
 
 /* assign participant to condition*/
+/*
   if (initial_game_type == 1) {
     initial_game = distance_campus_initial_game
   } else if (initial_game_type == 2) {
@@ -1178,7 +1266,7 @@ var time_park_initial_game = {
   } else if (initial_game_type == 4) {
     initial_game = time_park_initial_game
   }
-
+*/
 
 /*7 - Feedback*/
   if (initial_game_feedback_number == 1 && initial_game_goal_number == 1) {
@@ -1656,6 +1744,7 @@ var time_park_response_instructions = {
               ]
             }
 //assign particpant to follow up game
+            /*
 if (initial_game_type == 1) {
     const randomChoice = Math.floor(Math.random() * 3); // Generates a random number between 0 and 2
 
@@ -1703,6 +1792,7 @@ if (initial_game_type == 4) {
         followup_game = time_park_response;
     }
 }
+*/
 
 /*13 - Survey*/
 var survey2instructions = {
@@ -1945,13 +2035,16 @@ var digitspan_instructions = {
   jsPsych.run([
     preload_1,
     preload_2,
+    participant_info,
+    version,
     enter_fullscreen,
     consent,
     demographics_1,
     demographics_2,
     games_description,
     game_preference,
-    initial_game_instructions,
+    if_dist_camp_init_instr
+    /*initial_game_instructions,
     initial_game_goal,
     initial_game,
     initial_game_feedback,
@@ -1961,7 +2054,7 @@ var digitspan_instructions = {
     followup_game,
     survey2,
     digitspan_choices,
-    digitspan_instructions
+    digitspan_instructions*/
   ]);
 
   </script>
