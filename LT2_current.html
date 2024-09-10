@@ -447,11 +447,11 @@ var demographics_2 = {
   //if RandomNumber = 2, time-campus
   //if RandomNumber = 3, distance-park
   //if RandomNumber = 4, time-park
-  const initial_game_feedback_number = generateRandomNumber(1,2); //(POS, NEU)
+  //const initial_game_feedback_number = generateRandomNumber(1,2); //(POS, NEU)
   //if RandomNumber = 1, Positive
-  const initial_game_goal_number = generateRandomNumber(1,2); //(specific vs non) x 2 for each game
+  //const initial_game_goal_number = generateRandomNumber(1,2); //(specific vs non) x 2 for each game
   //if RandomNumber = 1, specific distance
-  const follow_up_game_condition = generateRandomNumber(1,4); // one for each (distance campus, etc.)
+  //const follow_up_game_condition = generateRandomNumber(1,4); // one for each (distance campus, etc.)
   //if RandomNumber = 1, distance-campus
   //if RandomNumber = 2, time-campus
   //if RandomNumber = 3, distance-park
@@ -751,8 +751,9 @@ var distance_campus_initial_instructions = {
 
 var if_dist_camp_init_instr = {
   timeline: [distance_campus_initial_instructions],
+  // if distance campus, run those instructions in timeline
   conditional_function: function() {
-    console.log(jsPsych.data.get().select('game1').values[0])
+    //console.log(jsPsych.data.get().select('game1').values[0])
     if (jsPsych.data.get().select('game1').values[0] == "G1_Dist-campus") {
       return true;
     }
@@ -785,8 +786,9 @@ var time_campus_initial_instructions = {
 
 var if_time_camp_init_instr = {
   timeline: [time_campus_initial_instructions],
+  // if time campus, run those instructions in timeline
   conditional_function: function() {
-    console.log(jsPsych.data.get().select('game1').values[0])
+    //console.log(jsPsych.data.get().select('game1').values[0])
     if (jsPsych.data.get().select('game1').values[0] == "G1_Time-campus") {
       return true;
     }
@@ -820,7 +822,8 @@ var distance_park_initial_instructions = {
 var if_dist_park_init_instr = {
   timeline: [distance_park_initial_instructions],
   conditional_function: function() {
-    console.log(jsPsych.data.get().select('game1').values[0])
+    // if distance park, run those instructions in timeline
+    //console.log(jsPsych.data.get().select('game1').values[0])
     if (jsPsych.data.get().select('game1').values[0] == "G1_Dist-park") {
       return true;
     }
@@ -854,8 +857,9 @@ var time_park_initial_instructions = {
 
 var if_time_park_init_instr = {
   timeline: [time_park_initial_instructions],
+  // if time park, run those instructions in timeline
   conditional_function: function() {
-    console.log(jsPsych.data.get().select('game1').values[0])
+    //console.log(jsPsych.data.get().select('game1').values[0])
     if (jsPsych.data.get().select('game1').values[0] == "G1_Time-park") {
       return true;
     }
@@ -897,7 +901,16 @@ var distance_initial_goal_specific = {
   timeline: [
     distance_initial_goal_specific,
     distance_initial_goal_specific2
-    ]
+    ],
+  // if distance game and specific, run in timeline
+  conditional_function: function() {
+    if ((jsPsych.data.get().select('game1').values[0] == "G1_Dist-campus" || jsPsych.data.get().select('game1').values[0] == "G1_Dist-park") && jsPsych.data.get().select('goaltype').values[0] == "G_Specific") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
   }
 
 var distance_initial_goal_non_specific = {
@@ -919,7 +932,16 @@ var distance_initial_goal_non_specific = {
   timeline: [
     distance_initial_goal_non_specific,
     distance_initial_goal_non_specific2
-    ]
+    ],
+   // if distance game and nonspecific, run in timeline
+  conditional_function: function() {
+    if ((jsPsych.data.get().select('game1').values[0] == "G1_Dist-campus" || jsPsych.data.get().select('game1').values[0] == "G1_Dist-park") && jsPsych.data.get().select('goaltype').values[0] == "G_Non-specific") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
   }
   //now same two page instructions for time games
   var time_initial_goal_specific = {
@@ -941,7 +963,17 @@ var distance_initial_goal_non_specific = {
     timeline: [
       time_initial_goal_specific,
       time_initial_goal_specific2
-      ]
+      ],
+     // if time game and specific, run in timeline
+  conditional_function: function() {
+    console.log(jsPsych.data.get().select('game1').values[0])
+    if ((jsPsych.data.get().select('game1').values[0] == "G1_Time-campus" || jsPsych.data.get().select('game1').values[0] == "G1_Time-park") && jsPsych.data.get().select('goaltype').values[0] == "G_Specific") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
     }
 
   var time_initial_goal_non_specific = {
@@ -963,7 +995,17 @@ var distance_initial_goal_non_specific = {
     timeline: [
       time_initial_goal_non_specific,
       time_initial_goal_non_specific2
-      ]
+      ],
+     // if time game and nonspecific, run in timeline
+  conditional_function: function() {
+    console.log(jsPsych.data.get().select('game1').values[0])
+    if ((jsPsych.data.get().select('game1').values[0] == "G1_Time-campus" || jsPsych.data.get().select('game1').values[0] == "G1_Time-park") && jsPsych.data.get().select('goaltype').values[0] == "G_Non-specific") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
     }
 
 // goal assignment
@@ -1013,7 +1055,10 @@ if (initial_game_type == 1) {
 */
 
 // feedback assignment
-if (initial_game_feedback_number == 1) { // positive
+  
+//if (initial_game_feedback_number == 1) { // positive
+
+  /*
   feedback_correct_1 = "✘ Out of range";
   feedback_correct_2 = "✘ Out of range";
   feedback_correct_3 = "✘ Out of range";
@@ -1044,6 +1089,8 @@ if (initial_game_feedback_number == 1) { // positive
   feedback_correct_28 = "⭐ Within range! 😃";
   feedback_correct_29 = "✘ Out of range";
   feedback_correct_30 = "⭐ Within range! 😃";
+  */
+  /*
 } else if (initial_game_feedback_number == 2) { //neutral
     feedback_correct_1 = "✘ Out of range";
   feedback_correct_2 = "⭐ Within range! 😃";
@@ -1076,6 +1123,7 @@ if (initial_game_feedback_number == 1) { // positive
   feedback_correct_29 = "✘ Out of range";
   feedback_correct_30 = "⭐ Within range! 😃";
 }
+*/
 
 //distance campus
 var distance_campus_initial_game = {
@@ -1097,40 +1145,118 @@ var distance_campus_initial_game = {
     }
   ],
   timeline_variables: [
-    {stimulus: 'img/distance_campus_25.jpg', min: 72.3,  max: 100.7, feedback_correct: feedback_correct_1},
-    {stimulus: 'img/distance_campus_29.jpg', min: 126.8, max: 164.7, feedback_correct: feedback_correct_2},
-    {stimulus: 'img/distance_campus_05.jpg', min: 100.2, max: 133.3, feedback_correct: feedback_correct_3},
-    {stimulus: 'img/distance_campus_28.jpg', min: 208.2, max: 251.9, feedback_correct: feedback_correct_4},
-    {stimulus: 'img/distance_campus_01.jpg', min: 23.2,  max: 40.5,  feedback_correct: feedback_correct_5},
-    {stimulus: 'img/distance_campus_10.jpg', min: 28.0,  max: 45.2,  feedback_correct: feedback_correct_6},
-    {stimulus: 'img/distance_campus_09.jpg', min: 141.5, max: 180.1, feedback_correct: feedback_correct_7},
-    {stimulus: 'img/distance_campus_17.jpg', min: 122.1, max: 156.0, feedback_correct: feedback_correct_8},
-    {stimulus: 'img/distance_campus_21.jpg', min: 103.7, max: 137.3, feedback_correct: feedback_correct_9},
-    {stimulus: 'img/distance_campus_24.jpg', min: 92.1,  max: 124.5, feedback_correct: feedback_correct_10},
-    {stimulus: 'img/distance_campus_04.jpg', min: 73.8,  max: 101.4, feedback_correct: feedback_correct_11},
-    {stimulus: 'img/distance_campus_07.jpg', min: 79.9,  max: 110.9, feedback_correct: feedback_correct_12},
-    {stimulus: 'img/distance_campus_20.jpg', min: 76.7,  max: 105.0, feedback_correct: feedback_correct_13},
-    {stimulus: 'img/distance_campus_15.jpg', min: 30.5,  max: 47.4,  feedback_correct: feedback_correct_14},
-    {stimulus: 'img/distance_campus_12.jpg', min: 43.8,  max: 66.2,  feedback_correct: feedback_correct_15},
-    {stimulus: 'img/distance_campus_03.jpg', min: 91.1,  max: 121.4, feedback_correct: feedback_correct_16},
-    {stimulus: 'img/distance_campus_18.jpg', min: 264.1, max: 314.5, feedback_correct: feedback_correct_17},
-    {stimulus: 'img/distance_campus_16.jpg', min: 38.9,  max: 62.1,  feedback_correct: feedback_correct_18},
-    {stimulus: 'img/distance_campus_30.jpg', min: 28.4,  max: 48.5,  feedback_correct: feedback_correct_19},
-    {stimulus: 'img/distance_campus_06.jpg', min: 25.8,  max: 42.5,  feedback_correct: feedback_correct_20},
-    {stimulus: 'img/distance_campus_27.jpg', min: 8.5,   max: 22.4,  feedback_correct: feedback_correct_21},
-    {stimulus: 'img/distance_campus_02.jpg', min: 53.5,  max: 76.3,  feedback_correct: feedback_correct_22},
-    {stimulus: 'img/distance_campus_22.jpg', min: 12.5,  max: 25.5,  feedback_correct: feedback_correct_23},
-    {stimulus: 'img/distance_campus_26.jpg', min: 63.1,  max: 87.3,  feedback_correct: feedback_correct_24},
-    {stimulus: 'img/distance_campus_19.jpg', min: 125.3, max: 159.6, feedback_correct: feedback_correct_25},
-    {stimulus: 'img/distance_campus_08.jpg', min: 44.5,  max: 68.4,  feedback_correct: feedback_correct_26},
-    {stimulus: 'img/distance_campus_13.jpg', min: 34.7,  max: 55.0,  feedback_correct: feedback_correct_27},
-    {stimulus: 'img/distance_campus_23.jpg', min: 42.7,  max: 64.1,  feedback_correct: feedback_correct_28},
-    {stimulus: 'img/distance_campus_14.jpg', min: 64.8,  max: 91.9,  feedback_correct: feedback_correct_29},
-    {stimulus: 'img/distance_campus_11.jpg', min: 160.2, max: 200.0, feedback_correct: feedback_correct_30},
+    {stimulus: 'img/distance_campus_25.jpg', min: 72.3,  max: 100.7, feedback_correct: function(){ 
+      // sets feedback depending on if pos or neu
+        if (jsPsych.data.get().select('lp').values[0] == "LP_POS") {
+          feedback_correct_1 = "✘ Out of range";
+          feedback_correct_2 = "✘ Out of range";
+          feedback_correct_3 = "✘ Out of range";
+          feedback_correct_4 = "⭐ Within range! 😃";
+          feedback_correct_5 = "✘ Out of range";
+          feedback_correct_6 = "✘ Out of range";
+          feedback_correct_7 = "⭐ Within range! 😃";
+          feedback_correct_8 = "✘ Out of range";
+          feedback_correct_9 = "✘ Out of range";
+          feedback_correct_10 = "⭐ Within range! 😃";
+          feedback_correct_11 = "✘ Out of range";
+          feedback_correct_12 = "⭐ Within range! 😃";
+          feedback_correct_13 = "✘ Out of range";
+          feedback_correct_14 = "✘ Out of range";
+          feedback_correct_15 = "⭐ Within range! 😃";
+          feedback_correct_16 = "⭐ Within range! 😃";
+          feedback_correct_17 = "✘ Out of range";
+          feedback_correct_18 = "⭐ Within range! 😃";
+          feedback_correct_19 = "⭐ Within range! 😃";
+          feedback_correct_20 = "✘ Out of range";
+          feedback_correct_21 = "⭐ Within range! 😃";
+          feedback_correct_22 = "⭐ Within range! 😃";
+          feedback_correct_23 = "✘ Out of range";
+          feedback_correct_24 = "✘ Out of range";
+          feedback_correct_25 = "⭐ Within range! 😃";
+          feedback_correct_26 = "⭐ Within range! 😃";
+          feedback_correct_27 = "⭐ Within range! 😃";
+          feedback_correct_28 = "⭐ Within range! 😃";
+          feedback_correct_29 = "✘ Out of range";
+          feedback_correct_30 = "⭐ Within range! 😃";
+      }
+      else if (jsPsych.data.get().select('lp').values[0] == "LP_NEU") {
+        feedback_correct_1 = "✘ Out of range";
+        feedback_correct_2 = "⭐ Within range! 😃";
+        feedback_correct_3 = "✘ Out of range";
+        feedback_correct_4 = "⭐ Within range! 😃";
+        feedback_correct_5 = "⭐ Within range! 😃";
+        feedback_correct_6 = "✘ Out of range";
+        feedback_correct_7 = "⭐ Within range! 😃";
+        feedback_correct_8 = "✘ Out of range";
+        feedback_correct_9 = "⭐ Within range! 😃";
+        feedback_correct_10 = "⭐ Within range! 😃";
+        feedback_correct_11 = "✘ Out of range";
+        feedback_correct_12 = "✘ Out of range";
+        feedback_correct_13 = "✘ Out of range";
+        feedback_correct_14 = "⭐ Within range! 😃";
+        feedback_correct_15 = "⭐ Within range! 😃";
+        feedback_correct_16 = "✘ Out of range";
+        feedback_correct_17 = "✘ Out of range";
+        feedback_correct_18 = "✘ Out of range";
+        feedback_correct_19 = "⭐ Within range! 😃";
+        feedback_correct_20 = "⭐ Within range! 😃";
+        feedback_correct_21 = "⭐ Within range! 😃";
+        feedback_correct_22 = "✘ Out of range";
+        feedback_correct_23 = "⭐ Within range! 😃";
+        feedback_correct_24 = "✘ Out of range";
+        feedback_correct_25 = "✘ Out of range";
+        feedback_correct_26 = "⭐ Within range! 😃";
+        feedback_correct_27 = "✘ Out of range";
+        feedback_correct_28 = "⭐ Within range! 😃";
+        feedback_correct_29 = "✘ Out of range";
+        feedback_correct_30 = "⭐ Within range! 😃";
+        }
+      return feedback_correct_1;
+    }
+  },
+    {stimulus: 'img/distance_campus_29.jpg', min: 126.8, max: 164.7, feedback_correct: function(){ return feedback_correct_2}},
+    {stimulus: 'img/distance_campus_05.jpg', min: 100.2, max: 133.3, feedback_correct: function(){ return feedback_correct_3}},
+    {stimulus: 'img/distance_campus_28.jpg', min: 208.2, max: 251.9, feedback_correct: function(){ return feedback_correct_4}},
+    {stimulus: 'img/distance_campus_01.jpg', min: 23.2,  max: 40.5,  feedback_correct: function(){ return feedback_correct_5}},
+    {stimulus: 'img/distance_campus_10.jpg', min: 28.0,  max: 45.2,  feedback_correct: function(){ return feedback_correct_6}},
+    {stimulus: 'img/distance_campus_09.jpg', min: 141.5, max: 180.1, feedback_correct: function(){ return feedback_correct_7}},
+    {stimulus: 'img/distance_campus_17.jpg', min: 122.1, max: 156.0, feedback_correct: function(){ return feedback_correct_8}},
+    {stimulus: 'img/distance_campus_21.jpg', min: 103.7, max: 137.3, feedback_correct: function(){ return feedback_correct_9}},
+    {stimulus: 'img/distance_campus_24.jpg', min: 92.1,  max: 124.5, feedback_correct: function(){ return feedback_correct_10}},
+    {stimulus: 'img/distance_campus_04.jpg', min: 73.8,  max: 101.4, feedback_correct: function(){ return feedback_correct_11}},
+    {stimulus: 'img/distance_campus_07.jpg', min: 79.9,  max: 110.9, feedback_correct: function(){ return feedback_correct_12}},
+    {stimulus: 'img/distance_campus_20.jpg', min: 76.7,  max: 105.0, feedback_correct: function(){ return feedback_correct_13}},
+    {stimulus: 'img/distance_campus_15.jpg', min: 30.5,  max: 47.4,  feedback_correct: function(){ return feedback_correct_14}},
+    {stimulus: 'img/distance_campus_12.jpg', min: 43.8,  max: 66.2,  feedback_correct: function(){ return feedback_correct_15}},
+    {stimulus: 'img/distance_campus_03.jpg', min: 91.1,  max: 121.4, feedback_correct: function(){ return feedback_correct_16}},
+    {stimulus: 'img/distance_campus_18.jpg', min: 264.1, max: 314.5, feedback_correct: function(){ return feedback_correct_17}},
+    {stimulus: 'img/distance_campus_16.jpg', min: 38.9,  max: 62.1,  feedback_correct: function(){ return feedback_correct_18}},
+    {stimulus: 'img/distance_campus_30.jpg', min: 28.4,  max: 48.5,  feedback_correct: function(){ return feedback_correct_19}},
+    {stimulus: 'img/distance_campus_06.jpg', min: 25.8,  max: 42.5,  feedback_correct: function(){ return feedback_correct_20}},
+    {stimulus: 'img/distance_campus_27.jpg', min: 8.5,   max: 22.4,  feedback_correct: function(){ return feedback_correct_21}},
+    {stimulus: 'img/distance_campus_02.jpg', min: 53.5,  max: 76.3,  feedback_correct: function(){ return feedback_correct_22}},
+    {stimulus: 'img/distance_campus_22.jpg', min: 12.5,  max: 25.5,  feedback_correct: function(){ return feedback_correct_23}},
+    {stimulus: 'img/distance_campus_26.jpg', min: 63.1,  max: 87.3,  feedback_correct: function(){ return feedback_correct_24}},
+    {stimulus: 'img/distance_campus_19.jpg', min: 125.3, max: 159.6, feedback_correct: function(){ return feedback_correct_25}},
+    {stimulus: 'img/distance_campus_08.jpg', min: 44.5,  max: 68.4,  feedback_correct: function(){ return feedback_correct_26}},
+    {stimulus: 'img/distance_campus_13.jpg', min: 34.7,  max: 55.0,  feedback_correct: function(){ return feedback_correct_27}},
+    {stimulus: 'img/distance_campus_23.jpg', min: 42.7,  max: 64.1,  feedback_correct: function(){ return feedback_correct_28}},
+    {stimulus: 'img/distance_campus_14.jpg', min: 64.8,  max: 91.9,  feedback_correct: function(){ return feedback_correct_29}},
+    {stimulus: 'img/distance_campus_11.jpg', min: 160.2, max: 200.0, feedback_correct: function(){ return feedback_correct_30}},
       ],
-  randomize_order: false
+  randomize_order: false,
+     // if distance campus, run in timeline
+  conditional_function: function() {
+    console.log(jsPsych.data.get().select('game1').values[0])
+    if (jsPsych.data.get().select('game1').values[0] == "G1_Dist-campus") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 }
-
+/*
 //time campus
 var time_campus_initial_game = {
   timeline: [
@@ -1293,7 +1419,7 @@ var time_park_initial_game = {
   randomize_order: false
 }
 
-
+*/
 /* assign participant to condition*/
 /*
   if (initial_game_type == 1) {
@@ -1307,7 +1433,9 @@ var time_park_initial_game = {
   }
 */
 
+
 /*7 - Feedback*/
+/*
   if (initial_game_feedback_number == 1 && initial_game_goal_number == 1) {
     var initial_game_feedback_image = "POS_specific";
   } else if (initial_game_feedback_number == 1 && initial_game_goal_number == 2) {
@@ -1337,6 +1465,7 @@ var initial_game_feedback = {
   ]
 }
 
+*/
 /*8 - Survey*/
 
 var thoughtprocess1 = {
@@ -2085,10 +2214,15 @@ var digitspan_instructions = {
     if_dist_camp_init_instr,
     if_dist_park_init_instr,
     if_time_camp_init_instr,
-    if_time_park_init_instr
-    /*initial_game_instructions,
-    initial_game_goal,
-    initial_game,
+    if_time_park_init_instr,
+    distance_initial_goal_specific,
+    distance_initial_goal_non_specific,
+    time_initial_goal_specific,
+    time_initial_goal_non_specific,
+    distance_campus_initial_game
+    /*initial_game_instructions, //updated
+    initial_game_goal, //updated
+    initial_game,// in progress of updating
     initial_game_feedback,
     games_description2,
     game_preference2,
