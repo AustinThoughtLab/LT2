@@ -440,7 +440,7 @@ var demographics_2 = {
 
   // generate all the numbers for all randomization
 
-  const initial_games_description = generateRandomNumber(1,24)  //randomize desciptions of games/likert scales of games
+  //const initial_games_description = generateRandomNumber(1,24)  //randomize desciptions of games/likert scales of games
   //if RandomNumber = 1, use image with order 1,2,3,4 labled "1.png"
   //const initial_game_type = generateRandomNumber(1,4); // (time park, campus park, etc.), 2(specific vs non)
   //if RandomNumber = 1, distance-campus
@@ -467,7 +467,11 @@ var demographics_2 = {
 
   var games_pictures = {
     type: jsPsychImageButtonResponse,
-    stimulus: 'img/'+initial_games_description+'.png',
+    stimulus: function() {
+      var initial_games_description = jsPsych.data.get().select('order').values[0];
+      initial_games_description = initial_games_description.substring(1);
+      return 'img/'+initial_games_description+'.png';
+    },
     choices: ['Continue'],
     prompt: ""
 };
@@ -489,7 +493,7 @@ var scale = [
     "6",
     "7<br>(A lot)"
 ];
-
+/*
 if (initial_games_description == 1) {
   var prompt1 = "Distance on Campus";
   var prompt2 = "Time on Campus";
@@ -707,20 +711,243 @@ if (initial_games_description == 1) {
   var name3 = prompt3;
   var name4 = prompt4;
 }
+*/
 
 var game_preference = {
     type: jsPsychSurveyImageLikert,
-    stimulus: "img/v"+initial_games_description+".png",
+    stimulus: function() {
+      pic_order = jsPsych.data.get().select('order').values[0]  
+      pic_order = pic_order.substring(1)  
+      return "img/v"+pic_order+".png"
+    },
     preamble: "Please rate how much you want to play each game.",
     scale_height: 800,
     scale_width: 500,
     image_width: 202,
-    questions:[
+    questions: function() {
+      if (jsPsych.data.get().select('order').values[0] == 'o1') {
+        var prompt1 = "Distance on Campus";
+        var prompt2 = "Time on Campus";
+        var prompt3 = "Distance in Park";
+        var prompt4 = "Time in Park";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o2') {
+        var prompt1 = "Distance on Campus";
+        var prompt2 = "Time on Campus";
+        var prompt3 = "Time in Park";
+        var prompt4 = "Distance in Park";
+          var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o3') {
+        var prompt1 = "Distance on Campus";
+        var prompt2 = "Distance in Park";
+        var prompt3 = "Time on Campus";
+        var prompt4 = "Time in Park";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o4') {
+        var prompt1 = "Distance on Campus";
+        var prompt2 = "Distance in Park";
+        var prompt3 = "Time in Park";
+        var prompt4 = "Time on Campus";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o5') {
+        var prompt1 = "Distance on Campus";
+        var prompt2 = "Time in Park";
+        var prompt3 = "Time on Campus";
+        var prompt4 = "Distance in Park";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o6') {
+        var prompt1 = "Distance on Campus";
+        var prompt2 = "Time in Park";
+        var prompt3 = "Distance in Park";
+        var prompt4 = "Time on Campus";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o7') {
+        var prompt1 = "Time on Campus";
+        var prompt2 = "Distance on Campus";
+        var prompt3 = "Distance in Park";
+        var prompt4 = "Time in Park";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o8') {
+        var prompt1 = "Time on Campus";
+        var prompt2 = "Distance on Campus";
+        var prompt3 = "Time in Park";
+        var prompt4 = "Distance in Park";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o9') {
+        var prompt1 = "Time on Campus";
+        var prompt2 = "Distance in Park";
+        var prompt3 = "Distance on Campus";
+        var prompt4 = "Time in Park";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o10') {
+        var prompt1 = "Time on Campus";
+        var prompt2 = "Distance in Park";
+        var prompt3 = "Time in Park";
+        var prompt4 = "Distance on Campus";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o11') {
+        var prompt1 = "Time on Campus";
+        var prompt2 = "Time in Park";
+        var prompt3 = "Distance on Campus";
+        var prompt4 = "Distance in Park";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o12') {
+        var prompt1 = "Time on Campus";
+        var prompt2 = "Time in Park";
+        var prompt3 = "Distance in Park";
+        var prompt4 = "Distance on Campus";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o13') {
+        var prompt1 = "Distance in Park";
+        var prompt2 = "Distance on Campus";
+        var prompt3 = "Time on Campus";
+        var prompt4 = "Time in Park";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o14') {
+        var prompt1 = "Distance in Park";
+        var prompt2 = "Distance on Campus";
+        var prompt3 = "Time in Park";
+        var prompt4 = "Time on Campus";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o15') {
+        var prompt1 = "Distance in Park";
+        var prompt2 = "Time on Campus";
+        var prompt3 = "Distance on Campus";
+        var prompt4 = "Time in Park";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o16') {
+        var prompt1 = "Distance in Park";
+        var prompt2 = "Time on Campus";
+        var prompt3 = "Time in Park";
+        var prompt4 = "Distance on Campus";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o17') {
+        var prompt1 = "Distance in Park";
+        var prompt2 = "Time in Park";
+        var prompt3 = "Distance on Campus";
+        var prompt4 = "Time on Campus";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o18') {
+        var prompt1 = "Distance in Park";
+        var prompt2 = "Time in Park";
+        var prompt3 = "Time on Campus";
+        var prompt4 = "Distance on Campus";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o19') {
+        var prompt1 = "Time in Park";
+        var prompt2 = "Distance on Campus";
+        var prompt3 = "Time on Campus";
+        var prompt4 = "Distance in Park";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o20') {
+        var prompt1 = "Time in Park";
+        var prompt2 = "Distance on Campus";
+        var prompt3 = "Distance in Park";
+        var prompt4 = "Time on Campus";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o21') {
+        var prompt1 = "Time in Park";
+        var prompt2 = "Time on Campus";
+        var prompt3 = "Distance on Campus";
+        var prompt4 = "Distance in Park";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o22') {
+        var prompt1 = "Time in Park";
+        var prompt2 = "Time on Campus";
+        var prompt3 = "Distance in Park";
+        var prompt4 = "Distance on Campus";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o23') {
+        var prompt1 = "Time in Park";
+        var prompt2 = "Distance in Park";
+        var prompt3 = "Distance on Campus";
+        var prompt4 = "Time on Campus";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      } else if (jsPsych.data.get().select('order').values[0] == 'o24') {
+        var prompt1 = "Time in Park";
+        var prompt2 = "Distance in Park";
+        var prompt3 = "Time on Campus";
+        var prompt4 = "Distance on Campus";
+        var name1 = prompt1;
+        var name2 = prompt2;
+        var name3 = prompt3;
+        var name4 = prompt4;
+      }
+      return [
         {prompt: "How much do you want to play <b>"+prompt1+"?</b>", name: "game1", labels: scale, required: true},
         {prompt: "How much do you want to play <b>"+prompt2+"?</b>", name: "game2", labels: scale, required: true},
         {prompt: "How much do you want to play <b>"+prompt3+"?</b>", name: "game3", labels: scale, required: true},
         {prompt: "How much do you want to play <b>"+prompt4+"?</b>", name: "game4", labels: scale, required: true},
-  ],
+  ];},
 };
 
 /*4-6 - Instructions to either distance/time game - binary, with condition assigment*/
@@ -1675,7 +1902,7 @@ var time_park_initial_game = {
   } else if (initial_game_feedback_number == 2 && initial_game_goal_number == 2) {
     var initial_game_feedback_image = "NEU_nonspecific";
   }
-
+*/
 var initial_game_feedback_text = {
   type: jsPsychHtmlButtonResponse,
   stimulus: "You got <b>15</b> out of 30 trials within range. On the next page you will see your performance summary.</p>",
@@ -1684,7 +1911,21 @@ var initial_game_feedback_text = {
 
 var initial_game_feedback_summary = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: "<p><img src='img/" + initial_game_feedback_image + ".png' height='500px'></p>",
+  stimulus: function() {
+    if (jsPsych.data.get().select('lp').values[0] == "LP_POS" && jsPsych.data.get().select('goaltype').values[0] == "G_Specific") {
+      var initial_game_feedback_image = "POS_specific"; 
+    }
+    else if (jsPsych.data.get().select('lp').values[0] == "LP_POS" && jsPsych.data.get().select('goaltype').values[0] == "G_Non-specific") {
+      var initial_game_feedback_image = "POS_nonspecific";
+    }
+    else if (jsPsych.data.get().select('lp').values[0] == "LP_NEU" && jsPsych.data.get().select('goaltype').values[0] == "G_Specific") {
+      var initial_game_feedback_image = "NEU_specific";
+    }
+    else if (jsPsych.data.get().select('lp').values[0] == "LP_NEU" && jsPsych.data.get().select('goaltype').values[0] == "G_Non-specific") {
+      var initial_game_feedback_image = "NEU_nonspecific";
+    }
+    return "<p><img src='img/" + initial_game_feedback_image + ".png' height='500px'></p>"
+  },
   choices: ["Continue"]
 }
 
@@ -1695,7 +1936,7 @@ var initial_game_feedback = {
   ]
 }
 
-*/
+
 /*8 - Survey*/
 
 var thoughtprocess1 = {
@@ -1786,14 +2027,18 @@ var survey1 = {
     'Now you are going to rate how much you would like to play different games.<br> Similarly to before, you will read what each game is about and rate how much you want to play them.',
     html:''
   }
-
+/*
   var games_pictures = {
     type: jsPsychImageButtonResponse,
-    stimulus: 'img/'+initial_games_description+'.png',
+    stimulus: function() {
+      var initial_games_description = jsPsych.data.get().select('order').values[0];
+      initial_games_description = initial_games_description.substring(1);
+      return 'img/'+initial_games_description+'.png';
+    },
     choices: ['Continue'],
     prompt: ""
 };
-
+*/
   var games_description2 = {
     timeline: [
       games_instructions2, games_pictures,
@@ -1959,10 +2204,18 @@ var time_park_response_instructions = {
     timeline: [
       distance_campus_response_instructions,
       distance_campus_response_game
-      ]
-//time campus
+      ],
+    conditional_function: function() {
+    if (jsPsych.data.get().select('game2').values[0] == "G2_Distance-campus") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
     }
+    // time campus
     var time_campus_response_game = {
       timeline: [
         {
@@ -2016,71 +2269,88 @@ var time_park_response_instructions = {
       randomize_order: true
     }
 
-      var time_campus_response = {
-      timeline: [
-        time_campus_response_instructions,
-        time_campus_response_game
-        ]
-      }
-      //distance park response game
-          var distance_park_response_game = {
-            timeline: [
-              {
-                type: jsPsychDistanceSliderResponse,
-                stimulus: jsPsych.timelineVariable('stimulus'),
-                stimulus_width: 600,
-                slider_width: 600,
-                require_movement: true,
-                min: jsPsych.timelineVariable('min'), // What's the minimum value of the slider?
-                max: jsPsych.timelineVariable('max'), // What's the maximum value of the slider?
-                  //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
-                step: 0.1, // Slider moves in increments of how much?
-                slider_number: true,
-                feedback_correct: jsPsych.timelineVariable('feedback_correct'),
-                feedback_display: true,
-                prompt: '<p>How far apart are the <b>tips</b> of the cones?</p>'
-              }
-            ],
-            timeline_variables: [
-              {stimulus: 'img/distance_park_01.jpg', min: 22.2, max: 36.6, feedback_correct: 23.0},
-              {stimulus: 'img/distance_park_02.jpg', min: 28.6, max: 49.7, feedback_correct: 49.6},
-              {stimulus: 'img/distance_park_03.jpg', min: 80.8, max: 109.8, feedback_correct: 93.9},
-              {stimulus: 'img/distance_park_04.jpg', min: 53.4, max: 79.6, feedback_correct: 76.4},
-              {stimulus: 'img/distance_park_05.jpg', min: 96.4, max: 128.3, feedback_correct: 112.5},
-              {stimulus: 'img/distance_park_06.jpg', min: 9.2, max: 23.5, feedback_correct: 22.9},
-              {stimulus: 'img/distance_park_07.jpg', min: 73.9, max: 103.8, feedback_correct: 99.0},
-              {stimulus: 'img/distance_park_08.jpg', min: 39.7, max: 62.0, feedback_correct: 55.6},
-              {stimulus: 'img/distance_park_09.jpg', min: 136.0, max: 173.7, feedback_correct: 157.4},
-              {stimulus: 'img/distance_park_10.jpg', min: 10.8, max: 25.8, feedback_correct: 24.9},
-              {stimulus: 'img/distance_park_11.jpg', min: 152.2, max: 191.2, feedback_correct: 168.6},
-              {stimulus: 'img/distance_park_12.jpg', min: 30.0, max: 50.8, feedback_correct: 47.7},
-              {stimulus: 'img/distance_park_13.jpg', min: 26.5, max: 44.9, feedback_correct: 37.7},
-              {stimulus: 'img/distance_park_14.jpg', min: 57.4, max: 83.0, feedback_correct: 73.3},
-              {stimulus: 'img/distance_park_15.jpg', min: 60.5, max: 86.3, feedback_correct: 73.9},
-              {stimulus: 'img/distance_park_16.jpg', min: 46.4, max: 68.0, feedback_correct: 52.0},
-              {stimulus: 'img/distance_park_17.jpg', min: 96.6, max: 129.5, feedback_correct: 120.0},
-              {stimulus: 'img/distance_park_18.jpg', min: 239.6, max: 289.3, feedback_correct: 274.2},
-              {stimulus: 'img/distance_park_19.jpg', min: 90.2, max: 123.4, feedback_correct: 122.0},
-              {stimulus: 'img/distance_park_20.jpg', min: 66.4, max: 93.4, feedback_correct: 81.0},
-              {stimulus: 'img/distance_park_21.jpg', min: 92.6, max: 125.0, feedback_correct: 117.0},
-              {stimulus: 'img/distance_park_22.jpg', min: 10.3, max: 21.3, feedback_correct: 13.5},
-              {stimulus: 'img/distance_park_23.jpg', min: 27.8, max: 47.5, feedback_correct: 43.0},
-              {stimulus: 'img/distance_park_24.jpg', min: 88.6, max: 119.8, feedback_correct: 108.5},
-              {stimulus: 'img/distance_park_25.jpg', min: 76.0, max: 103.0, feedback_correct: 81.5},
-              {stimulus: 'img/distance_park_26.jpg', min: 54.6, max: 77.3, feedback_correct: 57.1},
-              {stimulus: 'img/distance_park_27.jpg', min: 6.8, max: 17.8, feedback_correct: 13.3},
-              {stimulus: 'img/distance_park_28.jpg', min: 192.8, max: 235.6, feedback_correct: 203.0},
-              {stimulus: 'img/distance_park_29.jpg', min: 142.8, max: 179.7, feedback_correct: 151.6},
-              {stimulus: 'img/distance_park_30.jpg', min: 31.4, max: 49.7, feedback_correct: 37.2},
-            ],
-            randomize_order: true
-          }
+var time_campus_response = {
+timeline: [
+  time_campus_response_instructions,
+  time_campus_response_game
+  ],
+conditional_function: function() {
+    if (jsPsych.data.get().select('game2').values[0] == "G2_Time-campus") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+}
 
-            var distance_park_response = {
-            timeline: [
-              distance_park_response_instructions,
-              distance_park_response_game
-              ]
+      //distance park response game
+var distance_park_response_game = {
+  timeline: [
+    {
+      type: jsPsychDistanceSliderResponse,
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      stimulus_width: 600,
+      slider_width: 600,
+      require_movement: true,
+      min: jsPsych.timelineVariable('min'), // What's the minimum value of the slider?
+      max: jsPsych.timelineVariable('max'), // What's the maximum value of the slider?
+        //slider_start: midpoint, // Where does the slider start? It's set to the midpoint.
+      step: 0.1, // Slider moves in increments of how much?
+      slider_number: true,
+      feedback_correct: jsPsych.timelineVariable('feedback_correct'),
+      feedback_display: true,
+      prompt: '<p>How far apart are the <b>tips</b> of the cones?</p>'
+    }
+  ],
+  timeline_variables: [
+    {stimulus: 'img/distance_park_01.jpg', min: 22.2, max: 36.6, feedback_correct: 23.0},
+    {stimulus: 'img/distance_park_02.jpg', min: 28.6, max: 49.7, feedback_correct: 49.6},
+    {stimulus: 'img/distance_park_03.jpg', min: 80.8, max: 109.8, feedback_correct: 93.9},
+    {stimulus: 'img/distance_park_04.jpg', min: 53.4, max: 79.6, feedback_correct: 76.4},
+    {stimulus: 'img/distance_park_05.jpg', min: 96.4, max: 128.3, feedback_correct: 112.5},
+    {stimulus: 'img/distance_park_06.jpg', min: 9.2, max: 23.5, feedback_correct: 22.9},
+    {stimulus: 'img/distance_park_07.jpg', min: 73.9, max: 103.8, feedback_correct: 99.0},
+    {stimulus: 'img/distance_park_08.jpg', min: 39.7, max: 62.0, feedback_correct: 55.6},
+    {stimulus: 'img/distance_park_09.jpg', min: 136.0, max: 173.7, feedback_correct: 157.4},
+    {stimulus: 'img/distance_park_10.jpg', min: 10.8, max: 25.8, feedback_correct: 24.9},
+    {stimulus: 'img/distance_park_11.jpg', min: 152.2, max: 191.2, feedback_correct: 168.6},
+    {stimulus: 'img/distance_park_12.jpg', min: 30.0, max: 50.8, feedback_correct: 47.7},
+    {stimulus: 'img/distance_park_13.jpg', min: 26.5, max: 44.9, feedback_correct: 37.7},
+    {stimulus: 'img/distance_park_14.jpg', min: 57.4, max: 83.0, feedback_correct: 73.3},
+    {stimulus: 'img/distance_park_15.jpg', min: 60.5, max: 86.3, feedback_correct: 73.9},
+    {stimulus: 'img/distance_park_16.jpg', min: 46.4, max: 68.0, feedback_correct: 52.0},
+    {stimulus: 'img/distance_park_17.jpg', min: 96.6, max: 129.5, feedback_correct: 120.0},
+    {stimulus: 'img/distance_park_18.jpg', min: 239.6, max: 289.3, feedback_correct: 274.2},
+    {stimulus: 'img/distance_park_19.jpg', min: 90.2, max: 123.4, feedback_correct: 122.0},
+    {stimulus: 'img/distance_park_20.jpg', min: 66.4, max: 93.4, feedback_correct: 81.0},
+    {stimulus: 'img/distance_park_21.jpg', min: 92.6, max: 125.0, feedback_correct: 117.0},
+    {stimulus: 'img/distance_park_22.jpg', min: 10.3, max: 21.3, feedback_correct: 13.5},
+    {stimulus: 'img/distance_park_23.jpg', min: 27.8, max: 47.5, feedback_correct: 43.0},
+    {stimulus: 'img/distance_park_24.jpg', min: 88.6, max: 119.8, feedback_correct: 108.5},
+    {stimulus: 'img/distance_park_25.jpg', min: 76.0, max: 103.0, feedback_correct: 81.5},
+    {stimulus: 'img/distance_park_26.jpg', min: 54.6, max: 77.3, feedback_correct: 57.1},
+    {stimulus: 'img/distance_park_27.jpg', min: 6.8, max: 17.8, feedback_correct: 13.3},
+    {stimulus: 'img/distance_park_28.jpg', min: 192.8, max: 235.6, feedback_correct: 203.0},
+    {stimulus: 'img/distance_park_29.jpg', min: 142.8, max: 179.7, feedback_correct: 151.6},
+    {stimulus: 'img/distance_park_30.jpg', min: 31.4, max: 49.7, feedback_correct: 37.2},
+  ],
+  randomize_order: true
+}
+
+  var distance_park_response = {
+  timeline: [
+    distance_park_response_instructions,
+    distance_park_response_game
+    ],
+  conditional_function: function() {
+    if (jsPsych.data.get().select('game2').values[0] == "G2_Dist-park") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
             }
   //time park
       var time_park_response_game = {
@@ -2135,12 +2405,20 @@ var time_park_response_instructions = {
                   ],
               randomize_order: true
             }
-            var time_park_response = {
-            timeline: [
-              time_park_response_instructions,
-              time_park_response_game
-              ]
-            }
+  var time_park_response = {
+  timeline: [
+    time_park_response_instructions,
+    time_park_response_game
+    ],
+  conditional_function: function() {
+    if (jsPsych.data.get().select('game2').values[0] == "G2_Time-park") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  }
 //assign particpant to follow up game
             /*
 if (initial_game_type == 1) {
@@ -2452,18 +2730,18 @@ var digitspan_instructions = {
     distance_campus_initial_game,
     time_campus_initial_game,
     distance_park_initial_game,
-    time_park_initial_game
-    /*initial_game_instructions, //updated
-    initial_game_goal, //updated
-    initial_game,// updated
+    time_park_initial_game, 
     initial_game_feedback,
     games_description2,
     game_preference2,
     survey1,
-    followup_game,
+    distance_campus_response,
+    time_campus_response,
+    distance_park_response,
+    time_park_response,
     survey2,
     digitspan_choices,
-    digitspan_instructions*/
+    digitspan_instructions
   ]);
 
   </script>
